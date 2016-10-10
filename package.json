@@ -1,6 +1,6 @@
 {
   "name": "first-follow",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Calculator for finding first, follow and predict sets by the grammar",
   "main": "index.js",
   "scripts": {
