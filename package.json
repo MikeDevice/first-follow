@@ -1,0 +1,38 @@
+{
+  "name": "first-follow",
+  "version": "0.0.1",
+  "description": "Calculator for finding first, follow and predict sets by the grammar",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --bail ./test/**/*",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeDevice/first-follow.git"
+  },
+  "keywords": [
+    "first",
+    "follow",
+    "predict",
+    "set",
+    "parser",
+    "grammar"
+  ],
+  "author": "Mikhail Vyrodov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeDevice/first-follow/issues"
+  },
+  "homepage": "https://github.com/MikeDevice/first-follow#readme",
+  "dependencies": {
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "eslint": "3.7.1",
+    "eslint-config-dvpnt": "1.2.0",
+    "expect.js": "0.3.1",
+    "mocha": "3.1.1",
+    "nrun": "0.1.7"
+  }
+}
