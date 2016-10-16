@@ -1,0 +1,21 @@
+{
+  "name": "first-follow-gh-pages",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeDevice/first-follow.git"
+  },
+  "author": "Mikhail Vyrodov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeDevice/first-follow/issues"
+  },
+  "homepage": "https://github.com/MikeDevice/first-follow#readme",
+  "devDependencies": {
+    "eslint": "3.5.0",
+    "eslint-config-dvpnt": "1.2.0",
+    "gulp": "3.9.1",
+    "gulp-sass": "2.3.2",
+    "gulp-watch": "4.3.10"
+  }
+}
