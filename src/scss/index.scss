@@ -1,6 +1,14 @@
-@import '_normalize';
-
 @import '_vars';
+
+@import '_normalize';
 
 @import '_page';
 @import '_header';
+@import '_main';
+@import '_section';
+
+@import '_input';
+@import '_button';
+@import '_input-form';
+@import '_output-section';
+@import '_table';
