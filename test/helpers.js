@@ -22,7 +22,7 @@ exports.checkSetHash = function(expectedSetHash, setHash) {
 };
 
 exports.checkPredictSets = function(expectedPredictSets, predictSets) {
-	expect(expectedPredictSets.length).to.equal(predictSets.length);
+	expect(_(expectedPredictSets).size()).to.equal(_(predictSets).size());
 
 	_(expectedPredictSets).each(function(expectedSets, index) {
 		expect(_(expectedSets).sort()).to.eql(_(predictSets[index]).sort());
