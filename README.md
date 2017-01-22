@@ -41,7 +41,7 @@ Grammar is represented as array of objects. Each object describes one rule. Rule
 ## Output
 First and follow sets are represented as array of objects. Keys are nonterminals and values are sets (first or follow) for these nonterminals.
 
-Predict sets are represented as array of arrays. Each array may contain terminals and end mark (`\u0000`)
+Predict sets are represented as array of objects. Keys are rule's number and values are sets. Each set may contain terminals and end mark (`\u0000`)
 
 ## Output examples
 **First set**
@@ -62,11 +62,12 @@ Predict sets are represented as array of arrays. Each array may contain terminal
 
 **Predict sets**
 ```
-[
-  ['a'],       // first rule
-  ['b'],       // second rule
-  ['\u0000']   // third rule
-]
+{
+  1: ['a'],       // first rule
+  2: ['b'],       // second rule
+  3: ['\u0000']   // third rule
+}
 ```
+
 ## License
   MIT

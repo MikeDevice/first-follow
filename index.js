@@ -202,7 +202,9 @@
 			}
 		});
 
-		return predictSets;
+		return _(predictSets).indexBy(function(val, key) {
+			return key + 1;
+		});
 	};
 
 	return {Grammar: Grammar};
