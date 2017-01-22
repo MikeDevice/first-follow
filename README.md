@@ -68,5 +68,6 @@ Predict sets are represented as array of objects. Keys are rule's number and val
   3: ['\u0000']   // third rule
 }
 ```
+
 ## License
   MIT
