@@ -10,7 +10,7 @@
     "watch-js": "nrun _init-js && watchify -v -d -e src/js/app.js -o build/js/bundle.js",
     "watch-pug": "chokidar --initial --silent 'src/pug' --command 'nrun build-pug'",
     "watch": "run-p -c -s watch-*",
-    "uglify-js": "uglifyjs --stats build/js/bundle.js -o build/js/bundle.js",
+    "uglify-js": "uglifyjs build/js/bundle.js -o build/js/bundle.js --comments \"/    .*/\" -m",
     "dev": "nrun watch",
     "clean": "rimraf build",
     "build": "run-s -c -s clean build-scss build-pug build-js uglify-js"
