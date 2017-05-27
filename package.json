@@ -5,13 +5,15 @@
     "_build-scss": "node-sass src/scss/ --output build/css/",
     "build-scss": "nrun _build-scss --output-style compressed",
     "build-js": "nrun _init-js && browserify src/js/app.js > build/js/bundle.js",
+    "build-pug": "pug --path src/pug/includes < src/pug/index.pug > index.html",
     "watch-scss": "run-s -c -s '_build-scss' '_build-scss -- --watch'",
     "watch-js": "nrun _init-js && watchify -v -d -e src/js/app.js -o build/js/bundle.js",
+    "watch-pug": "chokidar --initial --silent 'src/pug' --command 'nrun build-pug'",
     "watch": "run-p -c -s watch-*",
     "uglify-js": "uglifyjs --stats build/js/bundle.js -o build/js/bundle.js",
     "dev": "nrun watch",
     "clean": "rimraf build",
-    "build": "run-s -c -s clean build-scss build-js uglify-js"
+    "build": "run-s -c -s clean build-scss build-pug build-js uglify-js"
   },
   "repository": {
     "type": "git",
@@ -25,11 +27,13 @@
   "homepage": "https://github.com/MikeDevice/first-follow#readme",
   "devDependencies": {
     "browserify": "14.3.0",
+    "chokidar-cli": "1.2.0",
     "eslint": "3.5.0",
     "eslint-config-dvpnt": "1.2.0",
     "node-sass": "4.5.3",
     "npm-run-all": "4.0.2",
     "nrun": "0.1.7",
+    "pug-cli": "1.0.0-alpha6",
     "rimraf": "2.6.1",
     "uglify-js": "3.0.11",
     "watchify": "3.9.0"

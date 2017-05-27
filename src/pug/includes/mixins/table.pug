@@ -1,0 +1,11 @@
+mixin table(title, data)
+	table.table
+		thead
+			tr
+				th #
+				th #{title}
+		tbody
+			each row, item in data
+				tr
+					td #{item}
+					td #{row.join(', ')}

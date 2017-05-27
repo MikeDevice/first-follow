@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+
+head
+	meta(charset="UTF-8")
+	title First Follow — Calculator for finding first, follow and predict sets
+	link(rel="stylesheet", href="build/css/index.css")
+	meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+body.page
+	header.header
+		h1 First Follow
+		p Calculator for finding first, follow and predict sets
+
+	include includes/mixins/table.pug
+
+	main.main
+		.section-group
+			section.section
+				h2.section__header Grammar
+				.input-form
+					.input(contenteditable="true")
+						div S -> AbB
+						div A -> C
+						div B -> b
+					button.button(type="button") Run
+
+			section.section
+				h2.section__header First sets
+				+table('Sets', {S: ['a'], A: ['b', null]})
+
+		.section-group
+			section.section
+				h2.section__header Follow sets
+				+table('Sets', {S: ['a'], A: ['b', null]})
+
+			section.section
+				h2.section__header Predict sets
+				+table('Sets', {S: ['a'], A: ['b', null]})
+
+	script(type="text/javascript" src="build/js/bundle.js")
