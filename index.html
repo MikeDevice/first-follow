@@ -12,37 +12,124 @@
 			<p>Calculator for finding first, follow and predict sets</p>
 		</header>
 
-		<main>
-			<section class="section input-form">
-				<div class="input" contenteditable="true">
-					<div>S -> AbB</div>
-					<div>A -> C</div>
-					<div>B -> b</div>
-				</div>
-				<button class="button" type="button">Run</button>
-			</section>
+		<main class="main">
+			<div class="section-group">
+				<section class="section">
+					<h2 class="section__header">Grammar</h2>
+					<div class="input-form">
+						<div class="input" contenteditable="true">
+							<div>S -> AbB</div>
+							<div>A -> C</div>
+							<div>B -> b</div>
+						</div>
+						<button class="button" type="button">Run</button>
+					</div>
+				</section>
 
-			<section class="section output-section">
-				<h2 class="output-section__header">First sets</h2>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Nonterminals</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th>S</th>
-							<td>a</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
+				<section class="section">
+					<h2 class="section__header">First sets</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Sets</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>S</td>
+								<td>a, b, c, d, a, b, c, d, a, b, c, d,</td>
+							</tr>
+							<tr>
+								<td>A</td>
+								<td>
+									<div>
+										a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>B</td>
+								<td>
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</div>
 
-			<section class="section output-section">
-				<h2 class="output-section__header">Follow sets</h2>
-			</section>
+			<div class="section-group">
+				<section class="section">
+					<h2 class="section__header">Follow sets</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Sets</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>S</td>
+								<td>a, b, c, d, a, b, c, d, a, b, c, d,</td>
+							</tr>
+							<tr>
+								<td>A</td>
+								<td>
+									<div>
+										a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>B</td>
+								<td>
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section class="section">
+					<h2 class="section__header">Predist sets</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Sets</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>S</td>
+								<td>a, b, c, d, a, b, c, d, a, b, c, d,</td>
+							</tr>
+							<tr>
+								<td>A</td>
+								<td>
+									<div>
+										a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>B</td>
+								<td>
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+									a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d, a, b, c, d
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</div>
 		</main>
 	</body>
 </html>

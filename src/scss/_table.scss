@@ -12,6 +12,10 @@
 		border: 1px solid $border-color;
 		padding: 10px;
 		padding-left: 20px;
+
+		&:first-child {
+			padding-right: 20px;
+		}
 	}
 
 	thead {
