@@ -31,22 +31,22 @@ function calculateSets() {
 button.addEventListener('click', function() {
 	var sets = calculateSets();
 
-	helpers.moveDataToTable(
-		document.getElementById('first-sets-table'),
-		sets.firstSetHash
-	);
-
-	helpers.moveDataToTable(
-		document.getElementById('follow-sets-table'),
-		sets.followSetHash
-	);
-
-	helpers.moveDataToTable(
-		document.getElementById('predict-sets-table'),
-		sets.predictSets
-	);
-
 	if (sets) {
+		helpers.moveDataToTable(
+			document.getElementById('first-sets-table'),
+			sets.firstSetHash
+		);
+
+		helpers.moveDataToTable(
+			document.getElementById('follow-sets-table'),
+			sets.followSetHash
+		);
+
+		helpers.moveDataToTable(
+			document.getElementById('predict-sets-table'),
+			sets.predictSets
+		);
+
 		showSections();
 	}
 });

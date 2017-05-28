@@ -1,50 +1,53 @@
 doctype html
+
 html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title First Follow — Calculator for finding first, follow and predict sets
+		link(rel="stylesheet", href="build/css/index.css")
+		meta(property="og:title", content="First Follow")
+		meta(property="og:description", content="Calculator for finding first, follow and predict sets")
+		meta(property="og:url", content="https://mikedevice.github.io/first-follow/")
 
-head
-	meta(charset="UTF-8")
-	title First Follow — Calculator for finding first, follow and predict sets
-	link(rel="stylesheet", href="build/css/index.css")
-	meta(name="viewport" content="width=device-width, initial-scale=1.0")
+	body.page
+		header.header
+			h1 First Follow
+			p Calculator for finding first, follow and predict sets
 
-body.page
-	header.header
-		h1 First Follow
-		p Calculator for finding first, follow and predict sets
+		include includes/mixins/table.pug
 
-	include includes/mixins/table.pug
+		main.main
+			.section-group
+				section.section
+					h2.section__header Grammar
+					.input-form
+						textarea.input.js-input
+							| S -> abA
+							| A -> bc
+							| A -> ε
+						button.button.js-button(type="button") Run
 
-	main.main
-		.section-group
+				section.section.section_hidden
+					h2.section__header Predict sets
+					+table('Sets')#predict-sets-table
+
+			.section-group
+				section.section.section_hidden
+					h2.section__header First sets
+					+table('Sets')#first-sets-table
+
+				section.section.section_hidden
+					h2.section__header Follow sets
+					+table('Sets')#follow-sets-table
+
 			section.section
-				h2.section__header Grammar
-				.input-form
-					textarea.input.js-input
-						| S -> abA
-						| A -> bc
-						| A -> ε
-					button.button.js-button(type="button") Run
+				h2.section__header How use it?
+				.info
+					ul.info__list
+						li Enter your grammar
+						li Click "Run" button
+						li View result!
+						li More information will be soon... :-)
 
-			section.section.section_hidden
-				h2.section__header Predict sets
-				+table('Sets')#predict-sets-table
-
-		.section-group
-			section.section.section_hidden
-				h2.section__header First sets
-				+table('Sets')#first-sets-table
-
-			section.section.section_hidden
-				h2.section__header Follow sets
-				+table('Sets')#follow-sets-table
-
-		section.section
-			h2.section__header How use it?
-			.info
-				ul.info__list
-					li Enter your grammar
-					li Click "Run" button
-					li View result!
-					li More information will be soon... :-)
-
-	script(type="text/javascript" src="build/js/bundle.js")
+		script(type="text/javascript" src="build/js/bundle.js")
