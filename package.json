@@ -39,6 +39,7 @@
     "watchify": "3.9.0"
   },
   "dependencies": {
-    "first-follow": "^1.2.0"
+    "first-follow": "^1.2.0",
+    "underscore": "1.8.3"
   }
 }
