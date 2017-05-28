@@ -1,10 +1,14 @@
 @import '_vars';
 @import '_normalize';
+
+// components
+@import '_button';
+@import '_footer';
 @import '_header';
+@import '_info';
+@import '_input';
+@import '_input-form';
 @import '_page';
 @import '_section';
 @import '_section-group';
-@import '_button';
-@import '_input';
-@import '_input-form';
 @import '_table';
