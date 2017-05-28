@@ -1,0 +1,30 @@
+.table {
+	width: 100%;
+
+	font-size: 16px;
+
+	border: 1px solid $border-color;
+
+	th {
+		text-align: left;
+	}
+
+	th,
+	td {
+		padding: 10px;
+		padding-left: 20px;
+
+		border: 1px solid $border-color;
+
+		&:first-child {
+			padding-right: 20px;
+		}
+	}
+
+	thead {
+		th,
+		td {
+			border-bottom-width: 2px;
+		}
+	}
+}

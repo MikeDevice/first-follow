@@ -1,0 +1,6 @@
+{
+	"extends": "dvpnt",
+	"env": {
+		"browser": true
+	}
+}
