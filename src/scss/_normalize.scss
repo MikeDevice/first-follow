@@ -20,10 +20,14 @@ th {
 }
 
 a {
-	color: inherit;
+	color: #0064c1;
 	text-decoration: none;
 
 	outline: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 button {
