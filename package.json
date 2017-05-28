@@ -9,7 +9,7 @@
     "_build-scss": "node-sass src/scss/ --output build/css/",
     "build-scss": "nrun _build-scss --output-style compressed",
     "build-js": "nrun _init-js && browserify src/js/app.js > build/js/bundle.js",
-    "build-pug": "pug src/pug/index.pug -o ./",
+    "build-pug": "pug -O \"{staticVersion: $(cat .staticVersion)}\" src/pug/index.pug -o ./",
     "watch-scss": "run-s -c -s '_build-scss' '_build-scss -- --watch'",
     "watch-js": "nrun _init-js && watchify -v -d -e src/js/app.js -o build/js/bundle.js",
     "watch-pug": "nrun build-pug --watch",
@@ -17,7 +17,9 @@
     "uglify-js": "uglifyjs build/js/bundle.js -o build/js/bundle.js --comments \"/    .*/\" -m",
     "dev": "nrun watch",
     "clean": "rimraf build",
-    "build": "run-s -c -s clean build-scss build-pug build-js uglify-js"
+    "build": "run-s -c -s clean build-scss build-pug build-js uglify-js",
+    "bump-static-version": "echo $(( $(cat .staticVersion) + 1)) > .staticVersion",
+    "release": "run-s lint bump-static-version build"
   },
   "repository": {
     "type": "git",
