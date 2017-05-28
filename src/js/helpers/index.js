@@ -1,4 +1,9 @@
 'use strict';
 
-exports.parseInputRules = require('./parseInputRules');
-exports.prepareSetHashToOutput = require('./prepareSetHashToOutput');
+var _ = require('underscore');
+
+_(exports).extend(
+	require('./parse'),
+	require('./output'),
+	require('./table')
+);

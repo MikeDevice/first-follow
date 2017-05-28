@@ -25,17 +25,17 @@ body.page
 						| A -> ε
 					button.button.js-button(type="button") Run
 
-			section.section
-				h2.section__header First sets
-				+table('Sets', {S: ['a'], A: ['b', null]})
+			section.section.section_hidden
+				h2.section__header Predict sets
+				+table('Sets')#predict-sets-table
 
 		.section-group
-			section.section
-				h2.section__header Follow sets
-				+table('Sets', {S: ['a'], A: ['b', null, '\0']})
+			section.section.section_hidden
+				h2.section__header First sets
+				+table('Sets')#first-sets-table
 
-			section.section
-				h2.section__header Predict sets
-				+table('Sets', {S: ['a'], A: ['b', null]})
+			section.section.section_hidden
+				h2.section__header Follow sets
+				+table('Sets')#follow-sets-table
 
 	script(type="text/javascript" src="build/js/bundle.js")

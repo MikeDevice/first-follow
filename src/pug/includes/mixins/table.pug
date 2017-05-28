@@ -1,11 +1,12 @@
 mixin table(title, data)
-	table.table
+	table.table(id!=attributes.id)
 		thead
 			tr
 				th #
 				th #{title}
 		tbody
-			each row, item in data
-				tr
-					td #{item}
-					td #{row.join(', ')}
+			if data
+				each row, item in data
+					tr
+						td #{item}
+						td #{row.join(', ')}

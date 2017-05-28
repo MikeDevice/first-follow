@@ -1,19 +1,52 @@
 'use strict';
 
-var Grammar = require('first-follow').Grammar,
+var _ = require('underscore'),
+	Grammar = require('first-follow').Grammar,
 	helpers = require('./helpers');
 
 var input = document.getElementsByClassName('js-input')[0],
 	button = document.getElementsByClassName('js-button')[0];
 
-button.addEventListener('click', function() {
+function showSections() {
+	_(document.querySelectorAll('.section_hidden')).each(function(section) {
+		section.classList.remove('section_hidden');
+	});
+}
+
+function calculateSets() {
 	var rules = input.value.trim().split('\n'),
 		data = helpers.parseInputRules(rules);
 
 	if (data.length) {
-		var grammar = new Grammar(data),
-			firstSetHash = helpers.prepareSetHashToOutput(grammar.getFirstSetHash()),
-			followSetHash = helpers.prepareSetHashToOutput(grammar.getFollowSetHash()),
-			predictSets = helpers.prepareSetHashToOutput(grammar.getPredictSets());
+		var grammar = new Grammar(data);
+
+		return {
+			firstSetHash: helpers.prepareSetHashToOutput(grammar.getFirstSetHash()),
+			followSetHash: helpers.prepareSetHashToOutput(grammar.getFollowSetHash()),
+			predictSets: helpers.prepareSetHashToOutput(grammar.getPredictSets())
+		};
+	}
+}
+
+button.addEventListener('click', function() {
+	var sets = calculateSets();
+
+	helpers.moveDataToTable(
+		document.getElementById('first-sets-table'),
+		sets.firstSetHash
+	);
+
+	helpers.moveDataToTable(
+		document.getElementById('follow-sets-table'),
+		sets.followSetHash
+	);
+
+	helpers.moveDataToTable(
+		document.getElementById('predict-sets-table'),
+		sets.predictSets
+	);
+
+	if (sets) {
+		showSections();
 	}
 });

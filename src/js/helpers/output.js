@@ -11,6 +11,6 @@ var prepareSet = function(set) {
 	});
 };
 
-module.exports = function(setHash) {
+exports.prepareSetHashToOutput = function(setHash) {
 	return _(setHash).mapObject(prepareSet);
 };
