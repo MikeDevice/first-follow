@@ -3,7 +3,8 @@
 var _ = require('underscore');
 
 var epsilon = 'ε',
-	regex = new RegExp('^(\\w)\\s*->\\s*(\\w+|' + epsilon + ')$');
+	regexString = '^(\\w)\\s*->\\s*([^\\s' + epsilon + ']+|' + epsilon + ')$',
+	regex = new RegExp(regexString);
 
 exports.parseInputRules = function(rules) {
 	var data = [];
