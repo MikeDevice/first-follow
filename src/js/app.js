@@ -8,6 +8,12 @@ var input = document.getElementsByClassName('js-input')[0],
 	button = document.getElementsByClassName('js-button')[0];
 
 function showSections() {
+	var centerSection = document.getElementsByClassName('section_center')[0];
+
+	if (centerSection) {
+		centerSection.classList.remove('section_center');
+	}
+
 	_(document.querySelectorAll('.section_hidden')).each(function(section) {
 		section.classList.remove('section_hidden');
 	});
