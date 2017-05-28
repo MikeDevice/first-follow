@@ -1,6 +1,9 @@
 {
   "name": "first-follow-gh-pages",
   "scripts": {
+    "lint-js": "eslint ./",
+    "lint-scss": "stylelint ./src/scss/**.scss --syntax scss",
+    "lint": "run-p -c -s lint-scss lint-js",
     "_init-js": "mkdir -p build/js",
     "_build-scss": "node-sass src/scss/ --output build/css/",
     "build-scss": "nrun _build-scss --output-style compressed",
@@ -27,13 +30,16 @@
   "homepage": "https://github.com/MikeDevice/first-follow#readme",
   "devDependencies": {
     "browserify": "14.3.0",
-    "eslint": "3.5.0",
-    "eslint-config-dvpnt": "1.2.0",
+    "eslint": "3.19.0",
+    "eslint-config-dvpnt": "1.4.2",
     "node-sass": "4.5.3",
     "npm-run-all": "4.0.2",
     "nrun": "0.1.7",
     "pug-cli": "1.0.0-alpha6",
     "rimraf": "2.6.1",
+    "stylelint": "7.6.0",
+    "stylelint-config-dvpnt": "1.0.4",
+    "stylelint-order": "0.4.4",
     "uglify-js": "3.0.11",
     "watchify": "3.9.0"
   },
