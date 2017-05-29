@@ -3,13 +3,14 @@
 var _ = require('underscore');
 
 var epsilon = 'ε',
-	regexString = '^(\\w)\\s*->\\s*([^\\s' + epsilon + ']+|' + epsilon + ')$',
+	// eslint-disable-next-line max-len
+	regexString = '^(\\S+)\\s*->\\s*(([^\\s' + epsilon + ']+\\s*)+|' + epsilon + ')$',
 	regex = new RegExp(regexString);
 
 exports.parseInputRules = function(rules) {
 	var data = [];
 
-	_(rules).each(function(rule) {
+	_(rules).each(function(rule, index) {
 		rule = rule.trim();
 
 		if (rule) {
@@ -18,10 +19,10 @@ exports.parseInputRules = function(rules) {
 			if (match && match[1] && match[2]) {
 				data.push({
 					left: match[1],
-					right: match[2] === epsilon ? [null] : match[2].split('')
+					right: match[2] === epsilon ? [null] : match[2].split(/\s+/)
 				});
 			} else {
-				throw new Error();
+				throw new SyntaxError('SyntaxError at rule #' + (index + 1) + ': ' + rule);
 			}
 		}
 	});

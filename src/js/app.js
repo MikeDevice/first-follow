@@ -5,7 +5,8 @@ var _ = require('underscore'),
 	helpers = require('./helpers');
 
 var input = document.getElementsByClassName('js-input')[0],
-	button = document.getElementsByClassName('js-button')[0];
+	button = document.getElementsByClassName('js-button')[0],
+	errorElement = document.getElementById('error');
 
 function showSections() {
 	var centerSection = document.getElementsByClassName('section_center')[0];
@@ -19,9 +20,30 @@ function showSections() {
 	});
 }
 
+function showError(err) {
+	errorElement.innerText = err.message;
+	errorElement.classList.remove('error_hidden');
+}
+
+function hideError() {
+	errorElement.classList.add('error_hidden');
+}
+
 function calculateSets() {
 	var rules = input.value.trim().split('\n'),
+		data;
+
+	try {
 		data = helpers.parseInputRules(rules);
+	} catch (err) {
+		if (err.name === 'SyntaxError') {
+			return showError(err);
+		} else {
+			throw err;
+		}
+	}
+
+	hideError();
 
 	if (data.length) {
 		var grammar = new Grammar(data);

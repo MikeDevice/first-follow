@@ -1,0 +1,13 @@
+.error {
+	margin-top: 20px;
+	padding: 10px 20px;
+
+	font-size: 16px;
+
+	background-color: $error-color;
+	border: 1px solid darken($error-color, 20%);
+
+	&_hidden {
+		display: none;
+	}
+}
