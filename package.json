@@ -1,6 +1,6 @@
 {
   "name": "first-follow-gh-pages",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "lint-js": "eslint ./",
     "lint-scss": "stylelint ./src/scss/**.scss --syntax scss",
