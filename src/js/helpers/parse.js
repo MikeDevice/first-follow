@@ -10,7 +10,7 @@ var epsilon = 'ε',
 exports.parseInputRules = function(rules) {
 	var data = [];
 
-	_(rules).each(function(rule) {
+	_(rules).each(function(rule, index) {
 		rule = rule.trim();
 
 		if (rule) {
@@ -22,7 +22,7 @@ exports.parseInputRules = function(rules) {
 					right: match[2] === epsilon ? [null] : match[2].split(/\s+/)
 				});
 			} else {
-				throw new Error();
+				throw new SyntaxError('SyntaxError at rule #' + (index + 1) + ': ' + rule);
 			}
 		}
 	});
