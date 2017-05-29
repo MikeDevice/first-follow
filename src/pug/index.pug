@@ -45,12 +45,15 @@ html(lang="en")
 					+table('Sets')#follow-sets-table
 
 			section.section
-				h2.section__header How use it?
+				h2.section__header How to enter grammar?
 				.info
 					ul.info__list
-						li Enter your grammar
-						li Click "Run" button
-						li View result!
-						li More information will be soon... :-)
+						li One line &mdash; one rule
+						li Rule consists of two parts: left and right
+						li Left and right parts are separated by "->"
+						li Left part can contain only one nonterminal
+						li Right part can contain terminals and nonterminals or empty chain
+						li Terminals and nonterminals in rule's right part must be separated by space
+						li Empty chain must contain only one character &mdash; ε
 
 		script(type="text/javascript" src="build/js/bundle.js?" + staticVersion)
