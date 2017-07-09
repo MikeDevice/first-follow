@@ -1,0 +1,18 @@
+.page {
+  margin: 40px 20px 0;
+
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+
+  color: $color;
+
+  @media (min-width: $screen-sm-min) {
+    margin: 40px 60px 0;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    width: $screen-lg-width;
+
+    margin: 40px auto;
+  }
+}

@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "scripts": {
     "dev": "webpack-dev-server --hot",
+    "build": "webpack",
     "lint": "eslint ./"
   },
   "repository": {
