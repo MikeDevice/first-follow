@@ -1,0 +1,20 @@
+.input {
+  min-height: 200px;
+  max-height: 400px;
+
+  margin-bottom: 15px;
+  padding: 10px 15px;
+
+  overflow: auto;
+
+  font-size: 16px;
+
+  border: 1px solid $border-color;
+  outline: none;
+
+  resize: vertical;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 20px;
+  }
+}
