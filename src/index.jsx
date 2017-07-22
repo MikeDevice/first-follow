@@ -1,16 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+/* eslint-disable global-require */
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
-
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    // eslint-disable-next-line global-require
-    const NextApp = require('./App').default;
-    ReactDOM.render(<NextApp />, document.getElementById('root'));
-  });
+if (process.env.NODE_ENV === 'production') {
+  require('./index.prod');
+} else {
+  require('./index.dev');
 }
