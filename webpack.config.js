@@ -27,7 +27,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              data: '@import "variables";',
+              data: '@import "styles/_variables";',
               includePaths: [
                 path.join(__dirname, 'src/App'),
               ],

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './form.scss';
-import './input.scss';
-import './button.scss';
+import './styles/index.scss';
 
 const defaultValue = [
   'S -> a b A',

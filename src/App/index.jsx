@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 
-import './normalize.scss';
-import './fonts.scss';
-import './page.scss';
-import './section.scss';
+import Header from './components/Header';
+import Form from './components/Form';
 
-import Header from './Header';
-import Form from './Form';
+import './styles/index.scss';
 
 export default class App extends Component {
   constructor(props) {
