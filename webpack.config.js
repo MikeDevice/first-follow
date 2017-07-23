@@ -1,9 +1,8 @@
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.dev.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
@@ -41,10 +40,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-    }),
-
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
 };
