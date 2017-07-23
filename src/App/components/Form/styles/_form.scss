@@ -1,4 +1,44 @@
 .form {
   display: flex;
   flex-direction: column;
+
+  &_button {
+    display: inline-block;
+    padding: 10px 20px;
+
+    font-size: 14px;
+    color: white;
+
+    background-color: $color;
+
+    border: 1px solid transparent;
+    outline: none;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1a242f;
+    }
+  }
+
+  &_editor {
+    min-height: 200px;
+    max-height: 400px;
+
+    margin-bottom: 15px;
+    padding: 10px 15px;
+
+    overflow: auto;
+
+    font-size: 16px;
+
+    border: 1px solid $border-color;
+    outline: none;
+
+    resize: vertical;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 20px;
+    }
+  }
 }
