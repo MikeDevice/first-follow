@@ -13,7 +13,9 @@ class Form extends Component {
   render() {
     return (
       <form className="form" onSubmit={this.submit}>
-        <Editor className="form_editor" />
+        <div className="form_editor">
+          <Editor />
+        </div>
         <button type="submit" className="form_button">Run</button>
       </form>
     );
