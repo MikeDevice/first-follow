@@ -10,9 +10,6 @@ module.exports = {
   devtool: 'cheap-eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      node_modules: path.resolve(__dirname, 'node_modules/'),
-    },
   },
   module: {
     rules: [

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 
-import Nonterminal, { strategy as nonterminalStrategy } from './components/Nonterminal';
-
-// eslint-disable-next-line
-import 'node_modules/draft-js/dist/Draft.css';
+import 'draft-js/dist/Draft.css';
 import './styles/index.scss';
+
+import Nonterminal, { strategy as nonterminalStrategy } from './components/Nonterminal';
 
 export default class FormEditor extends Component {
   constructor(props) {
