@@ -7,7 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
   },
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -15,7 +15,12 @@ module.exports = {
     rules: [
       {
         test: /(\.js|\.jsx)$/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
         exclude: /node_modules/,
       },
       {
@@ -30,7 +35,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              data: '@import "styles/_variables";',
+              data: '@import "variables";',
               includePaths: [
                 path.join(__dirname, 'src/App'),
               ],

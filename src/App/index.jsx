@@ -1,25 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Header from './components/Header';
-import Form from './components/Form';
+import './fonts.scss';
+import './normalize.scss';
 
-import './styles/index.scss';
+import Page from './components/app-components/Page';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div className="page">
-        <div className="page__header">
-          <Header />
-        </div>
-
-        <main className="page__main">
-          <section className="section">
-            <h2 className="section__header">Grammar</h2>
-            <Form />
-          </section>
-        </main>
-      </div>
-    );
-  }
+function App() {
+  return <Page />;
 }
+
+export default App;
