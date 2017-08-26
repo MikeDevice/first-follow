@@ -2,7 +2,7 @@ import { EditorState, SelectionState, Modifier } from 'draft-js';
 
 const arrowCode = '\u2192';
 
-function findWithRegex(regex, contentBlock, callback) {
+function findWithRegex(regex, contentBlock, iteratee) {
   const text = contentBlock.getText();
 
   let match = regex.exec(text);
@@ -13,7 +13,7 @@ function findWithRegex(regex, contentBlock, callback) {
     start = match.index;
     end = start + match[0].length;
 
-    callback(start, end);
+    iteratee(start, end, match);
 
     match = regex.exec(text);
   }
@@ -31,7 +31,9 @@ function findArrowRanges(contentBlock) {
 }
 
 function findNonterminal(contentBlock, callback) {
-  findWithRegex(/^\s*[_a-zA-Z]+\w*/g, contentBlock, callback);
+  findWithRegex(/^(\s*)[_a-zA-Z]+\w*/g, contentBlock, (start, end, match) => {
+    callback(start + match[1].length, end);
+  });
 }
 
 function replaceArrows(editorState) {
