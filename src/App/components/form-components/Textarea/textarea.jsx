@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 
 import Nonterminal from '../../textarea-components/Nonterminal';
-import { findNonterminal, replaceArrows } from './helpers';
+import Terminal from '../../textarea-components/Terminal';
+import { findNonterminal, findTerminal, replaceArrows } from './helpers';
 
 export default class Textarea extends Component {
   constructor(props) {
@@ -12,6 +13,10 @@ export default class Textarea extends Component {
       {
         strategy: findNonterminal,
         component: Nonterminal,
+      },
+      {
+        strategy: findTerminal,
+        component: Terminal,
       },
     ]);
 
