@@ -1,50 +1,48 @@
 import { EditorState, SelectionState, Modifier } from 'draft-js';
+import omitBy from 'lodash/omitBy';
 
 const arrowCode = '\u2192';
 
-function findWithRegex(regex, text, iteratee) {
+function findWithRegex(regex, text, callback) {
   let match = regex.exec(text);
-  let start;
-  let end;
 
   while (match !== null) {
-    start = match.index;
-    end = start + match[0].length;
+    const start = match.index;
+    const end = start + match[0].length;
 
-    iteratee(start, end, match);
+    callback(start, end, match);
 
     match = regex.exec(text);
   }
 }
 
-function findArrowRanges(contentBlock) {
+function findArrowRanges(contentBlock, callback) {
   const text = contentBlock.getText();
   const regex = /->/g;
-  const ranges = [];
 
-  findWithRegex(regex, text, (start, end) => {
-    ranges.push([start, end]);
-  });
-
-  return ranges;
+  findWithRegex(regex, text, callback);
 }
 
 function findNonterminal(contentBlock, callback) {
   const text = contentBlock.getText();
 
-  findWithRegex(/^(\s*)[_a-zA-Z]+\w*/g, text, (start, end, match) => {
-    callback(start + match[1].length, end);
+  findWithRegex(/^(\s*)([_a-zA-Z]+\w*)/g, text, (start, end, match) => {
+    callback(start + match[1].length, end, match[2]);
   });
 }
 
-function findTerminal(contentBlock, callback) {
+function findTerminal(contentBlock, callback, contentHash = {}) {
   const text = contentBlock.getText();
   const arrowIndex = text.indexOf(arrowCode);
 
   if (arrowIndex === -1) return;
 
-  findWithRegex(/\S+/g, text.slice(arrowIndex + 1), (start, end) => {
-    callback(arrowIndex + start + 1, arrowIndex + end + 1);
+  findWithRegex(/(\S+)/g, text.slice(arrowIndex + 1), (start, end, match) => {
+    const terminal = match[1];
+
+    if (!contentHash.nonterminals || !contentHash.nonterminals[terminal]) {
+      callback(arrowIndex + start + 1, arrowIndex + end + 1, terminal);
+    }
   });
 }
 
@@ -56,9 +54,8 @@ function replaceArrows(editorState) {
 
   contentState.getBlockMap().forEach((block) => {
     const blockKey = block.getKey();
-    const ranges = findArrowRanges(block);
 
-    ranges.forEach(([start, end]) => {
+    findArrowRanges(block, (start, end) => {
       const arrowSelection = new SelectionState({
         anchorKey: blockKey,
         anchorOffset: start,
@@ -90,8 +87,27 @@ function replaceArrows(editorState) {
   return newEditorState;
 }
 
-export {
+function getContentHash(contentState) {
+  const hash = { nonterminals: {}, terminals: {} };
+
+  contentState.getBlockMap().forEach((block) => {
+    findNonterminal(block, (start, end, str) => {
+      hash.nonterminals[str] = true;
+    });
+
+    findTerminal(block, (start, end, str) => {
+      hash.terminals[str] = true;
+    });
+  });
+
+  hash.terminals = omitBy(hash.terminals, (val, key) => hash.nonterminals[key]);
+
+  return hash;
+}
+
+export default {
   findNonterminal,
   findTerminal,
+  getContentHash,
   replaceArrows,
 };

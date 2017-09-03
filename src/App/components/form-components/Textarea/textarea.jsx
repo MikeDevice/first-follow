@@ -3,7 +3,7 @@ import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
-import { findNonterminal, findTerminal, replaceArrows } from './helpers';
+import helpers from './helpers';
 
 export default class Textarea extends Component {
   constructor(props) {
@@ -11,11 +11,15 @@ export default class Textarea extends Component {
 
     const compositeDecorator = new CompositeDecorator([
       {
-        strategy: findNonterminal,
+        strategy: (contentBlock, callback) => {
+          helpers.findNonterminal(contentBlock, callback, this.contentHash);
+        },
         component: Nonterminal,
       },
       {
-        strategy: findTerminal,
+        strategy: (contentBlock, callback) => {
+          helpers.findTerminal(contentBlock, callback, this.contentHash);
+        },
         component: Terminal,
       },
     ]);
@@ -24,6 +28,7 @@ export default class Textarea extends Component {
       editorState: EditorState.createEmpty(compositeDecorator),
     };
 
+    this.contentHash = {};
     this.onChange = this.onChange.bind(this);
   }
 
@@ -35,6 +40,8 @@ export default class Textarea extends Component {
     let newEditorState = _newEditorState;
 
     if (currentContent !== newContent) {
+      this.contentHash = helpers.getContentHash(newContent);
+
       // It's need to call 'undo' and 'redo'
       // to call CompositeDecorator's strategies again
       // because it's need to analyze entire text
@@ -42,7 +49,7 @@ export default class Textarea extends Component {
       newEditorState = EditorState.undo(newEditorState);
       newEditorState = EditorState.redo(newEditorState);
 
-      newEditorState = replaceArrows(newEditorState);
+      newEditorState = helpers.replaceArrows(newEditorState);
     }
 
     this.setState({ editorState: newEditorState });
