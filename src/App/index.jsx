@@ -1,11 +1,6 @@
-import React from 'react';
+import { hot } from 'react-hot-loader';
+import App from './app';
 
 import './normalize.scss';
 
-import Page from './components/app-components/Page';
-
-function App() {
-  return <Page />;
-}
-
-export default App;
+export default hot(module)(App);
