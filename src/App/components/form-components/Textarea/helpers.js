@@ -1,5 +1,4 @@
 import { EditorState, SelectionState, Modifier } from 'draft-js';
-import omitBy from 'lodash/omitBy';
 
 const arrowCode = '\u2192';
 
@@ -87,27 +86,8 @@ function replaceArrows(editorState) {
   return newEditorState;
 }
 
-function getContentHash(contentState) {
-  const hash = { nonterminals: {}, terminals: {} };
-
-  contentState.getBlockMap().forEach((block) => {
-    findNonterminal(block, (start, end, str) => {
-      hash.nonterminals[str] = true;
-    });
-
-    findTerminal(block, (start, end, str) => {
-      hash.terminals[str] = true;
-    });
-  });
-
-  hash.terminals = omitBy(hash.terminals, (val, key) => hash.nonterminals[key]);
-
-  return hash;
-}
-
-export default {
+export {
   findNonterminal,
   findTerminal,
-  getContentHash,
   replaceArrows,
 };

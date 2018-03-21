@@ -43,7 +43,6 @@
   "dependencies": {
     "draft-js": "^0.10.5",
     "first-follow": "^1.2.0",
-    "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
