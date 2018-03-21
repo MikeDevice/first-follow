@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Textarea from '../../form-components/Textarea';
 
 export default class Form extends Component {
-  submit(event) {
+  submit = (event) => {
     event.preventDefault();
 
     console.log('submit');

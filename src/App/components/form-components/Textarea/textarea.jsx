@@ -9,6 +9,8 @@ export default class Textarea extends Component {
   constructor(props) {
     super(props);
 
+    this.contentHash = {};
+
     const compositeDecorator = new CompositeDecorator([
       {
         strategy: (contentBlock, callback) => {
@@ -27,12 +29,9 @@ export default class Textarea extends Component {
     this.state = {
       editorState: EditorState.createEmpty(compositeDecorator),
     };
-
-    this.contentHash = {};
-    this.onChange = this.onChange.bind(this);
   }
 
-  onChange(_newEditorState) {
+  onChange = (_newEditorState) => {
     const { editorState } = this.state;
     const currentContent = editorState.getCurrentContent();
     const newContent = _newEditorState.getCurrentContent();
