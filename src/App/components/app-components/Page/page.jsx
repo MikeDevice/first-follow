@@ -10,11 +10,11 @@ function Page() {
       <div className="page__header">
         <Header />
       </div>
-      <div className="page__body">
+      <main className="page__body">
         <Section title="Grammar">
           <Form />
         </Section>
-      </div>
+      </main>
     </div>
   );
 }
