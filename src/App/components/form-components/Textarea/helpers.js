@@ -17,15 +17,16 @@ function findWithRegex(regex, text, callback) {
 
 function findArrowRanges(contentBlock, callback) {
   const text = contentBlock.getText();
-  const regex = /->/g;
+  const regex = /->|=>|--/g;
 
   findWithRegex(regex, text, callback);
 }
 
 function findNonterminal(contentBlock, callback) {
   const text = contentBlock.getText();
+  const regex = new RegExp(`(^|${arrowCode}|\\s+)([A-Z]+\\w*)`, 'g');
 
-  findWithRegex(/^(\s*)([A-Z]+\w*)/g, text, (start, end, match) => {
+  findWithRegex(regex, text, (start, end, match) => {
     callback(start + match[1].length, end, match[2]);
   });
 }
@@ -36,10 +37,11 @@ function findTerminal(contentBlock, callback) {
 
   if (arrowIndex === -1) return;
 
-  findWithRegex(/(\S+)/g, text.slice(arrowIndex + 1), (start, end, match) => {
-    const terminal = match[1];
-
-    callback(arrowIndex + start + 1, arrowIndex + end + 1, terminal);
+  findWithRegex(/(^|\s+)(?![A-Z])(\S+)/g, text.slice(arrowIndex + 1), (start, end, match) => {
+    callback(
+      arrowIndex + match[1].length + start + 1,
+      arrowIndex + end + 1, match[2],
+    );
   });
 }
 
