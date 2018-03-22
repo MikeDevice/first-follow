@@ -11,7 +11,8 @@
 
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: #1a242f;
   }
 }

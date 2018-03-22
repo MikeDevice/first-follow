@@ -25,12 +25,12 @@ function findArrowRanges(contentBlock, callback) {
 function findNonterminal(contentBlock, callback) {
   const text = contentBlock.getText();
 
-  findWithRegex(/^(\s*)([_a-zA-Z]+\w*)/g, text, (start, end, match) => {
+  findWithRegex(/^(\s*)([A-Z]+\w*)/g, text, (start, end, match) => {
     callback(start + match[1].length, end, match[2]);
   });
 }
 
-function findTerminal(contentBlock, callback, contentHash = {}) {
+function findTerminal(contentBlock, callback) {
   const text = contentBlock.getText();
   const arrowIndex = text.indexOf(arrowCode);
 
@@ -39,9 +39,7 @@ function findTerminal(contentBlock, callback, contentHash = {}) {
   findWithRegex(/(\S+)/g, text.slice(arrowIndex + 1), (start, end, match) => {
     const terminal = match[1];
 
-    if (!contentHash.nonterminals || !contentHash.nonterminals[terminal]) {
-      callback(arrowIndex + start + 1, arrowIndex + end + 1, terminal);
-    }
+    callback(arrowIndex + start + 1, arrowIndex + end + 1, terminal);
   });
 }
 
