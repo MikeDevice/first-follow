@@ -17,7 +17,7 @@ function findWithRegex(regex, text, callback) {
 
 function findArrowRanges(contentBlock, callback) {
   const text = contentBlock.getText();
-  const regex = /->|=>|--/g;
+  const regex = /->/g;
 
   findWithRegex(regex, text, callback);
 }
