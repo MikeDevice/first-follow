@@ -3,7 +3,8 @@ import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
-import { findNonterminal, findTerminal, replaceArrows } from './helpers';
+import Arrow from '../../textarea-components/Arrow';
+import { findNonterminal, findTerminal, findArrow, replaceArrows } from './helpers';
 
 const compositeDecorator = new CompositeDecorator([
   {
@@ -13,6 +14,10 @@ const compositeDecorator = new CompositeDecorator([
   {
     strategy: findTerminal,
     component: Terminal,
+  },
+  {
+    strategy: findArrow,
+    component: Arrow,
   },
 ]);
 

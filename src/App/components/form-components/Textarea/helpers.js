@@ -45,6 +45,13 @@ function findTerminal(contentBlock, callback) {
   });
 }
 
+function findArrow(contentBlock, callback) {
+  const text = contentBlock.getText();
+  const regex = new RegExp(`${arrowCode}`, 'g');
+
+  findWithRegex(regex, text, callback);
+}
+
 function replaceArrows(editorState) {
   const contentState = editorState.getCurrentContent();
 
@@ -87,6 +94,7 @@ function replaceArrows(editorState) {
 }
 
 export {
+  findArrow,
   findNonterminal,
   findTerminal,
   replaceArrows,
