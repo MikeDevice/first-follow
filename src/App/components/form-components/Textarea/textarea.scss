@@ -1,15 +1,19 @@
 .textarea {
+  display: flex;
+
+  min-height: 200px;
+  max-height: 500px;
+
+  overflow: auto;
+
+  border: 1px solid $border-color;
+
+  font-family : "PT Mono", "Ubuntu Mono", Consolas, Menlo, "Courier New", monospace;
+  font-size: 18px;
+  line-height: 1.7;
+
   .public-DraftEditor-content {
-    min-height: 200px;
-    max-height: 500px;
-
-    overflow: auto;
-
-    font-family : "PT Mono", "Ubuntu Mono", Consolas, Menlo, "Courier New", monospace;
-    font-size: 18px;
-    line-height: 1.7;
-
-    border: 1px solid $border-color;
+    word-break: break-word;
 
     resize: vertical;
   }
@@ -20,6 +24,25 @@
 
     @media (min-width: $screen-sm-min) {
       padding: 20px;
+    }
+  }
+
+  &__editor {
+    width: 100%;
+  }
+
+  &__numbers {
+    height: 100%;
+    min-height: inherit;
+
+    padding: 10px;
+
+    border-right: 1px solid $border-color;
+
+    color: #9197a3;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 20px 10px;
     }
   }
 }
