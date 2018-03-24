@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Textarea from '../../form-components/Textarea';
+import Button from '../../common-components/Button';
 
 export default class Form extends Component {
   submit = (event) => {
@@ -15,7 +16,7 @@ export default class Form extends Component {
         <div className="form__editor">
           <Textarea />
         </div>
-        <button type="submit" className="form__button">Run</button>
+        <Button className="form__button">Run</Button>
       </div>
     );
   }

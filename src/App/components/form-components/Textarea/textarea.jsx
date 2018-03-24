@@ -4,6 +4,7 @@ import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
 import Arrow from '../../textarea-components/Arrow';
+import Button from './__button';
 import * as helpers from './helpers';
 
 const compositeDecorator = new CompositeDecorator([
@@ -46,20 +47,31 @@ export default class Textarea extends Component {
 
     return (
       <div className="textarea">
-        <div className="textarea__numbers">
-          {lineNumbers.map(number => (
-            <div className="textarea__number" key={number.id}>
-              {number.value}
-            </div>
-          ))}
+        <div className="textarea__controls">
+          <Button>{helpers.arrowCode}</Button>
+          <Button>ε</Button>
+          <div className="textarea__examples">
+            <Button>#1</Button>
+            <Button>#2</Button>
+            <Button>#3</Button>
+          </div>
         </div>
         <div className="textarea__editor">
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            ref={this.refEditor}
-            stripPastedStyles
-          />
+          <div className="textarea__numbers">
+            {lineNumbers.map(number => (
+              <div className="textarea__number" key={number.id}>
+                {number.value}
+              </div>
+            ))}
+          </div>
+          <div className="textarea__content">
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.onChange}
+              ref={this.refEditor}
+              stripPastedStyles
+            />
+          </div>
         </div>
       </div>
     );

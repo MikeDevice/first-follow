@@ -117,6 +117,7 @@ function getLineNumbers(editorState) {
 }
 
 export {
+  arrowCode,
   findArrow,
   findNonterminal,
   findTerminal,
