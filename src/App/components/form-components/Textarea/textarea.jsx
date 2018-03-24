@@ -37,6 +37,23 @@ export default class Textarea extends Component {
     this.setState({ editorState: newEditorState });
   }
 
+  onArrowInsert = () => {
+    this.insertText(helpers.arrowCode);
+  }
+
+  onEpsilonInsert = () => {
+    this.insertText('ε');
+  }
+
+  insertText(text) {
+    const { editorState } = this.state;
+    const newEditorState = helpers.insertText(editorState, text);
+
+    this.setState({ editorState: newEditorState }, () => {
+      this.editor.focus();
+    });
+  }
+
   refEditor = (el) => {
     this.editor = el;
   }
@@ -48,8 +65,8 @@ export default class Textarea extends Component {
     return (
       <div className="textarea">
         <div className="textarea__controls">
-          <Button>{helpers.arrowCode}</Button>
-          <Button>ε</Button>
+          <Button onClick={this.onArrowInsert}>{helpers.arrowCode}</Button>
+          <Button onClick={this.onEpsilonInsert}>ε</Button>
         </div>
         <div className="textarea__editor">
           <div className="textarea__numbers">

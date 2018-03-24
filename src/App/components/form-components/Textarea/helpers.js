@@ -93,6 +93,19 @@ function replaceArrows(editorState) {
   return newEditorState;
 }
 
+function insertText(editorState, text) {
+  const currentContent = editorState.getCurrentContent();
+  const selection = editorState.getSelection();
+
+  const newContentState = Modifier.replaceText(
+    currentContent,
+    selection,
+    text,
+  );
+
+  return EditorState.push(editorState, newContentState, 'insert-characters');
+}
+
 function getLineNumbers(editorState) {
   const contentState = editorState.getCurrentContent();
   const numbers = [];
@@ -122,5 +135,6 @@ export {
   findNonterminal,
   findTerminal,
   getLineNumbers,
+  insertText,
   replaceArrows,
 };
