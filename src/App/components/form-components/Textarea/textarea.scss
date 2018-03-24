@@ -21,9 +21,11 @@
   .public-DraftEditorPlaceholder-root,
   .public-DraftEditor-content {
     padding: 10px 15px;
+    padding-left: 0;
 
     @media (min-width: $screen-sm-min) {
       padding: 20px;
+      padding-left: 0;
     }
   }
 
@@ -35,14 +37,12 @@
     height: 100%;
     min-height: inherit;
 
-    padding: 10px;
-
-    border-right: 1px solid $border-color;
+    padding: 10px 15px;
 
     color: #9197a3;
 
     @media (min-width: $screen-sm-min) {
-      padding: 20px 10px;
+      padding: 20px 15px;
     }
   }
 }

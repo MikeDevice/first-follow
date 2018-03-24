@@ -26,6 +26,10 @@ export default class Textarea extends Component {
     editorState: EditorState.createEmpty(compositeDecorator),
   }
 
+  componentDidMount() {
+    this.editor.focus();
+  }
+
   onChange = (editorState) => {
     const newEditorState = replaceArrows(editorState);
 
@@ -56,6 +60,10 @@ export default class Textarea extends Component {
     return numbers;
   }
 
+  refEditor = (el) => {
+    this.editor = el;
+  }
+
   render() {
     const lineNumbers = this.getLineNumbers();
 
@@ -72,7 +80,7 @@ export default class Textarea extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            placeholder="Start typing your grammar..."
+            ref={this.refEditor}
             stripPastedStyles
           />
         </div>
