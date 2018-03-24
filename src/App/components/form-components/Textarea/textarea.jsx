@@ -50,11 +50,6 @@ export default class Textarea extends Component {
         <div className="textarea__controls">
           <Button>{helpers.arrowCode}</Button>
           <Button>ε</Button>
-          <div className="textarea__examples">
-            <Button>#1</Button>
-            <Button>#2</Button>
-            <Button>#3</Button>
-          </div>
         </div>
         <div className="textarea__editor">
           <div className="textarea__numbers">
