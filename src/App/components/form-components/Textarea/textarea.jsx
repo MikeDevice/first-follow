@@ -4,19 +4,19 @@ import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
 import Arrow from '../../textarea-components/Arrow';
-import { findNonterminal, findTerminal, findArrow, replaceArrows } from './helpers';
+import * as helpers from './helpers';
 
 const compositeDecorator = new CompositeDecorator([
   {
-    strategy: findNonterminal,
+    strategy: helpers.findNonterminal,
     component: Nonterminal,
   },
   {
-    strategy: findTerminal,
+    strategy: helpers.findTerminal,
     component: Terminal,
   },
   {
-    strategy: findArrow,
+    strategy: helpers.findArrow,
     component: Arrow,
   },
 ]);
@@ -31,33 +31,9 @@ export default class Textarea extends Component {
   }
 
   onChange = (editorState) => {
-    const newEditorState = replaceArrows(editorState);
+    const newEditorState = helpers.replaceArrows(editorState);
 
     this.setState({ editorState: newEditorState });
-  }
-
-  getLineNumbers() {
-    const { editorState } = this.state;
-    const contentState = editorState.getCurrentContent();
-    const numbers = [];
-    let rulesNumber = 0;
-
-    contentState.getBlockMap().forEach((block) => {
-      const isEmpty = !block.getText().length;
-      let char;
-
-      if (!isEmpty) {
-        rulesNumber += 1;
-        char = rulesNumber;
-      }
-
-      numbers.push({
-        id: block.getKey(),
-        value: char,
-      });
-    });
-
-    return numbers;
   }
 
   refEditor = (el) => {
@@ -65,14 +41,15 @@ export default class Textarea extends Component {
   }
 
   render() {
-    const lineNumbers = this.getLineNumbers();
+    const { editorState } = this.state;
+    const lineNumbers = helpers.getLineNumbers(editorState);
 
     return (
       <div className="textarea">
         <div className="textarea__numbers">
           {lineNumbers.map(number => (
             <div className="textarea__number" key={number.id}>
-              {number.value || '\u00A0'}
+              {number.value}
             </div>
           ))}
         </div>

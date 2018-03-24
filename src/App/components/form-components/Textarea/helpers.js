@@ -93,9 +93,33 @@ function replaceArrows(editorState) {
   return newEditorState;
 }
 
+function getLineNumbers(editorState) {
+  const contentState = editorState.getCurrentContent();
+  const numbers = [];
+  let rulesNumber = 0;
+
+  contentState.getBlockMap().forEach((block) => {
+    const isEmpty = !block.getText().length;
+    let char = '\u00A0';
+
+    if (!isEmpty) {
+      rulesNumber += 1;
+      char = rulesNumber;
+    }
+
+    numbers.push({
+      id: block.getKey(),
+      value: char,
+    });
+  });
+
+  return numbers;
+}
+
 export {
   findArrow,
   findNonterminal,
   findTerminal,
+  getLineNumbers,
   replaceArrows,
 };
