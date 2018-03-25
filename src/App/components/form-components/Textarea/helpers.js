@@ -1,6 +1,7 @@
 import { EditorState, SelectionState, Modifier } from 'draft-js';
 
 const arrowCode = '\u2192';
+const epsilon = 'ε';
 
 function findWithRegex(regex, text, callback) {
   let match = regex.exec(text);
@@ -37,7 +38,9 @@ function findTerminal(contentBlock, callback) {
 
   if (arrowIndex === -1) return;
 
-  findWithRegex(/(^|\s+)(?![A-Z])(\S+)/g, text.slice(arrowIndex + 1), (start, end, match) => {
+  const regex = new RegExp(`(^|\\s+)(?![A-Z])([^\\s${epsilon}]+)`, 'g');
+
+  findWithRegex(regex, text.slice(arrowIndex + 1), (start, end, match) => {
     callback(
       arrowIndex + match[1].length + start + 1,
       arrowIndex + end + 1, match[2],
@@ -131,6 +134,7 @@ function getLineNumbers(editorState) {
 
 export {
   arrowCode,
+  epsilon,
   findArrow,
   findNonterminal,
   findTerminal,

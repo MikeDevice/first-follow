@@ -42,7 +42,7 @@ export default class Textarea extends Component {
   }
 
   onEpsilonInsert = () => {
-    this.insertText('ε');
+    this.insertText(helpers.epsilon);
   }
 
   insertText(text) {
@@ -66,7 +66,7 @@ export default class Textarea extends Component {
       <div className="textarea">
         <div className="textarea__controls">
           <Button onClick={this.onArrowInsert}>{helpers.arrowCode}</Button>
-          <Button onClick={this.onEpsilonInsert}>ε</Button>
+          <Button onClick={this.onEpsilonInsert}>{helpers.epsilon}</Button>
         </div>
         <div className="textarea__editor">
           <div className="textarea__numbers">
