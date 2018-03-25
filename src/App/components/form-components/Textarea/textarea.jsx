@@ -25,16 +25,17 @@ const compositeDecorator = new CompositeDecorator([
 
 export default class Textarea extends Component {
   static propTypes = {
-    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    defaultValue: PropTypes.string,
   }
 
   static defaultProps = {
-    value: '',
+    defaultValue: '',
   }
 
   state = {
     editorState: EditorState.moveSelectionToEnd(EditorState.createWithContent(
-      ContentState.createFromText(this.props.value),
+      ContentState.createFromText(this.props.defaultValue),
       compositeDecorator,
     )),
   }
@@ -45,8 +46,10 @@ export default class Textarea extends Component {
 
   onChange = (editorState) => {
     const newEditorState = helpers.replaceArrows(editorState);
+    const text = newEditorState.getCurrentContent().getPlainText();
 
     this.setState({ editorState: newEditorState });
+    this.props.onChange(text);
   }
 
   onArrowInsert = () => {
@@ -90,7 +93,7 @@ export default class Textarea extends Component {
           </div>
           <div className="textarea__content">
             <Editor
-              editorState={this.state.editorState}
+              editorState={editorState}
               onChange={this.onChange}
               ref={this.refEditor}
               stripPastedStyles

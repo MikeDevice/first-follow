@@ -11,8 +11,8 @@ const defaultText = [
 ].join('\n');
 
 export default class Form extends Component {
-  state = {
-    text: defaultText,
+  onTextChange = (text) => {
+    console.log(text);
   }
 
   submit = (event) => {
@@ -22,12 +22,13 @@ export default class Form extends Component {
   }
 
   render() {
-    const { text } = this.state;
-
     return (
       <div className="form">
         <div className="form__editor">
-          <Textarea value={text} />
+          <Textarea
+            onChange={this.onTextChange}
+            defaultValue={defaultText}
+          />
         </div>
         <Button className="form__button">Run</Button>
       </div>
