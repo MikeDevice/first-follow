@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, CompositeDecorator } from 'draft-js';
+import { Editor, EditorState, ContentState, CompositeDecorator } from 'draft-js';
+import PropTypes from 'prop-types';
 
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
@@ -23,8 +24,19 @@ const compositeDecorator = new CompositeDecorator([
 ]);
 
 export default class Textarea extends Component {
+  static propTypes = {
+    value: PropTypes.string,
+  }
+
+  static defaultProps = {
+    value: '',
+  }
+
   state = {
-    editorState: EditorState.createEmpty(compositeDecorator),
+    editorState: EditorState.moveSelectionToEnd(EditorState.createWithContent(
+      ContentState.createFromText(this.props.value),
+      compositeDecorator,
+    )),
   }
 
   componentDidMount() {
