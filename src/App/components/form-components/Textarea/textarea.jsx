@@ -60,6 +60,19 @@ export default class Textarea extends Component {
     this.insertText(helpers.epsilon);
   }
 
+  onClear = () => {
+    const { editorState } = this.state;
+    const newEditorState = EditorState.push(
+      editorState,
+      ContentState.createFromText(''),
+      'remove-range',
+    );
+
+    this.setState({ editorState: newEditorState }, () => {
+      this.editor.focus();
+    });
+  }
+
   insertText(text) {
     const { editorState } = this.state;
     const newEditorState = helpers.insertText(editorState, text);
@@ -80,8 +93,19 @@ export default class Textarea extends Component {
     return (
       <div className="textarea">
         <div className="textarea__controls">
-          <Button onClick={this.onArrowInsert}>{helpers.arrowCode}</Button>
-          <Button onClick={this.onEpsilonInsert}>{helpers.epsilon}</Button>
+          <div className="textarea__controls-block">
+            <Button title="Insert arrow" onClick={this.onArrowInsert}>
+              {helpers.arrowCode}
+            </Button>
+            <Button title="Insert epsilon" onClick={this.onEpsilonInsert}>
+              {helpers.epsilon}
+            </Button>
+          </div>
+          <div className="textarea__controls-block">
+            <Button title="Clear" onClick={this.onClear}>
+              &#10680;
+            </Button>
+          </div>
         </div>
         <div className="textarea__editor">
           <div className="textarea__numbers">

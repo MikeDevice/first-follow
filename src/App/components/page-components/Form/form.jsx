@@ -11,15 +11,9 @@ const defaultText = [
 ].join('\n');
 
 export default class Form extends Component {
-  onTextChange = (text) => {
-    console.log(text);
-  }
+  onTextChange = (/* text */) => {}
 
-  submit = (event) => {
-    event.preventDefault();
-
-    console.log('submit');
-  }
+  submit = () => {}
 
   render() {
     return (
