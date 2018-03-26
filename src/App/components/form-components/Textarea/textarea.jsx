@@ -26,6 +26,7 @@ const compositeDecorator = new CompositeDecorator([
 export default class Textarea extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    onRequestSubmit: PropTypes.func.isRequired,
     defaultValue: PropTypes.string,
   }
 
@@ -94,7 +95,7 @@ export default class Textarea extends Component {
 
   handleKeyCommand = (command) => {
     if (command === 'editor-submit') {
-      // submit
+      this.props.onRequestSubmit();
       return 'handled';
     }
 
