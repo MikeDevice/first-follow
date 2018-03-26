@@ -13,7 +13,9 @@ const defaultText = [
 export default class Form extends Component {
   onTextChange = (/* text */) => {}
 
-  submit = () => {}
+  submit = () => {
+    console.log('submit');
+  }
 
   render() {
     return (
@@ -24,7 +26,12 @@ export default class Form extends Component {
             defaultValue={defaultText}
           />
         </div>
-        <Button className="form__button">Run</Button>
+        <Button
+          className="form__button"
+          onClick={this.submit}
+        >
+          Run
+        </Button>
       </div>
     );
   }

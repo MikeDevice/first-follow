@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, ContentState, CompositeDecorator } from 'draft-js';
+import Draft, { Editor, EditorState, ContentState, CompositeDecorator } from 'draft-js';
 import PropTypes from 'prop-types';
 
 import Nonterminal from '../../textarea-components/Nonterminal';
@@ -82,6 +82,25 @@ export default class Textarea extends Component {
     });
   }
 
+  keyBindingFn = (event) => {
+    const { key } = event;
+
+    if (key === 'Enter' && Draft.KeyBindingUtil.hasCommandModifier(event)) {
+      return 'editor-submit';
+    }
+
+    return Draft.getDefaultKeyBinding(event);
+  }
+
+  handleKeyCommand = (command) => {
+    if (command === 'editor-submit') {
+      // submit
+      return 'handled';
+    }
+
+    return 'not-handled';
+  }
+
   refEditor = (el) => {
     this.editor = el;
   }
@@ -119,6 +138,8 @@ export default class Textarea extends Component {
             <Editor
               editorState={editorState}
               onChange={this.onChange}
+              handleKeyCommand={this.handleKeyCommand}
+              keyBindingFn={this.keyBindingFn}
               ref={this.refEditor}
               stripPastedStyles
             />
