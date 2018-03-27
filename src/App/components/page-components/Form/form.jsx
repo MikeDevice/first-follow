@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 
 import Textarea from '../../form-components/Textarea';
 import Button from '../../common-components/Button';
+import { arrow, epsilon } from '../../../constants';
 
 const defaultText = [
-  'Program→var Variables begin Operators end',
-  'Variables→Variable , Variables',
-  'Variables→ε',
-  'Operators→ε',
+  `Program${arrow}var Variables begin Operators end`,
+  `Variables${arrow}Variable , Variables`,
+  `Variables${arrow}${epsilon}`,
+  `Operators${arrow}${epsilon}`,
 ].join('\n');
 
 export default class Form extends Component {
@@ -25,7 +26,7 @@ export default class Form extends Component {
   }
 
   parseText = (text) => {
-    const regex = /^([A-Z]+\w*)\s*→\s*(ε|[^ε]+)$/;
+    const regex = new RegExp(`^([A-Z]+\\w*)\\s*${arrow}\\s*(${epsilon}|[^${epsilon}]+)$`);
 
     return text.split('\n')
       .filter(str => str.length)
@@ -36,7 +37,7 @@ export default class Form extends Component {
 
         return {
           left: match[1],
-          right: match[2] === 'ε' ? [null] : match[2].split(/\s+/),
+          right: match[2] === epsilon ? [null] : match[2].split(/\s+/),
         };
       });
   }

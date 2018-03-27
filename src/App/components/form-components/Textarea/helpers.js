@@ -1,7 +1,5 @@
 import { EditorState, SelectionState, Modifier } from 'draft-js';
-
-const arrowCode = '\u2192';
-const epsilon = 'ε';
+import { arrow, epsilon } from '../../../constants';
 
 function findWithRegex(regex, text, callback) {
   let match = regex.exec(text);
@@ -25,7 +23,7 @@ function findArrowRanges(contentBlock, callback) {
 
 function findNonterminal(contentBlock, callback) {
   const text = contentBlock.getText();
-  const regex = new RegExp(`(^|${arrowCode}|\\s+)([A-Z]+\\w*)`, 'g');
+  const regex = new RegExp(`(^|${arrow}|\\s+)([A-Z]+\\w*)`, 'g');
 
   findWithRegex(regex, text, (start, end, match) => {
     callback(start + match[1].length, end, match[2]);
@@ -34,7 +32,7 @@ function findNonterminal(contentBlock, callback) {
 
 function findTerminal(contentBlock, callback) {
   const text = contentBlock.getText();
-  const arrowIndex = text.indexOf(arrowCode);
+  const arrowIndex = text.indexOf(arrow);
 
   if (arrowIndex === -1) return;
 
@@ -50,7 +48,7 @@ function findTerminal(contentBlock, callback) {
 
 function findArrow(contentBlock, callback) {
   const text = contentBlock.getText();
-  const regex = new RegExp(`${arrowCode}`, 'g');
+  const regex = new RegExp(`${arrow}`, 'g');
 
   findWithRegex(regex, text, callback);
 }
@@ -75,10 +73,10 @@ function replaceArrows(editorState) {
       newContentState = Modifier.replaceText(
         newContentState,
         arrowSelection,
-        arrowCode,
+        arrow,
       );
 
-      const offset = start + arrowCode.length;
+      const offset = start + arrow.length;
 
       newEditorState = EditorState.set(newEditorState, {
         currentContent: newContentState,
@@ -133,8 +131,6 @@ function getLineNumbers(editorState) {
 }
 
 export {
-  arrowCode,
-  epsilon,
   findArrow,
   findNonterminal,
   findTerminal,

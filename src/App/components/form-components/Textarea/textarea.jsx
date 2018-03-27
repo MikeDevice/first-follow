@@ -6,6 +6,7 @@ import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
 import Arrow from '../../textarea-components/Arrow';
 import Button from './__button';
+import { arrow, epsilon } from '../../../constants';
 import * as helpers from './helpers';
 
 const compositeDecorator = new CompositeDecorator([
@@ -54,11 +55,11 @@ export default class Textarea extends Component {
   }
 
   onArrowInsert = () => {
-    this.insertText(helpers.arrowCode);
+    this.insertText(arrow);
   }
 
   onEpsilonInsert = () => {
-    this.insertText(helpers.epsilon);
+    this.insertText(epsilon);
   }
 
   onClear = () => {
@@ -115,10 +116,10 @@ export default class Textarea extends Component {
         <div className="textarea__controls">
           <div className="textarea__controls-block">
             <Button title="Insert arrow" onClick={this.onArrowInsert}>
-              {helpers.arrowCode}
+              {arrow}
             </Button>
             <Button title="Insert epsilon" onClick={this.onEpsilonInsert}>
-              {helpers.epsilon}
+              {epsilon}
             </Button>
           </div>
           <div className="textarea__controls-block">
