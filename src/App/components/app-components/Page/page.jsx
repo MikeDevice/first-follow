@@ -14,12 +14,7 @@ class Page extends Component {
       throw new Error('123123');
     }
 
-    const preparedArray = textArray.map(({ right, ...rest }) => ({
-      ...rest,
-      right: right.length === 1 && right[0] === 'ε' ? [null] : right,
-    }));
-
-    console.log(preparedArray);
+    console.log(textArray);
   }
 
   render() {

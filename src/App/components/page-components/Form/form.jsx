@@ -36,7 +36,7 @@ export default class Form extends Component {
 
         return {
           left: match[1],
-          right: match[2].split(/\s+/),
+          right: match[2] === 'ε' ? [null] : match[2].split(/\s+/),
         };
       });
   }
