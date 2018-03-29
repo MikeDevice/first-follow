@@ -62,7 +62,7 @@ export default class Form extends Component {
           className="form__button"
           onClick={this.submit}
         >
-          Run
+          Calculate
         </Button>
       </div>
     );

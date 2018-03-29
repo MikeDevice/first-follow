@@ -5,19 +5,25 @@ import Header from '../../page-components/Header';
 import Section from '../../page-components/Section';
 
 class Page extends Component {
-  state = {}
+  state = {
+    errorsLineNumbers: [],
+  }
 
   onFormSubmit = (textArray) => {
-    const errors = textArray.filter(item => !item);
+    const errorsLineNumbers = [];
 
-    if (errors.length) {
-      throw new Error('123123');
-    }
+    textArray.forEach((item, index) => {
+      if (item) return;
 
-    console.log(textArray);
+      errorsLineNumbers.push(index + 1);
+    });
+
+    this.setState({ errorsLineNumbers });
   }
 
   render() {
+    const { errorsLineNumbers } = this.state;
+
     return (
       <div className="page">
         <div className="page__header">
@@ -27,6 +33,7 @@ class Page extends Component {
           <Section title="Grammar">
             <Form onSubmit={this.onFormSubmit} />
           </Section>
+          {Boolean(errorsLineNumbers.length) && errorsLineNumbers.join(', ')}
         </main>
       </div>
     );
