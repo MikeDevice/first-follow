@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Form from '../../page-components/Form';
-import Header from '../../page-components/Header';
-import Section from '../../page-components/Section';
+import Form from '../Form';
+import Header from '../Header';
+import Section from '../Section';
 
 class Page extends Component {
   state = {

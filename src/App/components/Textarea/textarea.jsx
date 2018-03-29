@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Draft, { Editor, EditorState, ContentState, CompositeDecorator } from 'draft-js';
 import PropTypes from 'prop-types';
 
-import Nonterminal from '../../textarea-components/Nonterminal';
-import Terminal from '../../textarea-components/Terminal';
-import Arrow from '../../textarea-components/Arrow';
-import { arrow, epsilon } from '../../../constants';
+import { arrow, epsilon } from '../../constants';
+import Nonterminal from './components/Nonterminal';
+import Terminal from './components/Terminal';
+import Arrow from './components/Arrow';
 import Button from './__button';
 import * as helpers from './helpers';
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Textarea from '../../form-components/Textarea';
-import Button from '../../common-components/Button';
-import { arrow, epsilon } from '../../../constants';
+import { arrow, epsilon } from '../../constants';
+import Textarea from '../Textarea';
+import Button from '../Button';
 
 const defaultText = [
   `Program${arrow}var Variables begin Operators end`,

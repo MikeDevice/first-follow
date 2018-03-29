@@ -1,5 +1,5 @@
 import { EditorState, SelectionState, Modifier } from 'draft-js';
-import { arrow, epsilon } from '../../../constants';
+import { arrow, epsilon } from '../../constants';
 
 function findWithRegex(regex, text, callback) {
   let match = regex.exec(text);

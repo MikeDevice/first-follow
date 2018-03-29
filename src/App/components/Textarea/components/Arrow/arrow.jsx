@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Nonterminal({ children }) {
+function Arrow({ children }) {
   return (
     <span className="arrow">{children}</span>
   );
 }
 
-Nonterminal.propTypes = {
+Arrow.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Nonterminal;
+export default Arrow;
