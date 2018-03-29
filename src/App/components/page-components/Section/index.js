@@ -1,5 +1,5 @@
 import Section from './section';
 
-import './__title/section__title.scss';
+import './section.scss';
 
 export default Section;

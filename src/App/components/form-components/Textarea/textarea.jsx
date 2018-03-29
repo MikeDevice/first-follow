@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Nonterminal from '../../textarea-components/Nonterminal';
 import Terminal from '../../textarea-components/Terminal';
 import Arrow from '../../textarea-components/Arrow';
-import Button from './__button';
 import { arrow, epsilon } from '../../../constants';
+import Button from './__button';
 import * as helpers from './helpers';
 
 const compositeDecorator = new CompositeDecorator([

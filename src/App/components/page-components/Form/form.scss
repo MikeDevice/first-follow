@@ -5,4 +5,22 @@
   max-width: 800px;
 
   margin: auto;
+
+  &__editor {
+    margin-bottom: 15px;
+  }
+
+  &__button {
+    padding: 10px 20px;
+
+    font-size: 14px;
+    color: white;
+
+    background-color: $color;
+
+    &:hover,
+    &:focus {
+      background-color: #1a242f;
+    }
+  }
 }
