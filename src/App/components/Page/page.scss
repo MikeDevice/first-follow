@@ -16,4 +16,16 @@
   &__header {
     margin-bottom: 40px;
   }
+
+  &__block {
+    margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 40px;
+    }
+  }
 }

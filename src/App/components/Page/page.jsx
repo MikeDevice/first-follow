@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Form from '../Form';
 import Header from '../Header';
 import Section from '../Section';
+import ErrorLabel from '../ErrorLabel';
 
 class Page extends Component {
   state = {
@@ -30,10 +31,16 @@ class Page extends Component {
           <Header />
         </div>
         <main className="page__body">
-          <Section title="Grammar">
-            <Form onSubmit={this.onFormSubmit} />
-          </Section>
-          {Boolean(errorsLineNumbers.length) && errorsLineNumbers.join(', ')}
+          <div className="page__block">
+            <Section title="Grammar">
+              <Form onSubmit={this.onFormSubmit} />
+            </Section>
+          </div>
+          {Boolean(errorsLineNumbers.length) && (
+            <div className="page__block">
+              <ErrorLabel errors={errorsLineNumbers} />
+            </div>
+          )}
         </main>
       </div>
     );
