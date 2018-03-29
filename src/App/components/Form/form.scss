@@ -2,10 +2,6 @@
   display: flex;
   flex-direction: column;
 
-  max-width: 800px;
-
-  margin: auto;
-
   &__editor {
     margin-bottom: 15px;
   }
@@ -16,11 +12,11 @@
     font-size: 14px;
     color: white;
 
-    background-color: $color;
+    background-color: $blue;
 
     &:hover,
     &:focus {
-      background-color: #1a242f;
+      background-color: darken($blue, 10%);
     }
   }
 }

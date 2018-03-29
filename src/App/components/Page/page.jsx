@@ -31,13 +31,13 @@ class Page extends Component {
           <Header />
         </div>
         <main className="page__body">
-          <div className="page__block">
+          <div className="page__block page__block_narrow">
             <Section title="Grammar">
               <Form onSubmit={this.onFormSubmit} />
             </Section>
           </div>
           {Boolean(errorsLineNumbers.length) && (
-            <div className="page__block">
+            <div className="page__block page__block_narrow">
               <ErrorLabel errors={errorsLineNumbers} />
             </div>
           )}
