@@ -113,7 +113,7 @@ function getLineNumbers(editorState) {
   let rulesNumber = 0;
 
   contentState.getBlockMap().forEach((block) => {
-    const isEmpty = !block.getText().length;
+    const isEmpty = !block.getText().trim().length;
     let char = '\u00A0';
 
     if (!isEmpty) {

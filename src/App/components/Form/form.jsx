@@ -29,9 +29,10 @@ export default class Form extends Component {
     const regex = new RegExp(`^([A-Z]+\\w*)\\s*${arrow}\\s*(${epsilon}|[^${epsilon}]+)$`);
 
     return text.split('\n')
+      .map(str => str.trim())
       .filter(str => str.length)
       .map((row) => {
-        const match = row.trim().match(regex);
+        const match = row.match(regex);
 
         if (!match || !match[1] || !match[2]) return null;
 
