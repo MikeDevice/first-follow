@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 import Form from '../Form';
+import Table from '../Table';
 import Header from '../Header';
 import Section from '../Section';
 import ErrorLabel from '../ErrorLabel';
+import { epsilon } from '../../constants';
 
 class Page extends Component {
   state = {
@@ -22,8 +24,35 @@ class Page extends Component {
     this.setState({ errorsLineNumbers });
   }
 
+  convertSetsToTableRows = sets =>
+    Object.entries(sets).map((row) => {
+      const first = row[0];
+      const last = row[1].map((item) => {
+        switch (item) {
+          case null:
+            return epsilon;
+
+          case '\0':
+            return '┤';
+
+          default:
+            return item;
+        }
+      });
+
+      return [
+        first,
+        last.join(', '),
+      ];
+    });
+
   render() {
     const { errorsLineNumbers } = this.state;
+
+    const sets = {
+      S: ['a'],
+      A: ['b', '\u0000', null],
+    };
 
     return (
       <div className="page">
@@ -41,6 +70,12 @@ class Page extends Component {
               <ErrorLabel errors={errorsLineNumbers} />
             </div>
           )}
+          <div className="page__block">
+            <Table
+              titles={['#', 'Sets']}
+              rows={this.convertSetsToTableRows(sets)}
+            />
+          </div>
         </main>
       </div>
     );
