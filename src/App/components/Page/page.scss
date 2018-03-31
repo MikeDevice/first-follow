@@ -1,16 +1,13 @@
 .page {
-  margin: 40px 20px;
+  padding: 40px 20px;
 
   color: $blue;
 
   @media (min-width: $screen-sm-min) {
-    margin: 40px 60px;
-  }
+    max-width: 800px;
 
-  @media (min-width: $screen-lg-min) {
-    width: $screen-lg-width;
-
-    margin: 40px auto;
+    margin: 0 auto;
+    padding: 40px 60px;
   }
 
   &__header {
@@ -18,9 +15,7 @@
   }
 
   &__block {
-    max-width: 800px;
-
-    margin: 0 auto 30px;
+    margin-bottom: 30px;
 
     &:last-child {
       margin-bottom: 0;
