@@ -71,7 +71,8 @@ class Page extends Component {
 
       return [
         first,
-        last.map(item => <span>{item}</span>),
+        // eslint-disable-next-line react/no-array-index-key
+        last.map((item, index) => <span key={index}>{item}</span>),
       ];
     });
 

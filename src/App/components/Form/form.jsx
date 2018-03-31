@@ -6,10 +6,9 @@ import Textarea from '../Textarea';
 import Button from '../Button';
 
 const defaultText = [
-  `Program${arrow}var Variables begin Operators end`,
-  `Variables${arrow}Variable , Variables`,
-  `Variables${arrow}${epsilon}`,
-  `Operators${arrow}${epsilon}`,
+  `S${arrow}a b A`,
+  `A${arrow}b c`,
+  `A${arrow}${epsilon}`,
 ].join('\n');
 
 export default class Form extends Component {
