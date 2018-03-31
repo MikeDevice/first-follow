@@ -3,8 +3,8 @@ import Draft, { Editor, EditorState, ContentState, CompositeDecorator } from 'dr
 import PropTypes from 'prop-types';
 
 import { arrow, epsilon } from '../../constants';
-import Nonterminal from './components/Nonterminal';
-import Terminal from './components/Terminal';
+import Nonterminal from '../Nonterminal';
+import Terminal from '../Terminal';
 import Arrow from './components/Arrow';
 import Button from './__button';
 import * as helpers from './helpers';

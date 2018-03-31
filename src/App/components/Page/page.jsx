@@ -5,6 +5,7 @@ import Form from '../Form';
 import Table from '../Table';
 import Header from '../Header';
 import Section from '../Section';
+import Terminal from '../Terminal';
 import ErrorLabel from '../ErrorLabel';
 import { epsilon, endMarker } from '../../constants';
 
@@ -64,13 +65,13 @@ class Page extends Component {
             return endMarker;
 
           default:
-            return item;
+            return <Terminal>{item}</Terminal>;
         }
       });
 
       return [
         first,
-        last.join(', '),
+        last.map(item => <span>{item}</span>),
       ];
     });
 
