@@ -1,27 +1,55 @@
 import React, { Component } from 'react';
+import { Grammar } from 'first-follow';
 
 import Form from '../Form';
 import Table from '../Table';
 import Header from '../Header';
 import Section from '../Section';
 import ErrorLabel from '../ErrorLabel';
-import { epsilon } from '../../constants';
+import { epsilon, endMarker } from '../../constants';
 
 class Page extends Component {
   state = {
+    firstSets: null,
+    followSets: null,
+    predictSets: null,
     errorsLineNumbers: [],
   }
 
-  onFormSubmit = (textArray) => {
+  onFormSubmit = (grammarData) => {
+    const errorsLineNumbers = this.getErrorsLineNumbers(grammarData);
+
+    this.setState({ errorsLineNumbers });
+
+    if (errorsLineNumbers.length) {
+      this.setState({
+        firstSets: null,
+        followSets: null,
+        predictSets: null,
+      });
+
+      return;
+    }
+
+    const grammar = new Grammar(grammarData);
+
+    this.setState({
+      firstSets: grammar.getFirstSetHash(),
+      followSets: grammar.getFollowSetHash(),
+      predictSets: grammar.getPredictSets(),
+    });
+  }
+
+  getErrorsLineNumbers = (grammarData) => {
     const errorsLineNumbers = [];
 
-    textArray.forEach((item, index) => {
+    grammarData.forEach((item, index) => {
       if (item) return;
 
       errorsLineNumbers.push(index + 1);
     });
 
-    this.setState({ errorsLineNumbers });
+    return errorsLineNumbers;
   }
 
   convertSetsToTableRows = sets =>
@@ -33,7 +61,7 @@ class Page extends Component {
             return epsilon;
 
           case '\0':
-            return '┤';
+            return endMarker;
 
           default:
             return item;
@@ -47,12 +75,9 @@ class Page extends Component {
     });
 
   render() {
-    const { errorsLineNumbers } = this.state;
-
-    const sets = {
-      S: ['a'],
-      A: ['b', '\u0000', null],
-    };
+    const {
+      firstSets, followSets, predictSets, errorsLineNumbers,
+    } = this.state;
 
     return (
       <div className="page">
@@ -60,22 +85,40 @@ class Page extends Component {
           <Header />
         </div>
         <main className="page__body">
-          <div className="page__block page__block_narrow">
+          <div className="page__block">
             <Section title="Grammar">
               <Form onSubmit={this.onFormSubmit} />
             </Section>
           </div>
           {Boolean(errorsLineNumbers.length) && (
-            <div className="page__block page__block_narrow">
+            <div className="page__block">
               <ErrorLabel errors={errorsLineNumbers} />
             </div>
           )}
-          <div className="page__block">
-            <Table
-              titles={['#', 'Sets']}
-              rows={this.convertSetsToTableRows(sets)}
-            />
-          </div>
+          {firstSets && (
+            <div className="page__block">
+              <Table
+                titles={['#', 'First sets']}
+                rows={this.convertSetsToTableRows(firstSets)}
+              />
+            </div>
+          )}
+          {followSets && (
+            <div className="page__block">
+              <Table
+                titles={['#', 'Follow sets']}
+                rows={this.convertSetsToTableRows(followSets)}
+              />
+            </div>
+          )}
+          {predictSets && (
+            <div className="page__block">
+              <Table
+                titles={['#', 'Predict sets']}
+                rows={this.convertSetsToTableRows(predictSets)}
+              />
+            </div>
+          )}
         </main>
       </div>
     );

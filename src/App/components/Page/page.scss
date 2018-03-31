@@ -18,7 +18,9 @@
   }
 
   &__block {
-    margin-bottom: 30px;
+    max-width: 800px;
+
+    margin: 0 auto 30px;
 
     &:last-child {
       margin-bottom: 0;
@@ -26,13 +28,6 @@
 
     @media (min-width: $screen-sm-min) {
       margin-bottom: 40px;
-    }
-
-    &_narrow {
-      max-width: 800px;
-
-      margin-left: auto;
-      margin-right: auto;
     }
   }
 }
