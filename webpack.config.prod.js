@@ -14,7 +14,9 @@ module.exports = merge(common, {
         test: /\.css$/,
         use: extractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader'],
+          use: [
+            { loader: 'css-loader' },
+          ],
         }),
       },
       {
@@ -22,7 +24,7 @@ module.exports = merge(common, {
         use: extractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            { loader: 'css-loader' },
+            { loader: 'css-loader', options: { minimize: true } },
             {
               loader: 'sass-loader',
               options: {
