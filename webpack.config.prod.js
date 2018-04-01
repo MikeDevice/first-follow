@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.config.common.js');
 const saveLicense = require('uglify-save-license');
 
-const extractTextPlugin = new ExtractTextPlugin('styles.css');
+const extractTextPlugin = new ExtractTextPlugin('styles.[chunkhash].css');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -43,7 +43,7 @@ module.exports = merge(common, {
     ],
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'build'),
   },
   optimization: {
