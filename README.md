@@ -1,7 +1,9 @@
 # first-follow
-Calculator for finding first, follow and predict sets for a grammar.
 
 ![GitHub release](https://img.shields.io/github/release/MikeDevice/first-follow.svg)
+
+Calculator for finding first, follow and predict sets for a grammar.
+
 
 ## Installation
 ```
