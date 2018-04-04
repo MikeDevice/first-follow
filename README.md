@@ -1,5 +1,6 @@
 # first-follow
 
+[![Build Status](https://travis-ci.org/MikeDevice/first-follow.svg)](https://travis-ci.org/MikeDevice/first-follow)
 [![GitHub release](https://img.shields.io/github/release/MikeDevice/first-follow.svg)](https://github.com/MikeDevice/first-follow/releases)
 
 Calculator for finding first, follow and predict sets for a grammar.
