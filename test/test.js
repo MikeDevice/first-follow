@@ -10,7 +10,7 @@ describe('First set', function() {
 		it('Test grammar #' + (index + 1), function() {
 			var grammar = new Grammar(grammarFixture.rules);
 
-			helpers.checkSetHash(grammar.getFirstSetHash(), grammarFixture.firstSetHash);
+			helpers.checkSetHash(grammar.getFirstSets(), grammarFixture.firstSetHash);
 		});
 	});
 });
@@ -20,7 +20,7 @@ describe('Follow set', function() {
 		it('Test grammar #' + (index + 1), function() {
 			var grammar = new Grammar(grammarFixture.rules);
 
-			helpers.checkSetHash(grammar.getFollowSetHash(),
+			helpers.checkSetHash(grammar.getFollowSets(),
 				grammarFixture.followSetHash);
 		});
 	});

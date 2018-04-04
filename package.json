@@ -1,7 +1,7 @@
 {
   "name": "first-follow",
   "version": "1.2.0",
-  "description": "Calculator for finding first, follow and predict sets by the grammar",
+  "description": "Calculator for finding first, follow and predict sets for a grammar",
   "main": "index.js",
   "scripts": {
     "test": "mocha --bail ./test/**/*",
@@ -29,10 +29,10 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "eslint": "3.7.1",
+    "eslint": "4.19.1",
     "eslint-config-dvpnt": "1.2.0",
     "expect.js": "0.3.1",
-    "mocha": "3.1.1",
-    "nrun": "0.1.7"
+    "mocha": "5.0.5",
+    "nrun": "1.0.0"
   }
 }

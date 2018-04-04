@@ -17,9 +17,9 @@
 		this.nonterminalsHash = _(this.nonterminals).indexBy();
 		this.terminals = this._getTerminals();
 
-		this.firstSetHash = this.makeFirstSet();
-		this.followSetHash = this.makeFollowSet();
-		this.predictSets = this.makePredictSet();
+		this.firstSets = this.makeFirstSets();
+		this.followSets = this.makeFollowSets();
+		this.predictSets = this.makePredictSets();
 	};
 
 	Grammar.prototype._getNonterminals = function() {
@@ -44,14 +44,14 @@
 		return terminals;
 	};
 
-	Grammar.prototype._initSetHash = function() {
-		var setHash = {};
+	Grammar.prototype._initSets = function() {
+		var sets = {};
 
 		_(this.nonterminals).each(function(nonterminal) {
-			setHash[nonterminal] = [];
+			sets[nonterminal] = [];
 		});
 
-		return setHash;
+		return sets;
 	};
 
 	Grammar.prototype.isNonterminal = function(item) {
@@ -62,21 +62,21 @@
 		return item && !this.isNonterminal(item);
 	};
 
-	Grammar.prototype.getFirstSetHash = function() {
-		return this.firstSetHash;
+	Grammar.prototype.getFirstSets = function() {
+		return this.firstSets;
 	};
 
-	Grammar.prototype.getFollowSetHash = function() {
-		return this.followSetHash;
+	Grammar.prototype.getFollowSets = function() {
+		return this.followSets;
 	};
 
 	Grammar.prototype.getPredictSets = function() {
 		return this.predictSets;
 	};
 
-	Grammar.prototype.makeFirstSet = function() {
+	Grammar.prototype.makeFirstSets = function() {
 		var self = this,
-			firstSetHash = this._initSetHash(),
+			firstSets = this._initSets(),
 			isSetChanged;
 
 		do {
@@ -84,15 +84,15 @@
 
 			_(this.rules).each(function(rule) {
 				var nonterminal = rule.left,
-					set = firstSetHash[nonterminal];
+					set = firstSets[nonterminal];
 
 				_(rule.right).every(function(item, index) {
 					if (self.isNonterminal(item)) {
-						set = _.union(set, _(firstSetHash[item]).compact());
+						set = _.union(set, _(firstSets[item]).compact());
 
 						var nextItem = rule.right[index + 1];
 
-						if (_(firstSetHash[item]).contains(null)) {
+						if (_(firstSets[item]).contains(null)) {
 							if (nextItem) return true;
 							set = _.union(set, [null]);
 						}
@@ -104,23 +104,23 @@
 					}
 				});
 
-				if (firstSetHash[nonterminal].length !== set.length) {
-					firstSetHash[nonterminal] = set;
+				if (firstSets[nonterminal].length !== set.length) {
+					firstSets[nonterminal] = set;
 					isSetChanged = true;
 				}
 			});
 		} while (isSetChanged);
 
-		return firstSetHash;
+		return firstSets;
 	};
 
-	Grammar.prototype.makeFollowSet = function() {
+	Grammar.prototype.makeFollowSets = function() {
 		var self = this,
 			startNonterminal = this.rules[0].left,
-			followSetHash = this._initSetHash(),
+			followSets = this._initSets(),
 			isSetChanged;
 
-		followSetHash[startNonterminal].push(this.endMarker);
+		followSets[startNonterminal].push(this.endMarker);
 
 		do {
 			isSetChanged = false;
@@ -130,18 +130,18 @@
 					if (!self.isNonterminal(item)) return;
 
 					var nonterminal = rule.left,
-						set = followSetHash[item],
+						set = followSets[item],
 						restItems = _(rule.right).rest(index + 1);
 
 					if (restItems.length) {
 						_(restItems).every(function(item, index) {
 							if (self.isNonterminal(item)) {
-								set = _.union(set, _(self.firstSetHash[item]).compact());
+								set = _.union(set, _(self.firstSets[item]).compact());
 								var nextItem = restItems[index + 1];
 
-								if (_(self.firstSetHash[item]).contains(null)) {
+								if (_(self.firstSets[item]).contains(null)) {
 									if (nextItem) return true;
-									set = _.union(set, followSetHash[nonterminal]);
+									set = _.union(set, followSets[nonterminal]);
 								}
 
 							} else {
@@ -149,19 +149,20 @@
 							}
 						});
 					} else {
-						set = _.union(set, followSetHash[nonterminal]);
+						set = _.union(set, followSets[nonterminal]);
 					}
-					if (followSetHash[item].length !== set.length) {
-						followSetHash[item] = set;
+					if (followSets[item].length !== set.length) {
+						followSets[item] = set;
 						isSetChanged = true;
 					}
 				});
 			});
 		} while (isSetChanged);
-		return followSetHash;
+
+		return followSets;
 	};
 
-	Grammar.prototype.makePredictSet = function() {
+	Grammar.prototype.makePredictSets = function() {
 		var self = this,
 			predictSets = [];
 
@@ -179,15 +180,15 @@
 					if (self.isNonterminal(item)) {
 						predictSets[ruleIndex] = _.union(
 							predictSets[ruleIndex],
-							_(self.firstSetHash[item]).compact()
+							_(self.firstSets[item]).compact()
 						);
 
-						if (_(self.firstSetHash[item]).contains(null)) {
+						if (_(self.firstSets[item]).contains(null)) {
 							if (rule.right[index + 1]) return true;
 
 							predictSets[ruleIndex] = _.union(
 								predictSets[ruleIndex],
-								self.followSetHash[nonterminal]
+								self.followSets[nonterminal]
 							);
 						}
 					} else {
@@ -198,7 +199,7 @@
 					}
 				});
 			} else {
-				predictSets[ruleIndex] = _(self.followSetHash[nonterminal]).clone();
+				predictSets[ruleIndex] = _(self.followSets[nonterminal]).clone();
 			}
 		});
 

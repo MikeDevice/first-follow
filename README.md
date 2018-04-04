@@ -1,5 +1,5 @@
 # first-follow
-Calculator for finding first, follow and predict sets by the grammar.
+Calculator for finding first, follow and predict sets for a grammar.
 
 ## Installation
 ```
@@ -14,22 +14,22 @@ var Grammar = require('first-follow').Grammar;
 // A -> bc
 // A -> ε
 var grammar = new Grammar([
-    {
-        left: 'S',
-        right: ['a', 'b', 'A']
-    },
-    {
-        left: 'A',
-        right: ['b', 'c']
-    },
-    {
-        left: 'A',
-        right: [null]
-    }
+  {
+    left: 'S',
+    right: ['a', 'b', 'A']
+  },
+  {
+    left: 'A',
+    right: ['b', 'c']
+  },
+  {
+    left: 'A',
+    right: [null]
+  }
 ]);
 
-console.log(grammar.getFirstSetHash());
-console.log(grammar.getFollowSetHash());
+console.log(grammar.getFirstSets());
+console.log(grammar.getFollowSets());
 console.log(grammar.getPredictSets());
 ```
 
@@ -39,12 +39,12 @@ Grammar is represented as array of objects. Each object describes one rule. Rule
   * `right` — specifies the right part of rule, that contains terminals and nonterminals or empty chain (epsilon).
 
 ## Output
-First and follow sets are represented as array of objects. Keys are nonterminals and values are sets (first or follow) for these nonterminals.
+First and follow sets are represented as objects. Keys are nonterminals and values are sets (first or follow) for these nonterminals.
 
-Predict sets are represented as array of objects. Keys are rule's number and values are sets. Each set may contain terminals and end mark (`\u0000`)
+Predict sets are represented as object. Keys are rules' numbers and values are sets. Each set can contain terminals and end mark (`\u0000`)
 
 ## Output examples
-**First set**
+**First sets**
 ```
 {
   S: ['a'],
@@ -52,7 +52,7 @@ Predict sets are represented as array of objects. Keys are rule's number and val
 }
 ```
 
-**Follow set**
+**Follow sets**
 ```
 {
   S: ['\u0000'],
