@@ -35,8 +35,8 @@ class Page extends Component {
     const grammar = new Grammar(grammarData);
 
     this.setState({
-      firstSets: grammar.getFirstSetHash(),
-      followSets: grammar.getFollowSetHash(),
+      firstSets: grammar.getFirstSets(),
+      followSets: grammar.getFollowSets(),
       predictSets: grammar.getPredictSets(),
     });
   }
