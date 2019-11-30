@@ -22,6 +22,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4",
+    "@hot-loader/react-dom": "16.11.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "8.0.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -33,10 +34,13 @@
     "eslint-plugin-react": "^7.17.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "0.8.0",
     "node-sass": "^4.13.0",
     "nrun": "^1.0.0",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",
+    "terser-webpack-plugin": "2.2.1",
     "uglify-save-license": "^0.4.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
@@ -45,12 +49,12 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "classnames": "^2.2.6",
     "draft-js": "^0.10.5",
     "first-follow": "^1.2.0",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-hot-loader": "^4.0.0"
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18"
   }
 }

@@ -5,28 +5,21 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /(\.js|\.jsx)$/,
+        test: /(\.jsx?)$/,
         use: {
           loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
+          options: { cacheDirectory: true },
         },
         exclude: /node_modules/,
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeEmptyAttributes: true,
-      },
-    }),
-  ],
 };
