@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
 const common = require('./webpack.config.common');
 
 module.exports = merge(common, {
@@ -44,6 +45,9 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
+    }),
+    new LicenseCheckerWebpackPlugin({
+      outputFilename: 'ThirdPartyNotices.txt',
     }),
   ],
   module: {
