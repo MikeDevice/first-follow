@@ -4,7 +4,7 @@ const common = require('./webpack.config.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'cheap-eval-source-map',
   module: {
     rules: [
       {
@@ -19,10 +19,13 @@ module.exports = merge(common, {
           {
             loader: 'sass-loader',
             options: {
-              data: '@import "variables";',
-              includePaths: [
-                path.join(__dirname, 'src/App'),
-              ],
+              sourceMap: true,
+              prependData: '@import "variables";',
+              sassOptions: {
+                includePaths: [
+                  path.join(__dirname, 'src/App'),
+                ],
+              }
             },
           },
         ],
