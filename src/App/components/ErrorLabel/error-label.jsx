@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ErrorLabel({ errors }) {
-  const errorsStr = errors.map(number => `#${number}`).join(', ');
+  const errorsStr = errors.map((number) => `#${number}`).join(', ');
 
   return (
     <div className="error-label">

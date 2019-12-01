@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Draft, { Editor, EditorState, ContentState, CompositeDecorator } from 'draft-js';
 import PropTypes from 'prop-types';
+import Draft, {
+  Editor, EditorState, ContentState, CompositeDecorator,
+} from 'draft-js';
 
 import { arrow, epsilon } from '../../constants';
 import Nonterminal from '../Nonterminal';
@@ -75,15 +77,6 @@ export default class Textarea extends Component {
     });
   }
 
-  insertText(text) {
-    const { editorState } = this.state;
-    const newEditorState = helpers.insertText(editorState, text);
-
-    this.setState({ editorState: newEditorState }, () => {
-      this.editor.focus();
-    });
-  }
-
   keyBindingFn = (event) => {
     const { key } = event;
 
@@ -105,6 +98,15 @@ export default class Textarea extends Component {
 
   refEditor = (el) => {
     this.editor = el;
+  }
+
+  insertText(text) {
+    const { editorState } = this.state;
+    const newEditorState = helpers.insertText(editorState, text);
+
+    this.setState({ editorState: newEditorState }, () => {
+      this.editor.focus();
+    });
   }
 
   render() {
@@ -130,7 +132,7 @@ export default class Textarea extends Component {
         </div>
         <div className="textarea__editor">
           <div className="textarea__numbers">
-            {lineNumbers.map(number => (
+            {lineNumbers.map((number) => (
               <div className="textarea__number" key={number.id}>
                 {number.value}
               </div>

@@ -53,28 +53,27 @@ class Page extends Component {
     return errorsLineNumbers;
   }
 
-  convertSetsToTableRows = sets =>
-    Object.entries(sets).map((row) => {
-      const first = row[0];
-      const last = row[1].map((item) => {
-        switch (item) {
-          case null:
-            return epsilon;
+  convertSetsToTableRows = (sets) => Object.entries(sets).map((row) => {
+    const first = row[0];
+    const last = row[1].map((item) => {
+      switch (item) {
+        case null:
+          return epsilon;
 
-          case '\0':
-            return endMarker;
+        case '\0':
+          return endMarker;
 
-          default:
-            return <Terminal>{item}</Terminal>;
-        }
-      });
-
-      return [
-        first,
-        // eslint-disable-next-line react/no-array-index-key
-        last.map((item, index) => <span key={index}>{item}</span>),
-      ];
+        default:
+          return <Terminal>{item}</Terminal>;
+      }
     });
+
+    return [
+      first,
+      // eslint-disable-next-line react/no-array-index-key
+      last.map((item, index) => <span key={index}>{item}</span>),
+    ];
+  });
 
   render() {
     const {

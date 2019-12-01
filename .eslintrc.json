@@ -4,5 +4,12 @@
   "globals": {
     "document": true,
     "window": true
+  },
+  "rules": {
+    "react/destructuring-assignment": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/state-in-constructor": "off",
+    "react/static-property-placement": "off"
   }
 }
