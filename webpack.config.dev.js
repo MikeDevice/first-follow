@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.config.common.js');
 
 module.exports = merge(common, {
@@ -10,6 +11,11 @@ module.exports = merge(common, {
       'react-dom': '@hot-loader/react-dom',
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
   module: {
     rules: [
       {

@@ -33,6 +33,7 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: path.resolve(__dirname, 'index.html'),
       minify: {
         collapseWhitespace: true,
         removeComments: true,
