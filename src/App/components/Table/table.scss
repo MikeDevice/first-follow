@@ -1,0 +1,60 @@
+.table {
+  width: 100%;
+
+  font-size: 16px;
+
+  border: 1px solid $border-color;
+
+  th,
+  td {
+    padding: 10px 15px;
+
+    border: 1px solid $border-color;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 10px 20px;
+    }
+
+    &:first-child {
+      white-space: nowrap;
+    }
+
+    &:not(:first-child) {
+      width: 100%;
+    }
+
+    & > * {
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  th {
+    background-color: #eaeaea;
+    border-color: #cccccc;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        td {
+          background-color: lighten(#eaeaea, 5%);
+        }
+      }
+    }
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: 2px;
+    }
+  }
+}

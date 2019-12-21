@@ -1,0 +1,28 @@
+.page {
+  padding: 40px 20px;
+
+  color: $blue;
+
+  @media (min-width: $screen-sm-min) {
+    max-width: 800px;
+
+    margin: 0 auto;
+    padding: 40px 60px;
+  }
+
+  &__header {
+    margin-bottom: 40px;
+  }
+
+  &__block {
+    margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 40px;
+    }
+  }
+}
