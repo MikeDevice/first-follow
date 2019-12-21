@@ -8,13 +8,21 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
 const common = require('./webpack.config.common');
 
+const licenseFile = 'ThirdPartyNotices.txt';
+
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'cheap-source-map',
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserJSPlugin({}),
+      new TerserJSPlugin({
+        extractComments: {
+          // TODO: remove Date.now() when LicenseCheckerWebpackPlugin
+          // will be able to use [contenthash]
+          banner: `For license information please see ${licenseFile}?${Date.now()}`,
+        },
+      }),
       new OptimizeCSSAssetsPlugin({}),
     ],
     moduleIds: 'hashed',
@@ -48,7 +56,7 @@ module.exports = merge(common, {
       chunkFilename: '[id].[contenthash].css',
     }),
     new LicenseCheckerWebpackPlugin({
-      outputFilename: 'ThirdPartyNotices.txt',
+      outputFilename: licenseFile,
     }),
   ],
   module: {
