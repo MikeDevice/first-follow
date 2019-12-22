@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__editor {
+    margin-bottom: 15px;
+  }
+
+  &__button {
+    padding: 10px 20px;
+
+    font-size: 14px;
+    color: white;
+
+    background-color: $blue;
+
+    &:hover,
+    &:focus {
+      background-color: darken($blue, 10%);
+    }
+  }
+}
