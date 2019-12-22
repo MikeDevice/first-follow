@@ -1,6 +1,6 @@
 {
   "name": "first-follow-gh-pages",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "scripts": {
     "dev": "webpack-dev-server --hot --config webpack.config.dev.js",
     "build": "NODE_ENV=production webpack --progress --config webpack.config.prod.js",
