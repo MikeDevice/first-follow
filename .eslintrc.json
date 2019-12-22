@@ -1,5 +1,5 @@
 {
-	"extends": "dvpnt",
+	"extends": "airbnb-base",
 	"globals": {
 		"define": true
 	}
