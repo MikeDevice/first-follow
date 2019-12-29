@@ -1,3 +1,5 @@
 {
-	"extends": "dvpnt/mocha"
+  "env": {
+    "mocha": true
+  }
 }
