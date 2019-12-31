@@ -10,7 +10,7 @@
   },
   "size-limit": [
     {
-      "limit": "800 B",
+      "limit": "795 B",
       "path": "index.js"
     }
   ],
