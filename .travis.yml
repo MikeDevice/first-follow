@@ -9,4 +9,4 @@ node_js:
 script:
   - npm run lint
   - npm run size
-  - npm test
+  - npm run test -- --coverage --coverageReporters=text-lcov | coveralls
