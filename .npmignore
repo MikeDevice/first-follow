@@ -1,0 +1,10 @@
+node_modules
+coverage
+test
+
+.editorconfig
+.eslintrc.json
+.huskyrc
+.lintstagedrc
+.travis.yml
+jest.config.js
