@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/MikeDevice/first-follow.svg?branch=master)](https://travis-ci.org/MikeDevice/first-follow)
 [![GitHub release](https://img.shields.io/github/release/MikeDevice/first-follow.svg)](https://github.com/MikeDevice/first-follow/releases)
 
-Calculator for finding first, follow and predict sets for a grammar.
+A small tool for calculating first, follow and predict sets for a grammar. Its size is only 765 bytes (minified and gzipped). No dependencies. [Size Limit](https://github.com/ai/size-limit) controls the size.
 
 
 ## Installation
@@ -11,68 +11,89 @@ Calculator for finding first, follow and predict sets for a grammar.
 $ npm install first-follow
 ```
 
-## Examples
-```javascript
-var Grammar = require('first-follow').Grammar;
+## Demo
+You can try this tool [here](https://mikedevice.github.io/first-follow/).
 
-// S -> abA
-// A -> bc
-// A -> ε
-var grammar = new Grammar([
+## Example
+```js
+const { Grammar } = require('first-follow');
+
+const rules = [
+  // S -> abA
   {
     left: 'S',
     right: ['a', 'b', 'A']
   },
+
+  // A -> bc
   {
     left: 'A',
     right: ['b', 'c']
   },
+
+  // A -> ε
   {
     left: 'A',
     right: [null]
   }
-]);
+];
+
+const grammar = new Grammar(rules);
 
 console.log(grammar.getFirstSets());
+/*
+ *  // S: a
+ *  // A: b, ε
+ *
+ *  {
+ *    S: ['a'],
+ *    A: ['b', null]
+ *  }
+ */
+
+
 console.log(grammar.getFollowSets());
+/*
+ *  // S: ┤
+ *  // A: ┤
+ *
+ *  {
+ *    S: ['\u0000'],
+ *    A: ['\u0000']
+ *  }
+ */
+
 console.log(grammar.getPredictSets());
+/*
+ *  // 1: a
+ *  // 2: b
+ *  // 3: ┤
+ * 
+ *  {
+ *    '1': ['a'],
+ *    '2': ['b'],
+ *    '3': ['\u0000']
+ *  }
+*/
 ```
 
-## Input
-Grammar is represented as array of objects. Each object describes one rule. Rule contains two required fields:
-  * `left` — specifies the nonterminal of left part of rule.
-  * `right` — specifies the right part of rule, that contains terminals and nonterminals or empty chain (epsilon).
+## Rules
 
-## Output
-First and follow sets are represented as objects. Keys are nonterminals and values are sets (first or follow) for these nonterminals.
+### Input
+The grammar is represented as array of objects. An each object describes the only one rule. The rule object contains two required fields:
 
-Predict sets are represented as object. Keys are rules' numbers and values are sets. Each set can contain terminals and end mark (`\u0000`)
+* `left` — specifies the left part of the rule. A single nonterminal: `A`, `B`, `Program`, `Expression`, etc.
+* `right` — specifies the right part of the rule. It contains terminals and nonterminals or empty chain (epsilon): `A + B`, `d * A`, `ε`, etc.
 
-## Output examples
-**First sets**
-```
-{
-  S: ['a'],
-  A: ['b', null]
-}
-```
+### Output
 
-**Follow sets**
-```
-{
-  S: ['\u0000'],
-  A: ['\u0000']
-}
-```
+#### Methods
+The `getFirstSets` method returns an object. The object **keys** are *nonterminals* and **values** are first sets for these *nonterminals*.
 
-**Predict sets**
-```
-{
-  1: ['a'],       // first rule
-  2: ['b'],       // second rule
-  3: ['\u0000']   // third rule
-}
-```
+The `getFollowSets` method returns an object. The object **keys** are *nonterminals* and **values** are follow sets for these *nonterminals*.
 
-## License
-  MIT
+The `getPredictSets` method returns an object. The object **keys** are  *rules' numbers* (starting from `1`) and **values** are predict sets for these *rules*.
+
+#### Definitions
+* An empty chain (`ε`) is represented by `null`.
+* An end mark (`┤`) is represented by `\u0000`.
