@@ -1,7 +1,7 @@
 {
   "name": "first-follow",
   "version": "3.0.0",
-  "description": "A small (765 bytes) tool for calculating first, follow and predict sets for a grammar",
+  "description": "A small (762 bytes) tool for calculating first, follow and predict sets for a grammar",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -10,7 +10,7 @@
   },
   "size-limit": [
     {
-      "limit": "765 B",
+      "limit": "762 B",
       "path": "index.js"
     }
   ],
