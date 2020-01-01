@@ -1,6 +1,6 @@
 {
   "name": "first-follow",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A small (765 bytes) tool for calculating first, follow and predict sets for a grammar",
   "main": "index.js",
   "scripts": {
