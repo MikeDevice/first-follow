@@ -9,4 +9,5 @@ node_js:
 script:
   - npm run lint
   - npm run size
+  - npm run spellcheck
   - npm run test -- --coverage --coverageReporters=text-lcov | coveralls

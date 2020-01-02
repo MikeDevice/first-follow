@@ -4,9 +4,11 @@
   "description": "A small (762 bytes) tool for calculating first, follow and predict sets for a grammar",
   "main": "index.js",
   "scripts": {
+    "docs": "documentation build lib/** -f md -o api.md",
     "test": "jest",
     "lint": "eslint ./",
-    "size": "size-limit"
+    "size": "size-limit",
+    "spellcheck": "nrun docs && yaspeller-ci *.md"
   },
   "size-limit": [
     {
@@ -35,12 +37,14 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^2.2.4",
     "coveralls": "^3.0.9",
+    "documentation": "^12.1.4",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
-    "nrun": "^1.0.0"
+    "nrun": "^1.0.0",
+    "yaspeller-ci": "^1.0.1"
   }
 }
