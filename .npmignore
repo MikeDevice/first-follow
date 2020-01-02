@@ -1,5 +1,6 @@
 node_modules
 coverage
+api.md
 test
 
 .editorconfig
@@ -7,4 +8,5 @@ test
 .huskyrc
 .lintstagedrc
 .travis.yml
+.yaspellerrc
 jest.config.js

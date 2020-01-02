@@ -1,0 +1,9 @@
+{
+  "lang": "en",
+  "dictionary": [
+    "getFirstSets",
+    "getFollowSets",
+    "getPredictSets",
+    "gzipped"
+  ]
+}
