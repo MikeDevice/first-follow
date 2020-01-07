@@ -1,4 +1,4 @@
-const { Grammar } = require('../index');
+const { Grammar } = require('../lib');
 const { grammars } = require('./fixtures');
 
 function checkSetHash(expectedSetHash, setHash) {

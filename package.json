@@ -1,8 +1,8 @@
 {
   "name": "first-follow",
   "version": "3.1.0",
-  "description": "A small (762 bytes) tool for calculating first, follow and predict sets for a grammar",
-  "main": "index.js",
+  "description": "A small (804 bytes) tool for calculating first, follow and predict sets for a grammar",
+  "main": "lib",
   "scripts": {
     "docs": "documentation build lib/** -f md -o api.md",
     "test": "jest",
@@ -12,8 +12,8 @@
   },
   "size-limit": [
     {
-      "limit": "762 B",
-      "path": "index.js"
+      "limit": "804 B",
+      "path": "lib/index.js"
     }
   ],
   "repository": {
