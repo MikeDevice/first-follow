@@ -7,7 +7,7 @@ node_js:
   - 10
 
 script:
-  - npm run lint
-  - npm run size
-  - npm run spellcheck
-  - npm run test -- --coverage --coverageReporters=text-lcov | coveralls
+  - nrun lint
+  - nrun size
+  - nrun spellcheck
+  - nrun test && cat coverage/lcov.info | coveralls
