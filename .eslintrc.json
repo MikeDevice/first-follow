@@ -1,12 +1,10 @@
 {
   "extends": "airbnb-base",
-  "globals": {
-    "define": true
-  },
   "rules": {
     "array-callback-return": "off",
     "consistent-return": "off",
+    "no-loop-func": "off",
     "no-underscore-dangle": "off",
-    "no-loop-func": "off"
+    "object-curly-newline": "off"
   }
 }
