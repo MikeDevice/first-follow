@@ -14,17 +14,14 @@ describe('Tests for "compact" function', () => {
   });
 });
 
-describe('Tests for "uniq" function', () => {
-  const arr = [1, 'a', 0, null];
+describe('Tests for "indexBy" function', () => {
+  const arr = ['a', 'b', 'c'];
 
-  test('Call function without identical values', () => {
-    expect(uniq(arr)).toEqual(arr);
-  });
+  test('Call function', () => {
+    const result = indexBy(arr);
 
-  test('Call function with identical values', () => {
-    const arrWithIdenticalValues = arr.concat(arr);
-
-    expect(uniq(arrWithIdenticalValues)).toEqual(arr);
+    expect(Object.keys(result)).toEqual(arr);
+    expect(Object.values(result)).toEqual(arr);
   });
 });
 
@@ -45,13 +42,16 @@ describe('Tests for "union" function', () => {
   });
 });
 
-describe('Tests for "indexBy" function', () => {
-  const arr = ['a', 'b', 'c'];
+describe('Tests for "uniq" function', () => {
+  const arr = [1, 'a', 0, null];
 
-  test('Call function', () => {
-    const result = indexBy(arr);
+  test('Call function without identical values', () => {
+    expect(uniq(arr)).toEqual(arr);
+  });
 
-    expect(Object.keys(result)).toEqual(arr);
-    expect(Object.values(result)).toEqual(arr);
+  test('Call function with identical values', () => {
+    const arrWithIdenticalValues = arr.concat(arr);
+
+    expect(uniq(arrWithIdenticalValues)).toEqual(arr);
   });
 });
