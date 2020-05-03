@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Changed api. Replaced class with function [#26](https://github.com/MikeDevice/first-follow/pull/26).
+- Changed API. Replaced class with function [#26](https://github.com/MikeDevice/first-follow/pull/26).
 
 ### Removed
 - Removed `getFirstSets`, `getFollowSets` and `getPredictSets` methods [#26](https://github.com/MikeDevice/first-follow/pull/26).
