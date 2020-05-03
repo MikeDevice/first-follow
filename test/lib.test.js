@@ -1,43 +1,25 @@
-const { Grammar } = require('../lib');
+const firstFollow = require('../lib');
 const { grammars } = require('./fixtures');
 
-function checkSetHash(expectedSetHash, setHash) {
-  const expectedKeys = Object.keys(expectedSetHash).sort();
-  const keys = Object.keys(setHash).sort();
+function testSets(text, expectedSets, actualSets) {
+  const expectedKeys = Object.keys(expectedSets).sort();
+  const actialKeys = Object.keys(actualSets).sort();
 
-  expect(expectedKeys).toEqual(keys);
+  test(text, () => {
+    expect(expectedKeys).toEqual(actialKeys);
 
-  Object.entries(expectedSetHash).forEach(([left, right]) => {
-    expect(right.sort()).toEqual(setHash[left].sort());
+    Object.entries(expectedSets).forEach(([left, right]) => {
+      expect(right.sort()).toEqual(actualSets[left].sort());
+    });
   });
 }
 
-describe('First set', () => {
-  grammars.forEach((grammarFixture, index) => {
-    test(`Test for a grammar #${index + 1}`, () => {
-      const grammar = new Grammar(grammarFixture.rules);
+grammars.forEach((grammarFixture, index) => {
+  describe(`Grammar #${index + 1}`, () => {
+    const { firstSets, followSets, predictSets } = firstFollow(grammarFixture.rules);
 
-      checkSetHash(grammar.getFirstSets(), grammarFixture.firstSetHash);
-    });
-  });
-});
-
-describe('Follow set', () => {
-  grammars.forEach((grammarFixture, index) => {
-    test(`Test for a grammar #${index + 1}`, () => {
-      const grammar = new Grammar(grammarFixture.rules);
-
-      checkSetHash(grammar.getFollowSets(), grammarFixture.followSetHash);
-    });
-  });
-});
-
-describe('Predict set', () => {
-  grammars.forEach((grammarFixture, index) => {
-    test(`Test for a grammar #${index + 1}`, () => {
-      const grammar = new Grammar(grammarFixture.rules);
-
-      checkSetHash(grammar.getPredictSets(), grammarFixture.predictSets);
-    });
+    testSets('First sets', firstSets, grammarFixture.firstSets);
+    testSets('Follow sets', followSets, grammarFixture.followSets);
+    testSets('Predict sets', predictSets, grammarFixture.predictSets);
   });
 });

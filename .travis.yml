@@ -3,11 +3,10 @@ language: node_js
 node_js:
   - 'node'
   - 12
-  - 11
   - 10
 
 script:
   - nrun lint
   - nrun size
   - nrun spellcheck
-  - nrun test && cat coverage/lcov.info | coveralls
+  - nrun test --coverage && cat coverage/lcov.info | coveralls
