@@ -5,10 +5,10 @@ exports.grammars = [{
       right: ['a'],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a'],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
   },
   predictSets: {
@@ -25,11 +25,11 @@ exports.grammars = [{
       right: ['a'],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a'],
     A: ['a'],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['\0'],
   },
@@ -52,11 +52,11 @@ exports.grammars = [{
       right: ['a'],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null],
     A: ['a'],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['\0'],
   },
@@ -84,11 +84,11 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null],
     A: ['a', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['\0'],
   },
@@ -117,11 +117,11 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b'],
     A: ['a', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b'],
   },
@@ -158,12 +158,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b', 'c'],
     A: ['a', null],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', 'c'],
     B: ['c'],
@@ -203,12 +203,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b'],
     A: ['a', null],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', '\0'],
     B: ['\0'],
@@ -248,12 +248,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b', 'c'],
     A: ['a', null],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', '\0'],
     B: ['c', '\0'],
@@ -297,12 +297,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b', 'c'],
     A: ['a', 'b', null],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', '\0'],
     B: ['a', 'b', 'c', '\0'],
@@ -343,12 +343,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', null, 'b', 'c'],
     A: ['a', 'b', null],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', '\0'],
     B: ['a', 'b', 'c', '\0'],
@@ -384,12 +384,12 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', 'b', 'c'],
     A: ['a', 'b'],
     B: ['b', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b', '\0'],
     B: ['a', 'c', '\0'],
@@ -440,13 +440,13 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', 'b', 'c', null],
     A: ['a', 'b', null],
     B: ['b'],
     C: ['c', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['\0'],
     A: ['b'],
     B: ['b', 'c', '\0'],
@@ -502,13 +502,13 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', 'b', 'c', null],
     A: ['a', 'b', 'c', null],
     B: ['b'],
     C: ['c', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['b', 'c', '\0'],
     A: ['b'],
     B: ['b', 'c', '\0'],
@@ -568,13 +568,13 @@ exports.grammars = [{
       right: [null],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['a', 'b', 'c', null],
     A: ['a', 'b', 'c', null],
     B: ['a', null],
     C: ['c', null],
   },
-  followSetHash: {
+  followSets: {
     S: ['a', 'b', 'c', '\0'],
     A: ['b'],
     B: ['a', 'b', 'c', '\0'],
@@ -627,14 +627,14 @@ exports.grammars = [{
       right: ['a'],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     E_: ['+', null],
     T_: ['*', null],
     P: ['(', 'a'],
     T: ['(', 'a'],
     E: ['(', 'a'],
   },
-  followSetHash: {
+  followSets: {
     E_: ['\0', ')'],
     T_: ['\0', '+', ')'],
     P: ['\0', '+', ')', '*'],
@@ -678,12 +678,12 @@ exports.grammars = [{
       right: ['c'],
     },
   ],
-  firstSetHash: {
+  firstSets: {
     S: ['b'],
     A: ['d', 'e'],
     B: ['c'],
   },
-  followSetHash: {
+  followSets: {
     S: ['c', '\0'],
     A: ['a', 'b', 'c', '\0'],
     B: ['c', '\0'],
