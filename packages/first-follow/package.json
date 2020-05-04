@@ -1,0 +1,44 @@
+{
+  "name": "first-follow",
+  "version": "4.0.0",
+  "description": "A small (564 bytes) tool for calculating first, follow and predict sets for the grammar",
+  "main": "lib",
+  "scripts": {
+    "size": "size-limit"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "size-limit": [
+    {
+      "limit": "564 B",
+      "path": "lib/index.js"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeDevice/first-follow.git"
+  },
+  "keywords": [
+    "first",
+    "follow",
+    "predict",
+    "set",
+    "parser",
+    "grammar"
+  ],
+  "author": "Mikhail Vyrodov <me.vyrodov@ya.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeDevice/first-follow/issues"
+  },
+  "homepage": "https://github.com/MikeDevice/first-follow#readme",
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.5.0",
+    "size-limit": "^4.5.0"
+  }
+}
