@@ -58,7 +58,8 @@
       "getFirstSets",
       "getFollowSets",
       "getPredictSets",
-      "gzipped"
+      "gzipped",
+      "monorepo"
     ]
   }
 }

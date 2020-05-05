@@ -5,10 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Moved to monorepo. [#27](https://github.com/MikeDevice/first-follow/pull/27)
 
 ## [4.0.0] - 2020-05-03
 ### Changed
-- Changed API. Replaced class with function [#26](https://github.com/MikeDevice/first-follow/pull/26).
+- Changed API. Replaced class with function. [#26](https://github.com/MikeDevice/first-follow/pull/26)
 
 ### Removed
 - Removed `getFirstSets`, `getFollowSets` and `getPredictSets` methods [#26](https://github.com/MikeDevice/first-follow/pull/26).
