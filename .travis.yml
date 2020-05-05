@@ -5,6 +5,10 @@ node_js:
   - 12
   - 10
 
+install:
+  - npm ci
+  - lerna bootstrap
+
 script:
   - nrun lint
   - nrun spell
