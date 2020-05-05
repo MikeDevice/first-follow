@@ -6,6 +6,10 @@
   "scripts": {
     "size": "size-limit"
   },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.5.0",
+    "size-limit": "^4.5.0"
+  },
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -36,9 +40,5 @@
   "bugs": {
     "url": "https://github.com/MikeDevice/first-follow/issues"
   },
-  "homepage": "https://github.com/MikeDevice/first-follow#readme",
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.5.0",
-    "size-limit": "^4.5.0"
-  }
+  "homepage": "https://github.com/MikeDevice/first-follow#readme"
 }
