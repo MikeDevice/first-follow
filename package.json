@@ -13,6 +13,9 @@
     "clean:coverage": "rimraf coverage",
     "clean": "run-p -c -s clean:*"
   },
+  "files": [
+    "lib"
+  ],
   "size-limit": [
     {
       "limit": "564 B",
