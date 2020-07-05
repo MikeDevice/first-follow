@@ -4,12 +4,10 @@
   "description": "A small (564 bytes) tool for calculating first, follow and predict sets for the grammar",
   "main": "lib",
   "scripts": {
-    "docs": "documentation build lib/** -f md -o api.md",
     "test": "jest",
     "lint": "eslint ./",
     "size": "size-limit",
-    "spellcheck": "nrun docs && yaspeller-ci *.md",
-    "clean:docs": "rimraf api.md",
+    "spellcheck": "yaspeller-ci *.md",
     "clean:coverage": "rimraf coverage",
     "clean": "run-p -c -s clean:*"
   },
@@ -43,7 +41,6 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.5.3",
     "coveralls": "^3.1.0",
-    "documentation": "^13.0.2",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
