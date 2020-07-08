@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Decreased library size to 482 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 - Decreased library size to 554 bytes.
 
 ### Removed
@@ -18,10 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.0.0] - 2020-05-03
 ### Changed
-- Changed API. Replaced class with function [#26](https://github.com/MikeDevice/first-follow/pull/26).
+- Changed API. Replaced class with function. [#26](https://github.com/MikeDevice/first-follow/pull/26)
 
 ### Removed
-- Removed `getFirstSets`, `getFollowSets` and `getPredictSets` methods [#26](https://github.com/MikeDevice/first-follow/pull/26).
+- Removed `getFirstSets`, `getFollowSets` and `getPredictSets` methods. [#26](https://github.com/MikeDevice/first-follow/pull/26)
 
 ## [3.3.0] - 2020-05-02
 ### Changed
