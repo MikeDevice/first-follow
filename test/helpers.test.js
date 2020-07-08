@@ -1,29 +1,4 @@
-const { compact, indexBy, union, uniq } = require('../lib/helpers');
-
-describe('Tests for "compact" function', () => {
-  const arr = [1, 'a', ['1'], { a: 'b' }];
-
-  test('Call function without falsy array values', () => {
-    expect(compact(arr)).toEqual(arr);
-  });
-
-  test('Call function with falsy array values', () => {
-    const arrWithFalsyValues = arr.concat([null, NaN, undefined, 0, '']);
-
-    expect(compact(arrWithFalsyValues)).toEqual(arr);
-  });
-});
-
-describe('Tests for "indexBy" function', () => {
-  const arr = ['a', 'b', 'c'];
-
-  test('Call function', () => {
-    const result = indexBy(arr);
-
-    expect(Object.keys(result)).toEqual(arr);
-    expect(Object.values(result)).toEqual(arr);
-  });
-});
+const { union, uniq } = require('../lib/helpers');
 
 describe('Tests for "union" function', () => {
   const arr1 = [1, 2, 3];
