@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/MikeDevice/first-follow.svg?branch=master)](https://travis-ci.org/MikeDevice/first-follow)
 [![Coverage Status](https://coveralls.io/repos/github/MikeDevice/first-follow/badge.svg?branch=master)](https://coveralls.io/github/MikeDevice/first-follow?branch=master)
 
-A small tool for calculating first, follow and predict sets for the grammar. Its size is only 482 bytes (minified and gzipped). No dependencies. [Size Limit](https://github.com/ai/size-limit) controls the size.
+A small tool for calculating first, follow and predict sets for the grammar. Its size is only 473 bytes (minified and gzipped). No dependencies. [Size Limit](https://github.com/ai/size-limit) controls the size.
 
 
 ## Installation

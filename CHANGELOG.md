@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Decreased library size to 482 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
+- Decreased library size to 473 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 - Decreased library size to 554 bytes.
 
 ### Removed
