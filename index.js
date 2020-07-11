@@ -1,28 +1,25 @@
-const { union, uniq } = require('./helpers');
-
 const EMPTY_CHAIN = null;
 const END_MARKER = '\0';
 
 module.exports = (rules) => {
-  const nonterminals = uniq(rules.map(({ left }) => left));
+  let firstSets = {};
+  let followSets = {};
+  let predictSets = {};
 
-  function makeNonterminalsSets() {
-    const sets = {};
+  rules.map(({ left }) => {
+    firstSets[left] = [];
+    followSets[left] = [];
+  });
 
-    nonterminals.forEach((nonterminal) => {
-      sets[nonterminal] = [];
-    });
-
-    return sets;
+  function union(arr1, arr2) {
+    return [...new Set([...arr1, ...arr2])];
   }
-
-  const nonterminalsHash = makeNonterminalsSets(nonterminals);
 
   function isNonterminal(item) {
-    return nonterminalsHash[item];
+    return firstSets[item];
   }
 
-  function collectSet(initialSet, items, firstSets, additionalSet) {
+  function collectSet(initialSet, items, additionalSet) {
     let set = initialSet;
 
     items.every((item, index) => {
@@ -42,7 +39,6 @@ module.exports = (rules) => {
   }
 
   function makeFirstSets() {
-    const firstSets = makeNonterminalsSets();
     let isSetChanged;
 
     do {
@@ -50,7 +46,7 @@ module.exports = (rules) => {
 
       rules.forEach(({ left, right }) => {
         let set = firstSets[left];
-        set = union(set, collectSet(set, right, firstSets, [EMPTY_CHAIN]));
+        set = union(set, collectSet(set, right, [EMPTY_CHAIN]));
 
         if (firstSets[left].length !== set.length) {
           firstSets[left] = set;
@@ -62,8 +58,7 @@ module.exports = (rules) => {
     return firstSets;
   }
 
-  function makeFollowSets(firstSets) {
-    const followSets = makeNonterminalsSets();
+  function makeFollowSets() {
     followSets[rules[0].left].push(END_MARKER);
 
     let isSetChanged;
@@ -80,7 +75,7 @@ module.exports = (rules) => {
           set = union(
             set,
             index + 1 < right.length
-              ? collectSet(set, right.slice(index + 1), firstSets, followSets[left])
+              ? collectSet(set, right.slice(index + 1), followSets[left])
               : followSets[left],
           );
 
@@ -95,15 +90,13 @@ module.exports = (rules) => {
     return followSets;
   }
 
-  function makePredictSets(firstSets, followSets) {
-    const predictSets = {};
-
+  function makePredictSets() {
     rules.forEach(({ left, right }, ruleIndex) => {
       const firstItem = right[0];
       let set = [];
 
       if (isNonterminal(firstItem)) {
-        set = union(set, collectSet(set, right, firstSets, followSets[left]));
+        set = union(set, collectSet(set, right, followSets[left]));
       } else if (firstItem === EMPTY_CHAIN) {
         set = [...followSets[left]];
       } else {
@@ -116,9 +109,9 @@ module.exports = (rules) => {
     return predictSets;
   }
 
-  const firstSets = makeFirstSets();
-  const followSets = makeFollowSets(firstSets);
-  const predictSets = makePredictSets(firstSets, followSets);
+  firstSets = makeFirstSets();
+  followSets = makeFollowSets();
+  predictSets = makePredictSets();
 
   return { firstSets, followSets, predictSets };
 };
