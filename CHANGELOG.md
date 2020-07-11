@@ -60,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Changed the [eslint config](https://github.com/eslint/eslint#configuration). Now [airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) is used.
-- Improved `README.md`.b
+- Improved `README.md`.
 - Changed library format from `umd` to `commonjs`.
 - Updated source code to `ES6`.
 - Updated `devDependencies`.
