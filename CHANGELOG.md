@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Improved spell checking. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 - Moved the lib source code from `lib/index.js` to `index.js`. Refactored the source code. Decreased library size to 390 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 
 ### Removed
@@ -59,8 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added [Size Limit](https://github.com/ai/size-limit). Library size is 765 bytes.
 
 ### Changed
-- Changed eslint config. Now [airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) is used.
-- Improved `README.md`.
+- Changed the [eslint config](https://github.com/eslint/eslint#configuration). Now [airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) is used.
+- Improved `README.md`.b
 - Changed library format from `umd` to `commonjs`.
 - Updated source code to `ES6`.
 - Updated `devDependencies`.
