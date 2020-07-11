@@ -1,4 +1,4 @@
-const firstFollow = require('../lib');
+const firstFollow = require('../index');
 const { grammars } = require('./fixtures');
 
 function testSets(text, expectedSets, actualSets) {

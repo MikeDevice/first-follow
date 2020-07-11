@@ -1,16 +1,13 @@
 {
   "lang": "en",
+  "ignoreCapitalization": true,
+  "ignoreUrls": true,
+  "ignoreText": [
+    "\\[[^\\]]+\\]"
+  ],
   "dictionary": [
-    "CI",
-    "Changelog",
-    "Travis",
-    "Unreleased",
-    "Versioning",
-    "airbnb",
-    "eslint",
-    "getFirstSets",
-    "getFollowSets",
-    "getPredictSets",
-    "gzipped"
+    "changelog",
+    "gzipped",
+    "refactored"
   ]
 }

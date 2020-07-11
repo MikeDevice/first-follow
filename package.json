@@ -1,23 +1,22 @@
 {
   "name": "first-follow",
   "version": "4.0.1",
-  "description": "A small (554 bytes) tool for calculating first, follow and predict sets for the grammar",
-  "main": "lib",
+  "description": "A small (390 bytes) tool for calculating first, follow and predict sets for the grammar",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint ./",
     "size": "size-limit",
     "spellcheck": "yaspeller-ci *.md",
-    "clean:coverage": "rimraf coverage",
-    "clean": "run-p -c -s clean:*"
+    "clean": "rimraf coverage"
   },
   "files": [
-    "lib"
+    "index.js"
   ],
   "size-limit": [
     {
-      "limit": "554 B",
-      "path": "lib/index.js"
+      "limit": "390 B",
+      "path": "index.js"
     }
   ],
   "repository": {
@@ -47,7 +46,6 @@
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
-    "npm-run-all": "4.1.5",
     "nrun": "^1.0.0",
     "rimraf": "3.0.2",
     "size-limit": "^4.5.3",
