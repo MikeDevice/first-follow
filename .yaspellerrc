@@ -1,16 +1,15 @@
 {
   "lang": "en",
+  "ignoreCapitalization": true,
   "dictionary": [
     "CI",
     "Changelog",
+    "Refactored",
     "Travis",
     "Unreleased",
     "Versioning",
     "airbnb",
     "eslint",
-    "getFirstSets",
-    "getFollowSets",
-    "getPredictSets",
     "gzipped"
   ]
 }

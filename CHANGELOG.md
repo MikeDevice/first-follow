@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
-- Decreased library size to 390 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
+- Moved the lib source code from `lib/index.js` to `index.js`. Refactored the source code. Decreased library size to 390 bytes. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 
 ### Removed
+- Removed some helpers and `helpers` file. [#28](https://github.com/MikeDevice/first-follow/pull/28)
 - Removed unused documentation.
 - Removed `.npmignore` file.
 
