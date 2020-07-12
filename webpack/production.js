@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { merge } = require('webpack-merge');
 const path = require('path');
+const { merge } = require('webpack-merge');
 const common = require('./common');
 
 module.exports = merge(common, {
@@ -17,5 +17,9 @@ module.exports = merge(common, {
     minimizer: [
       new TerserPlugin({}),
     ],
+  },
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, '..', 'build'),
   },
 });
