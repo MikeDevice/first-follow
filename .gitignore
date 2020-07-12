@@ -1,5 +1,2 @@
 node_modules
-
-# Ignore this file because a custom license file generator used
-# TODO: do not generate this file on every build
-build/*.js.LICENSE
+old

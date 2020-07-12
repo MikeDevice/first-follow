@@ -1,11 +1,10 @@
 {
   "name": "first-follow-gh-pages",
   "version": "1.0.0",
-  "scripts": {
-    "dev": "webpack-dev-server --hot --config webpack.config.dev.js",
-    "build": "NODE_ENV=production webpack --progress --config webpack.config.prod.js",
-    "lint": "eslint --ext '.js,jsx' ./"
-  },
+  "private": "true",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MikeDevice/first-follow.git"
@@ -15,48 +14,5 @@
   "bugs": {
     "url": "https://github.com/MikeDevice/first-follow/issues"
   },
-  "homepage": "https://github.com/MikeDevice/first-follow#readme",
-  "devDependencies": {
-    "@babel/core": "7.7.7",
-    "@babel/plugin-proposal-class-properties": "7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "7.7.7",
-    "@babel/preset-env": "7.7.7",
-    "@babel/preset-react": "7.7.4",
-    "@hot-loader/react-dom": "16.11.0",
-    "babel-eslint": "10.0.3",
-    "babel-loader": "8.0.6",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "clean-webpack-plugin": "3.0.0",
-    "css-loader": "3.4.0",
-    "eslint": "6.8.0",
-    "eslint-config-airbnb": "18.0.1",
-    "eslint-plugin-import": "2.19.1",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.17.0",
-    "extract-text-webpack-plugin": "4.0.0-beta.0",
-    "html-webpack-plugin": "3.2.0",
-    "husky": "3.1.0",
-    "license-checker-webpack-plugin": "0.1.4",
-    "lint-staged": "9.5.0",
-    "mini-css-extract-plugin": "0.9.0",
-    "node-sass": "4.13.0",
-    "nrun": "1.0.0",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
-    "sass-loader": "8.0.0",
-    "style-loader": "1.1.1",
-    "terser-webpack-plugin": "2.3.1",
-    "webpack": "4.41.4",
-    "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1",
-    "webpack-merge": "4.2.2"
-  },
-  "dependencies": {
-    "classnames": "2.2.6",
-    "draft-js": "0.11.3",
-    "first-follow": "2.0.0",
-    "prop-types": "15.7.2",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-hot-loader": "4.12.18"
-  }
+  "homepage": "https://github.com/MikeDevice/first-follow#readme"
 }
