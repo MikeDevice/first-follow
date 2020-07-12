@@ -2,9 +2,41 @@
   "name": "first-follow-gh-pages",
   "version": "1.0.0",
   "private": "true",
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {},
+  "scripts": {
+    "lint": "eslint --ext '.js,jsx' ./",
+    "dev": "NODE_ENV='development' webpack-dev-server --config ./webpack/index.js",
+    "build": "NODE_ENV='production' webpack --progress --config ./webpack/index.js"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.10.4",
+    "@babel/preset-env": "7.10.4",
+    "@babel/preset-react": "7.10.4",
+    "babel-loader": "8.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "clean-webpack-plugin": "3.0.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "html-webpack-plugin": "4.3.0",
+    "nrun": "1.0.0",
+    "terser-webpack-plugin": "3.0.6",
+    "webpack": "4.43.0",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0",
+    "webpack-merge": "5.0.9"
+  },
+  "browserslist": [
+    "last 2 version",
+    "not dead",
+    "not ie <= 11"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MikeDevice/first-follow.git"
