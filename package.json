@@ -6,7 +6,8 @@
     "lint": "eslint --ext '.js,jsx' ./",
     "dev": "NODE_ENV='development' webpack-dev-server --hot --config ./webpack/index.js",
     "build": "NODE_ENV='production' webpack --progress --config ./webpack/index.js",
-    "analyze": "ANALYZE=1 nrun build"
+    "analyze": "ANALYZE=1 nrun build",
+    "size": "nrun build && size-limit"
   },
   "dependencies": {
     "react": "16.13.1",
@@ -18,6 +19,7 @@
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.4",
     "@hot-loader/react-dom": "16.13.0",
+    "@size-limit/preset-app": "4.5.4",
     "autoprefixer": "9.8.5",
     "babel-loader": "8.1.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
@@ -36,6 +38,7 @@
     "postcss-loader": "3.0.0",
     "sass": "1.26.10",
     "sass-loader": "9.0.2",
+    "size-limit": "4.5.4",
     "style-loader": "1.2.1",
     "terser-webpack-plugin": "3.0.6",
     "webpack": "4.43.0",
@@ -48,6 +51,12 @@
     "last 2 version",
     "not dead",
     "not ie <= 11"
+  ],
+  "size-limit": [
+    {
+      "limit": "1.5 s",
+      "path": "build/*.js"
+    }
   ],
   "repository": {
     "type": "git",
