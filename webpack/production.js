@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const { merge } = require('webpack-merge');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const common = require('./common');
 
 module.exports = merge(common, {
@@ -30,6 +31,7 @@ module.exports = merge(common, {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
+    ...process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : [],
   ],
   optimization: {
     minimize: true,
@@ -37,6 +39,9 @@ module.exports = merge(common, {
       new TerserPlugin({}),
       new OptimizeCSSAssetsPlugin({}),
     ],
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   output: {
     filename: '[name].[contenthash].js',
