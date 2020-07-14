@@ -8,6 +8,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { merge } = require('webpack-merge');
 const common = require('./common');
 
+const licenseFile = 'ThirdPartyNotices.txt';
+
 module.exports = merge(common, {
   mode: 'production',
   module: {
@@ -32,13 +34,19 @@ module.exports = merge(common, {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    new LicenseCheckerWebpackPlugin(),
+    new LicenseCheckerWebpackPlugin({ outputFilename: licenseFile }),
     ...process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : [],
   ],
   optimization: {
     minimize: true,
     minimizer: [
-      new TerserPlugin({}),
+      new TerserPlugin({
+        extractComments: {
+          // TODO: remove Date.now() when LicenseCheckerWebpackPlugin
+          // will be able to use [contenthash]
+          banner: `For license information please see ${licenseFile}?${Date.now()}`,
+        },
+      }),
       new OptimizeCSSAssetsPlugin({}),
     ],
     splitChunks: {
