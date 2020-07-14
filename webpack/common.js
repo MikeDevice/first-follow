@@ -16,14 +16,6 @@ module.exports = {
         },
         exclude: /node_modules/,
       },
-      {
-        test: /\.scss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      },
     ],
   },
   plugins: [
