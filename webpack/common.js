@@ -1,4 +1,4 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -12,7 +12,7 @@ module.exports = {
         test: /(\.jsx?)$/,
         use: {
           loader: 'babel-loader',
-          options: { cacheDirectory: true },
+          options: {cacheDirectory: true},
         },
         exclude: /node_modules/,
       },

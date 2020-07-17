@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { merge } = require('webpack-merge');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {merge} = require('webpack-merge');
 const common = require('./common');
 
 const licenseFile = 'ThirdPartyNotices.txt';
@@ -34,7 +34,7 @@ module.exports = merge(common, {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    new LicenseCheckerWebpackPlugin({ outputFilename: licenseFile }),
+    new LicenseCheckerWebpackPlugin({outputFilename: licenseFile}),
     ...process.env.ANALYZE ? [new BundleAnalyzerPlugin()] : [],
   ],
   optimization: {
