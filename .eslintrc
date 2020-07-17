@@ -2,5 +2,8 @@
   "extends": "airbnb",
   "globals": {
     "document": true
+  },
+  "rules": {
+    "object-curly-spacing": ["error", "never"]
   }
 }
