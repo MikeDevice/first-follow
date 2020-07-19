@@ -22,7 +22,11 @@
     monospace;
   --color-text: #242424;
   --color-background: white;
+  --color-main: #e0e8f0;
+  --color-main-accent: #f8fafc;
+  --color-border: #becfdf;
   --shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+  --border-radius: 8px;
 }
 
 *,
@@ -47,4 +51,17 @@ body {
   @media (min-width: 768px) {
     padding: 0 30px;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+}
+
+table {
+  border-spacing: 0;
 }
