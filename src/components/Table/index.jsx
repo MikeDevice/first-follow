@@ -1,38 +1,40 @@
+import _ from 'lodash-es';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './table.scss';
 
-function Table({data, columnsNames}) {
-  const rows = Object.entries(data);
-
+function Table({data, columns}) {
   return (
     <table className="table">
       <thead className="table__head">
         <tr className="table__row">
           <th className="table__cell" aria-label="top left empty cell" />
-          {columnsNames.map((name, index) => (
+          {columns.map((name, index) => (
             <th className="table__cell" key={index}>{name}</th>
           ))}
         </tr>
       </thead>
       <tbody className="table__body">
-        {rows.map(([name, values]) => {
-          const columns = columnsNames.map((columnName, index) => (
-            <td
-              key={index}
-              className={classNames('table__cell', {
-                table__cell_success: values.includes(columnName),
-                table__cell_error: !values.includes(columnName),
-              })}
-            >
-              {values.includes(columnName) ? '+' : '-'}
-            </td>
-          ));
+        {_.map(data, (values, name) => {
+          const valuesHash = _.keyBy(values);
 
           return (
-            <tr className="table__row">
+            <tr className="table__row" key={name}>
               <td className="table__cell">{name}</td>
-              {columns}
+              {columns.map((columnName, columnIndex) => {
+                const hasValue = valuesHash[columnName];
+                const className = classNames('table__cell', {
+                  table__cell_success: hasValue,
+                  table__cell_error: !hasValue,
+                });
+
+                return (
+                  <td key={columnIndex} className={className}>
+                    {hasValue ? '+' : '-'}
+                  </td>
+                );
+              })}
             </tr>
           );
         })}
@@ -40,5 +42,10 @@ function Table({data, columnsNames}) {
     </table>
   );
 }
+
+Table.propTypes = {
+  data: PropTypes.objectOf(PropTypes.array).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default Table;

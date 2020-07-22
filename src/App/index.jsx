@@ -23,7 +23,7 @@ function App() {
           <div className="app__table">
             <Table
               data={firstSets}
-              columnsNames={['var', 'begin', 'end']}
+              columns={['var', 'begin', 'end']}
             />
           </div>
         </section>
