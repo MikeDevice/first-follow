@@ -46,20 +46,6 @@ body {
   min-width: 320px;
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 10px;
-
-  @media (min-width: 768px) {
-    padding: 0 30px;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-text);
 }
 
 table {

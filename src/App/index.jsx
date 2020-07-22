@@ -1,7 +1,8 @@
 import React from 'react';
 import {hot} from 'react-hot-loader/root';
-import {Table} from '../components';
+import {Header, Table} from '../components';
 import './app.scss';
+import './main.scss';
 
 const firstSets = {
   S: ['var'],
@@ -12,28 +13,39 @@ const firstSets = {
 function App() {
   return (
     <div className="app">
-      <header>
-        <h1>First Follow</h1>
-        <p>A small tool for calculating first, follow and predict sets for the grammar</p>
-      </header>
-      <main>
-        <section>Editor</section>
-        <section>
+      <Header
+        title="First Follow"
+        description="A small tool for calculating first, follow and predict sets for the grammar"
+        className="app__header"
+      />
+      <main className="app__main main">
+        <section className="main__section">Editor</section>
+        <section className="main__section">
           <h2>First sets</h2>
-          <div className="app__table">
+          <div className="main__table">
             <Table
               data={firstSets}
               columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
             />
           </div>
         </section>
-        <section>
+        <section className="main__section">
           <h2>Follow sets</h2>
-          {/* <Table /> */}
+          <div className="main__table">
+            <Table
+              data={firstSets}
+              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
+            />
+          </div>
         </section>
-        <section>
+        <section className="main__section">
           <h2>Predict sets</h2>
-          {/* <Table /> */}
+          <div className="main__table">
+            <Table
+              data={firstSets}
+              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
+            />
+          </div>
         </section>
       </main>
     </div>

@@ -1,7 +1,11 @@
 .app {
-  &__table {
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
-    overflow-x: auto;
+  padding: 20px 10px 20px;
+
+  @media (min-width: 768px) {
+    padding: 0 30px;
+  }
+
+  &__header {
+    margin-bottom: 35px;
   }
 }
