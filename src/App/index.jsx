@@ -5,7 +5,7 @@ import './app.scss';
 
 const firstSets = {
   S: ['var'],
-  A: ['begin', 'end'],
+  A: ['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i'],
   B: ['begin', 'end'],
 };
 
@@ -23,7 +23,7 @@ function App() {
           <div className="app__table">
             <Table
               data={firstSets}
-              columns={['var', 'begin', 'end']}
+              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
             />
           </div>
         </section>
