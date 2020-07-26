@@ -1,7 +1,7 @@
 .app {
   padding: 20px 10px 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-sm-min) {
     padding: 0 30px;
   }
 

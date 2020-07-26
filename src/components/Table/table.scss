@@ -5,7 +5,7 @@
   font-size: 14px;
   font-family: var(--font-family-mono);
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-sm-min) {
     font-size: 16px;
   }
 
@@ -24,7 +24,7 @@
       border-right: var(--border);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: $screen-sm-min) {
       padding: 10px 15px;
     }
 
