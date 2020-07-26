@@ -1,0 +1,7 @@
+.section {
+  &__content {
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+  }
+}

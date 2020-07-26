@@ -1,6 +1,6 @@
 import React from 'react';
 import {hot} from 'react-hot-loader/root';
-import {Header, Table} from '../components';
+import {Header, Section, Table} from '../components';
 import './app.scss';
 import './main.scss';
 
@@ -19,34 +19,36 @@ function App() {
         className="app__header"
       />
       <main className="app__main main">
-        <section className="main__section">Editor</section>
-        <section className="main__section">
-          <h2>First sets</h2>
-          <div className="main__table">
-            <Table
-              data={firstSets}
-              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-            />
-          </div>
-        </section>
-        <section className="main__section">
-          <h2>Follow sets</h2>
-          <div className="main__table">
-            <Table
-              data={firstSets}
-              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-            />
-          </div>
-        </section>
-        <section className="main__section">
-          <h2>Predict sets</h2>
-          <div className="main__table">
-            <Table
-              data={firstSets}
-              columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-            />
-          </div>
-        </section>
+        <Section className="main__section">
+          Editor
+        </Section>
+        <Section
+          title="First sets"
+          className="main__section"
+        >
+          <Table
+            data={firstSets}
+            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
+          />
+        </Section>
+        <Section
+          title="Follow sets"
+          className="main__section"
+        >
+          <Table
+            data={firstSets}
+            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
+          />
+        </Section>
+        <Section
+          title="Predict sets"
+          className="main__section"
+        >
+          <Table
+            data={firstSets}
+            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
+          />
+        </Section>
       </main>
     </div>
   );
