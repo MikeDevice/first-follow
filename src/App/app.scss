@@ -1,11 +1,15 @@
 .app {
-  padding: 20px 10px 20px;
+  padding: 20px 10px;
 
   @media (min-width: $screen-sm-min) {
-    padding: 0 30px;
+    padding: 50px 30px;
   }
 
   &__header {
     margin-bottom: 35px;
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 100px;
+    }
   }
 }

@@ -2,6 +2,10 @@
   &__section {
     &:not(:last-child) {
       margin-bottom: 30px;
+
+      @media (min-width: $screen-sm-min) {
+        margin-bottom: 100px;
+      }
     }
   }
 }
