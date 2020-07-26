@@ -7,6 +7,7 @@
     "import/prefer-default-export": "off",
     "object-curly-newline": "off",
     "object-curly-spacing": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off"
   }
 }

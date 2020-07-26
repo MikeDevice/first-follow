@@ -1,9 +1,4 @@
 .editor {
-  &__toolbar {
-    padding: 0 5px;
-    background-color: var(--color-main);
-  }
-
   &__content {
     min-height: 100px;
     padding: 10px 15px;
@@ -18,9 +13,12 @@
     grid-template-columns: 1fr min-content;
   }
 
-  &__status-bar {
-    padding: 10px 15px;
-    font-size: 12px;
-    border-top: 1px solid var(--color-main);
+  &__button {
+    padding: 10px 30px;
+    background-color: var(--color-main);
+
+    &:hover {
+      background-color: var(--color-border);
+    }
   }
 }

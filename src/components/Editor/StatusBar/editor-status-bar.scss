@@ -1,0 +1,27 @@
+.editor-status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 10px 15px;
+  border-top: 1px solid var(--color-main);
+
+  &__icon {
+    margin: 0 7px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &_success {
+      color: var(--color-success);
+    }
+
+    &_error {
+      color: var(--color-error);
+    }
+  }
+}
