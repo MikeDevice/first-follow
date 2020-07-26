@@ -4,8 +4,9 @@
     "document": true
   },
   "rules": {
-    "object-curly-spacing": ["error", "never"],
     "import/prefer-default-export": "off",
+    "object-curly-newline": "off",
+    "object-curly-spacing": ["error", "never"],
     "react/no-array-index-key": "off"
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {hot} from 'react-hot-loader/root';
-import {Header, Section, Table} from '../components';
+import {Editor, Header, Section, Table} from '../components';
 import './app.scss';
 import './main.scss';
 
@@ -20,7 +20,7 @@ function App() {
       />
       <main className="app__main main">
         <Section className="main__section">
-          Editor
+          <Editor />
         </Section>
         <Section
           title="First sets"

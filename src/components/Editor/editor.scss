@@ -1,0 +1,26 @@
+.editor {
+  &__toolbar {
+    padding: 0 5px;
+    background-color: var(--color-main);
+  }
+
+  &__content {
+    min-height: 100px;
+    padding: 10px 15px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 200px;
+    }
+  }
+
+  &__footer {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+  }
+
+  &__status-bar {
+    padding: 10px 15px;
+    font-size: 12px;
+    border-top: 1px solid var(--color-main);
+  }
+}
