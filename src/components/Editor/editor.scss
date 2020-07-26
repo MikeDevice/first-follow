@@ -1,13 +1,4 @@
 .editor {
-  &__content {
-    min-height: 100px;
-    padding: 10px 15px;
-
-    @media (min-width: $screen-sm-min) {
-      min-height: 200px;
-    }
-  }
-
   &__footer {
     display: grid;
     grid-template-columns: 1fr min-content;

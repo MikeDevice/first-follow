@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import Content from './Content';
 import StatusBar from './StatusBar';
 import Toolbar from './Toolbar';
 import './editor.scss';
@@ -7,12 +8,12 @@ import './editor.scss';
 function Editor() {
   return (
     <div className="editor">
-      <Toolbar className="editor__toolbar" />
+      <Toolbar />
       <div className="editor__content">
-        123
+        <Content />
       </div>
       <div className="editor__footer">
-        <StatusBar className="editor__status-bar" />
+        <StatusBar />
         <Button className="editor__button">Run</Button>
       </div>
     </div>

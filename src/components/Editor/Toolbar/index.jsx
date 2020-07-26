@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faEraser,
@@ -12,9 +10,9 @@ import {
 import Button from '../../Button';
 import './editor-toolbar.scss';
 
-function Toolbar({className}) {
+function Toolbar() {
   return (
-    <div className={classNames(className, 'editor-toolbar')}>
+    <div className="editor-toolbar">
       <div className="editor-toolbar__section">
         <Button className="editor-toolbar__button">
           <FontAwesomeIcon icon={faUndoAlt} />
@@ -37,13 +35,5 @@ function Toolbar({className}) {
     </div>
   );
 }
-
-Toolbar.propTypes = {
-  className: PropTypes.string,
-};
-
-Toolbar.defaultProps = {
-  className: null,
-};
 
 export default Toolbar;

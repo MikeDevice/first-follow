@@ -1,13 +1,11 @@
 import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheckCircle, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 import './editor-status-bar.scss';
 
-function StatusBar({className}) {
+function StatusBar() {
   return (
-    <div className={classNames(className, 'editor-status-bar')}>
+    <div className="editor-status-bar">
       <div className="editor-status-bar__section">
         <FontAwesomeIcon
           icon={faExclamationCircle}
@@ -25,13 +23,5 @@ function StatusBar({className}) {
     </div>
   );
 }
-
-StatusBar.propTypes = {
-  className: PropTypes.string,
-};
-
-StatusBar.defaultProps = {
-  className: null,
-};
 
 export default StatusBar;
