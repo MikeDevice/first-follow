@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
-import {ContentState, Editor, EditorState} from 'draft-js';
+import React from 'react';
+import {Editor} from 'draft-js';
+import useEditor from './useEditor';
 import 'draft-js/dist/Draft.css';
 import './editor-content.scss';
 
-const defaultContent = 'Program -> a';
+const content = [
+  'ABS',
+].join(' ');
 
 function Content() {
-  const [editorState, setEditorState] = useState(
-    () => EditorState.createWithContent(ContentState.createFromText(defaultContent)),
-  );
+  const {state, onChange} = useEditor(content);
 
   return (
     <div className="editor-content">
       <Editor
-        editorState={editorState}
-        onChange={setEditorState}
+        editorState={state}
+        onChange={onChange}
         autoCapitalize="off"
         autoComplete="off"
         autoCorrect="off"

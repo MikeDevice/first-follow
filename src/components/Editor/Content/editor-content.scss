@@ -13,4 +13,17 @@
       max-height: 500px;
     }
   }
+
+  &-arrow {
+    &::before {
+      content: ' ';
+    }
+  }
+
+  &-arrow-placeholder {
+    &::after {
+      content: ' \27f6';
+      opacity: 0.5;
+    }
+  }
 }
