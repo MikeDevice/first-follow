@@ -5,6 +5,6 @@ export const chars = {
 const nonterminal = '\\w+';
 
 export const regexesContent = {
-  startOfRule: `^\\s*${nonterminal}\\s`,
+  startOfRule: `\\s*${nonterminal}`,
   nonterminal,
 };

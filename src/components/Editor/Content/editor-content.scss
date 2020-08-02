@@ -15,12 +15,16 @@
   }
 
   &-arrow {
+    pointer-events: none;
+
     &::before {
       content: ' ';
     }
   }
 
   &-arrow-placeholder {
+    pointer-events: none;
+
     &::after {
       content: ' \27f6';
       opacity: 0.5;

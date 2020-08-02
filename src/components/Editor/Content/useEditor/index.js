@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import _ from 'lodash-es';
+import {useState} from 'react';
 import {
   Modifier,
   EditorState,
@@ -6,25 +7,13 @@ import {
   SelectionState,
   CompositeDecorator,
 } from 'draft-js';
+import decorators from './decorators';
+import {findWithRegex} from './helpers';
+import {chars, regexesContent} from './constants';
 
-const arrowChar = '\u27f6';
-
-function findWithRegex(regex, text, callback) {
-  let matchResult = regex.exec(text);
-
-  while (matchResult) {
-    const start = matchResult.index;
-    const end = start + matchResult[0].length;
-
-    callback(start, end);
-
-    matchResult = regex.exec(text);
-  }
-}
-
-function replaceText(editorState, regex, text, startPositionToReplace = 0) {
+function replaceText({editorState, searchRegex, text, startPosition = 0}) {
   const contentState = editorState.getCurrentContent();
-
+  console.log(contentState.getPlainText());
   let newEditorState = editorState;
   let newContentState = contentState;
 
@@ -32,24 +21,22 @@ function replaceText(editorState, regex, text, startPositionToReplace = 0) {
     const blockKey = block.getKey();
     const blockText = block.getText();
 
-    findWithRegex(regex, blockText, (start, end) => {
-      let startPosition = start;
-
-      if (startPositionToReplace >= 0) {
-        startPosition += startPositionToReplace;
+    findWithRegex(searchRegex, blockText, (start, end) => {
+      if (startPosition >= 0) {
+        start += startPosition;
       } else {
-        startPosition = end + startPositionToReplace;
+        start = end + startPosition;
       }
 
       const selection = new SelectionState({
         anchorKey: blockKey,
         focusKey: blockKey,
-        anchorOffset: startPosition,
+        anchorOffset: start,
         focusOffset: end,
       });
 
       newContentState = Modifier.replaceText(newContentState, selection, text);
-      const offset = startPosition + text.length;
+      const offset = start + text.length;
 
       newEditorState = EditorState.set(newEditorState, {
         currentContent: newContentState,
@@ -67,61 +54,52 @@ function replaceText(editorState, regex, text, startPositionToReplace = 0) {
   return newEditorState;
 }
 
-function handleArrowPlaceholder(contentBlock, callback) {
-  const regex = new RegExp(`^\\s*[^\\s${arrowChar}]+$`, 'ig');
-
-  const text = contentBlock.getText();
-  const matchResult = regex.exec(text);
-
-  if (matchResult) {
-    const start = matchResult.index;
-    const end = start + matchResult[0].length;
-
-    callback(start, end);
-  }
+function insertArrows(editorState) {
+  return replaceText({
+    searchRegex: new RegExp(`^${regexesContent.startOfRule}\\s`, 'ig'),
+    text: `${chars.arrow} `,
+    startPosition: -1,
+    editorState,
+  });
 }
 
-function handleArrow(contentBlock, callback) {
-  const text = contentBlock.getText();
-
-  findWithRegex(new RegExp(arrowChar, 'g'), text, callback);
+function removeArrows(editorState) {
+  return replaceText({
+    searchRegex: new RegExp(`${chars.arrow}`, 'g'),
+    text: ' ',
+    editorState,
+  });
 }
 
-const ArrowPlaceholder = ({children}) => (
-  <span className="editor-content-arrow-placeholder">
-    {children}
-  </span>
-);
-
-const Arrow = ({children}) => (
-  <span className="editor-content-arrow">
-    {children}
-  </span>
-);
-
-const compositeDecorator = new CompositeDecorator([
-  {
-    strategy: handleArrow,
-    component: Arrow,
-  },
-  {
-    strategy: handleArrowPlaceholder,
-    component: ArrowPlaceholder,
-  },
-]);
+function removeExtraArrowsSpaces(editorState) {
+  return replaceText({
+    searchRegex: new RegExp(`^${regexesContent.startOfRule}\\s*${chars.arrow}$`, 'ig'),
+    text: '',
+    startPosition: -1,
+    editorState,
+  });
+}
 
 export default (content = '') => {
+  const contentState = ContentState.createFromText(content);
+  const compositeDecorator = new CompositeDecorator([
+    decorators.arrow,
+    decorators.arrowPlaceholder,
+  ]);
+
   const [state, setState] = useState(
-    () => EditorState.createWithContent(
-      ContentState.createFromText(content),
-      compositeDecorator,
-    ),
+    () => EditorState.createWithContent(contentState, compositeDecorator),
   );
 
-  const onChange = (newState) => {
-    const regex = new RegExp(`^\\s*[^\\s${arrowChar}]+\\s$`, 'ig');
-    const patchedState = replaceText(newState, regex, `${arrowChar} `, -1);
-    setState(patchedState);
+  const changeState = _.flowRight([
+    insertArrows,
+    removeExtraArrowsSpaces,
+    removeArrows,
+  ]);
+
+  const onChange = (editorState) => {
+    console.log('onchange');
+    setState(changeState(editorState));
   };
 
   return {state, onChange};
