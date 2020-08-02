@@ -11,10 +11,7 @@ import decorators from './decorators';
 import {findWithRegex} from './helpers';
 import {chars, regexesContent} from './constants';
 
-function replaceText({editorState, searchRegex, text, startPosition = 0}) {
-  const contentState = editorState.getCurrentContent();
-  console.log(contentState.getPlainText());
-  let newEditorState = editorState;
+function replaceText({contentState, searchRegex, text, startPosition = 0}) {
   let newContentState = contentState;
 
   contentState.getBlockMap().forEach((block) => {
@@ -36,47 +33,26 @@ function replaceText({editorState, searchRegex, text, startPosition = 0}) {
       });
 
       newContentState = Modifier.replaceText(newContentState, selection, text);
-      const offset = start + text.length;
-
-      newEditorState = EditorState.set(newEditorState, {
-        currentContent: newContentState,
-        selection: new SelectionState({
-          anchorKey: blockKey,
-          focusKey: blockKey,
-          anchorOffset: offset,
-          focusOffset: offset,
-          hasFocus: true,
-        }),
-      });
     });
   });
 
-  return newEditorState;
+  return newContentState;
 }
 
-function insertArrows(editorState) {
+function insertArrows(contentState) {
   return replaceText({
     searchRegex: new RegExp(`^${regexesContent.startOfRule}\\s`, 'ig'),
-    text: `${chars.arrow} `,
+    text: `${chars.arrow}`,
     startPosition: -1,
-    editorState,
+    contentState,
   });
 }
 
-function removeArrows(editorState) {
+function removeArrows(contentState) {
   return replaceText({
     searchRegex: new RegExp(`${chars.arrow}`, 'g'),
     text: ' ',
-    editorState,
-  });
-}
-
-function removeExtraArrowsSpaces(editorState) {
-  return replaceText({
-    searchRegex: new RegExp(`^${regexesContent.startOfRule}\\s*${chars.arrow}$`, 'ig'),
-    text: '',
-    startPosition: -1,
-    editorState,
+    contentState,
   });
 }
 
@@ -91,15 +67,16 @@ export default (content = '') => {
     () => EditorState.createWithContent(contentState, compositeDecorator),
   );
 
-  const changeState = _.flowRight([
-    insertArrows,
-    removeExtraArrowsSpaces,
+  const modifyContentState = _.flow([
     removeArrows,
+    insertArrows,
   ]);
 
   const onChange = (editorState) => {
-    console.log('onchange');
-    setState(changeState(editorState));
+    const currentContent = modifyContentState(editorState.getCurrentContent());
+    const newEditorState = EditorState.set(editorState, {currentContent});
+
+    setState(newEditorState);
   };
 
   return {state, onChange};

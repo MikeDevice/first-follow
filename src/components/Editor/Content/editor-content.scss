@@ -17,7 +17,8 @@
   &-arrow {
     pointer-events: none;
 
-    &::before {
+    &::before,
+    &::after {
       content: ' ';
     }
   }
