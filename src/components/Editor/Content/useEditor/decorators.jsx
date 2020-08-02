@@ -21,4 +21,8 @@ export default {
     strategy: makeStrategy(new RegExp(`^${regexesContent.startOfRule}$`, 'ig')),
     component: makeComponent('editor-content-arrow-placeholder'),
   },
+  emptyChainPlaceholder: {
+    strategy: makeStrategy(new RegExp(`^${regexesContent.startOfRule}\\s*${chars.arrow}$`, 'ig')),
+    component: makeComponent('editor-content-empty-chain-placeholder'),
+  },
 };

@@ -17,8 +17,7 @@
   &-arrow {
     pointer-events: none;
 
-    &::before,
-    &::after {
+    &::before {
       content: ' ';
     }
   }
@@ -28,6 +27,15 @@
 
     &::after {
       content: ' \27f6';
+      opacity: 0.5;
+    }
+  }
+
+  &-empty-chain-placeholder {
+    pointer-events: none;
+
+    &::after {
+      content: ' \03b5';
       opacity: 0.5;
     }
   }

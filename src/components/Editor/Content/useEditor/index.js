@@ -48,6 +48,15 @@ function insertArrows(contentState) {
   });
 }
 
+function insertEmptyChains(contentState) {
+  return replaceText({
+    searchRegex: new RegExp(`^${regexesContent.startOfRule}\\s*${chars.arrow}\\s$`, 'ig'),
+    text: `${chars.emptyChain}`,
+    startPosition: -1,
+    contentState,
+  });
+}
+
 function removeArrows(contentState) {
   return replaceText({
     searchRegex: new RegExp(`${chars.arrow}`, 'g'),
@@ -59,23 +68,26 @@ function removeArrows(contentState) {
 export default (content = '') => {
   const contentState = ContentState.createFromText(content);
   const compositeDecorator = new CompositeDecorator([
-    decorators.arrow,
+    // decorators.arrow,
     decorators.arrowPlaceholder,
+    decorators.emptyChainPlaceholder,
   ]);
 
   const [state, setState] = useState(
     () => EditorState.createWithContent(contentState, compositeDecorator),
   );
 
-  const modifyContentState = _.flow([
+  const modifyContentState = _.flow(
     removeArrows,
     insertArrows,
-  ]);
+    insertEmptyChains,
+  );
 
   const onChange = (editorState) => {
     const currentContent = modifyContentState(editorState.getCurrentContent());
     const newEditorState = EditorState.set(editorState, {currentContent});
 
+    console.log(newEditorState.getCurrentContent().getPlainText());
     setState(newEditorState);
   };
 
