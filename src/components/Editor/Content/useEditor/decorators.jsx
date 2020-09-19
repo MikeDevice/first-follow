@@ -22,7 +22,7 @@ export default {
     component: makeComponent('editor-content-arrow-placeholder'),
   },
   emptyChainPlaceholder: {
-    strategy: makeStrategy(new RegExp(`^${regexesContent.startOfRule}\\s*${chars.arrow}$`, 'ig')),
+    strategy: makeStrategy(new RegExp(`${chars.arrow}\\s*$`, 'ig')),
     component: makeComponent('editor-content-empty-chain-placeholder'),
   },
 };

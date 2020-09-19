@@ -5,7 +5,7 @@ import 'draft-js/dist/Draft.css';
 import './editor-content.scss';
 
 const content = [
-  'A',
+  '',
 ].join(' ');
 
 function Content() {

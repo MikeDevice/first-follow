@@ -18,7 +18,11 @@
     pointer-events: none;
 
     &::before {
-      content: ' ';
+      content: ' \27f6';
+    }
+
+    span {
+      opacity: 0;
     }
   }
 
@@ -34,8 +38,16 @@
   &-empty-chain-placeholder {
     pointer-events: none;
 
+    &::before {
+      content: ' \27f6';
+    }
+
+    span {
+      opacity: 0;
+    }
+
     &::after {
-      content: ' \03b5';
+      content: '\03b5';
       opacity: 0.5;
     }
   }

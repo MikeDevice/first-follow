@@ -3,7 +3,7 @@ export const chars = {
   emptyChain: '\u03b5',
 };
 
-const nonterminal = '\\w+';
+const nonterminal = '[A-Za-z_]\\w*';
 
 export const regexesContent = {
   startOfRule: `\\s*${nonterminal}`,
