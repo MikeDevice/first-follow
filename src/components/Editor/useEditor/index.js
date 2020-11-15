@@ -48,22 +48,6 @@ function insertArrows(contentState) {
   });
 }
 
-function removeArrows(contentState) {
-  return replaceText({
-    searchRegex: new RegExp(`${chars.arrow}`, 'g'),
-    text: ' ',
-    contentState,
-  });
-}
-
-function removeEmptyChains(contentState) {
-  return replaceText({
-    searchRegex: new RegExp(`${chars.emptyChain}`, 'g'),
-    text: ' ',
-    contentState,
-  });
-}
-
 export default (content = '') => {
   const contentState = ContentState.createFromText(content);
   const compositeDecorator = new CompositeDecorator([
@@ -77,8 +61,6 @@ export default (content = '') => {
   );
 
   const modifyContentState = _.flow(
-    removeArrows,
-    removeEmptyChains,
     insertArrows,
   );
 
