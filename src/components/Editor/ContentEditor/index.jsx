@@ -1,16 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Editor} from 'draft-js';
-import useEditor from './useEditor';
 import 'draft-js/dist/Draft.css';
 import './editor-content.scss';
 
-const content = [
-  '',
-].join(' ');
-
-function Content() {
-  const {state, onChange} = useEditor(content);
-
+function ContentEditor({state, onChange}) {
   return (
     <div className="editor-content">
       <Editor
@@ -25,4 +19,9 @@ function Content() {
   );
 }
 
-export default Content;
+ContentEditor.propTypes = {
+  state: PropTypes.shape().isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default ContentEditor;

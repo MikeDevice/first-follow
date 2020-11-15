@@ -89,5 +89,17 @@ export default (content = '') => {
     setState(newEditorState);
   };
 
-  return {state, onChange};
+  const undo = () => {
+    setState(EditorState.undo(state));
+  };
+
+  const redo = () => {
+    setState(EditorState.redo(state));
+  };
+
+  const clear = () => {
+    setState(EditorState.push(state, ContentState.createFromText('')));
+  };
+
+  return {state, onChange, undo, redo, clear};
 };
