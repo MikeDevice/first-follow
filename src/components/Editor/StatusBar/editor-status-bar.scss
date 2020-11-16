@@ -1,6 +1,7 @@
 .editor-status-bar {
   display: flex;
   justify-content: space-between;
+  min-height: 40px;
   font-size: 12px;
   padding: 10px 15px;
   border-top: 1px solid var(--color-main);
@@ -22,6 +23,12 @@
 
     &_error {
       color: var(--color-error);
+    }
+  }
+
+  &__section {
+    &_right {
+      margin-left: auto;
     }
   }
 }

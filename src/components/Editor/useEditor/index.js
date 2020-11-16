@@ -54,6 +54,8 @@ export default (content = '') => {
     decorators.arrowPlaceholder,
     decorators.emptyChainPlaceholder,
     decorators.arrow,
+    decorators.nonterminalStart,
+    decorators.nonterminal,
   ]);
 
   const [state, setState] = useState(
