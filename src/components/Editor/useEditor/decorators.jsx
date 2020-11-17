@@ -49,18 +49,18 @@ export const makeComponent = (className) => ({children}) => (
 );
 
 export default {
-  arrow: {
+  arrow: () => ({
     strategy: makeStrategy(new RegExp(chars.arrow, 'g')),
     component: makeComponent('editor-content-arrow'),
-  },
-  arrowPlaceholder: {
+  }),
+  arrowPlaceholder: () => ({
     strategy: makeStrategy(new RegExp(`^${regexesContent.startOfRule}$`, 'ig')),
     component: makeComponent('editor-content-arrow-placeholder'),
-  },
-  emptyChainPlaceholder: {
+  }),
+  emptyChainPlaceholder: () => ({
     strategy: makeStrategy(new RegExp(`${chars.arrow}\\s*$`, 'ig')),
     component: makeComponent('editor-content-empty-chain-placeholder'),
-  },
+  }),
   nonterminal: (nonterminals = []) => ({
     strategy: makeNonterminalsStrategy(nonterminals),
     component: makeComponent('editor-content-nonterminal'),

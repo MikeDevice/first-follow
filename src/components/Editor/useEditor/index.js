@@ -1,5 +1,5 @@
 import _ from 'lodash-es';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {
   Modifier,
   EditorState,
@@ -57,55 +57,57 @@ function getNonterminals(contentState) {
   return _.compact(Array.from(map.values()));
 }
 
+function getDecorator(contentState) {
+  const nonterminals = getNonterminals(contentState);
+
+  return new CompositeDecorator([
+    decorators.arrowPlaceholder(),
+    decorators.emptyChainPlaceholder(),
+    decorators.arrow(),
+    decorators.nonterminal(nonterminals),
+  ]);
+}
+
 export default (content = '') => {
   const contentState = ContentState.createFromText(content);
-  const compositeDecorator = new CompositeDecorator([
-    decorators.arrowPlaceholder,
-    decorators.emptyChainPlaceholder,
-    decorators.arrow,
-    decorators.nonterminal(),
-  ]);
+  const decorator = getDecorator(contentState);
+  const previousTextRef = useRef();
 
   const [state, setState] = useState(
-    () => EditorState.createWithContent(contentState, compositeDecorator),
+    () => EditorState.createWithContent(contentState, decorator),
   );
 
-  const modifyContentState = _.flow(
+  const modifyContent = _.flow(
     insertArrows,
   );
 
   const onChange = (editorState) => {
-    const currentContent = modifyContentState(editorState.getCurrentContent());
-    const nonterminals = getNonterminals(currentContent);
-
-    const decorator = new CompositeDecorator([
-      decorators.arrowPlaceholder,
-      decorators.emptyChainPlaceholder,
-      decorators.arrow,
-      decorators.nonterminal(nonterminals),
-    ]);
+    const currentContent = modifyContent(editorState.getCurrentContent());
+    const currentText = currentContent.getPlainText();
+    const previousText = previousTextRef.current;
 
     const newEditorState = EditorState.set(
       editorState,
       {
         currentContent,
-        decorator,
+        ...currentText !== previousText && {decorator: getDecorator(currentContent)},
       },
     );
 
+    previousTextRef.current = currentText;
     setState(newEditorState);
   };
 
   const undo = () => {
-    setState(EditorState.undo(state));
+    onChange(EditorState.undo(state));
   };
 
   const redo = () => {
-    setState(EditorState.redo(state));
+    onChange(EditorState.redo(state));
   };
 
   const clear = () => {
-    setState(EditorState.push(state, ContentState.createFromText('')));
+    onChange(EditorState.push(state, ContentState.createFromText('')));
   };
 
   return {state, onChange, undo, redo, clear};
