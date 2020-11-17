@@ -10,23 +10,3 @@ export const findWithRegex = (regex, text, callback) => {
     matchResult = regex.exec(text);
   }
 };
-
-export function findWithRegexNew(data, text, callback) {
-  const {
-    content,
-    contentBefore = '',
-    contentAfter = '',
-    caseInsensitive = false,
-  } = data;
-
-  const regex = new RegExp(
-    `(${contentBefore})(${content})(${contentAfter})`,
-    `${caseInsensitive ? 'gi' : 'g'}`,
-  );
-
-  findWithRegex(regex, text, (start, end, match) => {
-    const [, beforeMatch, , afterMatch] = match;
-
-    callback(start + beforeMatch.length, end - afterMatch.length);
-  });
-}

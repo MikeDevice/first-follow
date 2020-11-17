@@ -48,14 +48,22 @@ function insertArrows(contentState) {
   });
 }
 
+function getNonterminals(contentState) {
+  const map = contentState.getBlockMap()
+    .map((block) => block.getText().split(chars.arrow))
+    .filter((rowParts) => rowParts.length > 1)
+    .map(([nonterminal]) => nonterminal.trim());
+
+  return _.compact(Array.from(map.values()));
+}
+
 export default (content = '') => {
   const contentState = ContentState.createFromText(content);
   const compositeDecorator = new CompositeDecorator([
     decorators.arrowPlaceholder,
     decorators.emptyChainPlaceholder,
     decorators.arrow,
-    decorators.nonterminalStart,
-    decorators.nonterminal,
+    decorators.nonterminal(),
   ]);
 
   const [state, setState] = useState(
@@ -68,7 +76,22 @@ export default (content = '') => {
 
   const onChange = (editorState) => {
     const currentContent = modifyContentState(editorState.getCurrentContent());
-    const newEditorState = EditorState.set(editorState, {currentContent});
+    const nonterminals = getNonterminals(currentContent);
+
+    const decorator = new CompositeDecorator([
+      decorators.arrowPlaceholder,
+      decorators.emptyChainPlaceholder,
+      decorators.arrow,
+      decorators.nonterminal(nonterminals),
+    ]);
+
+    const newEditorState = EditorState.set(
+      editorState,
+      {
+        currentContent,
+        decorator,
+      },
+    );
 
     setState(newEditorState);
   };

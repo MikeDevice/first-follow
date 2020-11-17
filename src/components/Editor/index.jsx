@@ -8,7 +8,7 @@ import useEditor from './useEditor';
 import './editor.scss';
 
 const defaultContent = [
-  'Program⟶Variables',
+  'A⟶B A',
 ].join('\n');
 
 function Editor({onSubmit}) {
@@ -19,8 +19,6 @@ function Editor({onSubmit}) {
 
     onSubmit(text);
   };
-
-  console.log(state.getCurrentContent().getPlainText());
 
   return (
     <div className="editor">
