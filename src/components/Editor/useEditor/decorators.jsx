@@ -2,9 +2,11 @@ import React from 'react';
 import {chars, regexesContent} from './constants';
 import {findWithRegex} from './helpers';
 
-export const makeStrategy = (regex) => (contentBlock, callback) => {
-  findWithRegex(regex, contentBlock.getText(), callback);
-};
+function makeStrategy(regex) {
+  return (contentBlock, callback) => {
+    findWithRegex(regex, contentBlock.getText(), callback);
+  };
+}
 
 function makeNonterminalsStrategy(nonterminals) {
   return (contentBlock, callback) => {
