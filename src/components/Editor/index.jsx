@@ -8,7 +8,7 @@ import useEditor from './useEditor';
 import './editor.scss';
 
 const defaultContent = [
-  'A⟶B A',
+  'A',
 ].join('\n');
 
 function Editor({onSubmit}) {

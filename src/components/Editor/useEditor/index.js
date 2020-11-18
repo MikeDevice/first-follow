@@ -69,13 +69,14 @@ function getDecorator(contentState) {
 }
 
 export default (content = '') => {
-  const contentState = ContentState.createFromText(content);
-  const decorator = getDecorator(contentState);
-  const previousTextRef = useRef();
+  const [state, setState] = useState(() => {
+    const contentState = ContentState.createFromText(content);
+    const decorator = getDecorator(contentState);
 
-  const [state, setState] = useState(
-    () => EditorState.createWithContent(contentState, decorator),
-  );
+    return EditorState.createWithContent(contentState, decorator);
+  });
+
+  const previousTextRef = useRef();
 
   const modifyContent = _.flow(
     insertArrows,
@@ -86,13 +87,14 @@ export default (content = '') => {
     const currentText = currentContent.getPlainText();
     const previousText = previousTextRef.current;
 
-    const newEditorState = EditorState.set(
-      editorState,
-      {
-        currentContent,
-        ...currentText !== previousText && {decorator: getDecorator(currentContent)},
-      },
-    );
+    let newEditorState = EditorState.set(editorState, {currentContent});
+
+    if (currentText !== previousText) {
+      newEditorState = EditorState.set(
+        newEditorState,
+        {decorator: getDecorator(currentContent)},
+      );
+    }
 
     previousTextRef.current = currentText;
     setState(newEditorState);
