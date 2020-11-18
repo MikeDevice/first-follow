@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Editor} from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import './editor-content.scss';
+import './editor-content-editor.scss';
 
 function ContentEditor({state, onChange}) {
   return (
-    <div className="editor-content">
+    <div className="editor-content-editor">
       <Editor
         editorState={state}
         onChange={onChange}
