@@ -48,6 +48,22 @@ function insertArrows(contentState) {
   });
 }
 
+function removeArrows(contentState) {
+  return replaceText({
+    searchRegex: new RegExp(chars.arrow, 'g'),
+    text: ' ',
+    contentState,
+  });
+}
+
+function removeEmptyChains(contentState) {
+  return replaceText({
+    searchRegex: new RegExp(chars.emptyChain, 'g'),
+    text: ' ',
+    contentState,
+  });
+}
+
 function getNonterminals(contentState) {
   const map = contentState.getBlockMap()
     .map((block) => block.getText().split(chars.arrow))
@@ -79,6 +95,8 @@ export default (content = '') => {
   const previousTextRef = useRef();
 
   const modifyContent = _.flow(
+    removeArrows,
+    removeEmptyChains,
     insertArrows,
   );
 
