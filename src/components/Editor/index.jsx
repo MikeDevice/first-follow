@@ -48,7 +48,9 @@ function Editor({onSubmit}) {
       <Toolbar onUndoClick={undo} onRedoClick={redo} onClearClick={clear} />
       <div className="editor__content">
         <div className="editor__line-numbers">
-          {lines.map((number) => number ? <div>{number}</div> : <br />)}
+          {lines.map((number, index) => number
+            ? <div key={index}>{number}</div>
+            : <br key={index} />)}
         </div>
         <div className="editor__body">
           <ContentEditor
