@@ -73,9 +73,7 @@ function getNonterminals(contentState) {
   return _.compact(Array.from(map.values()));
 }
 
-function getDecorator(contentState) {
-  const nonterminals = getNonterminals(contentState);
-
+function getDecorator(nonterminals) {
   return new CompositeDecorator([
     decorators.arrowPlaceholder(),
     decorators.emptyChainPlaceholder(),
@@ -87,12 +85,13 @@ function getDecorator(contentState) {
 export default (content = '') => {
   const [state, setState] = useState(() => {
     const contentState = ContentState.createFromText(content);
-    const decorator = getDecorator(contentState);
+    const decorator = getDecorator(getNonterminals(contentState));
 
     return EditorState.createWithContent(contentState, decorator);
   });
 
   const previousTextRef = useRef();
+  const previousNonterminalsRef = useRef([]);
 
   const modifyContent = _.flow(
     removeArrows,
@@ -102,19 +101,27 @@ export default (content = '') => {
 
   const onChange = (editorState) => {
     const currentContent = modifyContent(editorState.getCurrentContent());
+    let newEditorState = EditorState.set(editorState, {currentContent});
+
     const currentText = currentContent.getPlainText();
     const previousText = previousTextRef.current;
 
-    let newEditorState = EditorState.set(editorState, {currentContent});
-
     if (currentText !== previousText) {
-      newEditorState = EditorState.set(
-        newEditorState,
-        {decorator: getDecorator(currentContent)},
-      );
+      const currentNonterminals = getNonterminals(currentContent);
+      const previousNonterminals = previousNonterminalsRef.current;
+
+      if (!_.isEqual(currentNonterminals, previousNonterminals)) {
+        newEditorState = EditorState.set(
+          newEditorState,
+          {decorator: getDecorator(currentNonterminals)},
+        );
+
+        previousNonterminalsRef.current = currentNonterminals;
+      }
+
+      previousTextRef.current = currentText;
     }
 
-    previousTextRef.current = currentText;
     setState(newEditorState);
   };
 
