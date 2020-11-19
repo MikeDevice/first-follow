@@ -9,6 +9,7 @@
   "rules": {
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
+    "no-confusing-arrow": "off",
     "object-curly-newline": "off",
     "object-curly-spacing": ["error", "never"],
     "react/jsx-props-no-spreading": "off",

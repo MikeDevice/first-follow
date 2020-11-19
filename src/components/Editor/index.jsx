@@ -11,6 +11,22 @@ const defaultContent = [
   'A',
 ].join('\n');
 
+function getLineNumbers(lines) {
+  const numbers = [];
+  let counter = 1;
+
+  lines.forEach((line) => {
+    if (line) {
+      numbers.push(counter);
+      counter += 1;
+    } else {
+      numbers.push(null);
+    }
+  });
+
+  return numbers;
+}
+
 function Editor({onSubmit}) {
   const {state, onChange, undo, redo, clear} = useEditor(defaultContent);
 
@@ -20,14 +36,26 @@ function Editor({onSubmit}) {
     onSubmit(text);
   };
 
+  const lines = getLineNumbers(
+    state
+      .getCurrentContent()
+      .getPlainText()
+      .split('\n'),
+  );
+
   return (
     <div className="editor">
       <Toolbar onUndoClick={undo} onRedoClick={redo} onClearClick={clear} />
       <div className="editor__content">
-        <ContentEditor
-          state={state}
-          onChange={onChange}
-        />
+        <div className="editor__line-numbers">
+          {lines.map((number) => number ? <div>{number}</div> : <br />)}
+        </div>
+        <div className="editor__body">
+          <ContentEditor
+            state={state}
+            onChange={onChange}
+          />
+        </div>
       </div>
       <div className="editor__footer">
         <StatusBar />
