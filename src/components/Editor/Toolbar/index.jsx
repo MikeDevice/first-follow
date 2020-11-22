@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-  faEraser,
-  // faHistory,
-  // faQuestionCircle,
-  faRedoAlt,
-  faUndoAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import {faEraser, faRedoAlt, faUndoAlt} from '@fortawesome/free-solid-svg-icons';
 import Button from '../../Button';
 import './editor-toolbar.scss';
 
@@ -25,14 +19,6 @@ function Toolbar({onUndoClick, onRedoClick, onClearClick}) {
           <FontAwesomeIcon icon={faEraser} />
         </Button>
       </div>
-      {/* <div className="editor-toolbar__section">
-        <Button className="editor-toolbar__button">
-          <FontAwesomeIcon icon={faHistory} />
-        </Button>
-        <Button className="editor-toolbar__button">
-          <FontAwesomeIcon icon={faQuestionCircle} />
-        </Button>
-      </div> */}
     </div>
   );
 }

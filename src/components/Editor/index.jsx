@@ -5,7 +5,7 @@ import Button from '../Button';
 import ContentEditor from './ContentEditor';
 import StatusBar from './StatusBar';
 import Toolbar from './Toolbar';
-import LineNumbers from './LineNumbers';
+import RowsNumbers from './RowsNumbers';
 import useEditor from './useEditor';
 import './editor.scss';
 
@@ -13,11 +13,11 @@ const defaultContent = [
   '',
 ].join('\n');
 
-function getLineNumbers(lines) {
+function getRowsNumbers(rows) {
   const numbers = [];
   let counter = 1;
 
-  lines.forEach((line) => {
+  rows.forEach((line) => {
     if (line) {
       numbers.push(counter);
       counter += 1;
@@ -50,8 +50,8 @@ function parseLine(line) {
   };
 }
 
-function parseLines(lines) {
-  return lines
+function parseRows(rows) {
+  return rows
     .filter((line) => line.length)
     .map(parseLine);
 }
@@ -80,24 +80,24 @@ function getErrors(data) {
 }
 
 function Editor({onSubmit}) {
-  const {state, onChange, undo, redo, clear, getContentLines} = useEditor(defaultContent);
-  const lines = getContentLines();
-  const linesNumbers = getLineNumbers(lines);
-  const parsedLines = parseLines(lines);
-  const errors = getErrors(parsedLines);
+  const {state, onChange, undo, redo, clear, getContentRows} = useEditor(defaultContent);
+  const rows = getContentRows();
+  const rowsNumbers = getRowsNumbers(rows);
+  const parsedRows = parseRows(rows);
+  const errors = getErrors(parsedRows);
 
   const onRunClick = () => {
-    if (errors.length || !parsedLines.length) return;
+    if (errors.length || !parsedRows.length) return;
 
-    onSubmit(parsedLines);
+    onSubmit(parsedRows);
   };
 
   return (
     <div className="editor">
       <Toolbar onUndoClick={undo} onRedoClick={redo} onClearClick={clear} />
       <div className="editor__content">
-        <div className="editor__line-numbers">
-          <LineNumbers numbers={linesNumbers} errors={errors} />
+        <div className="editor__rows-numbers">
+          <RowsNumbers numbers={rowsNumbers} errors={errors} />
         </div>
         <div className="editor__body">
           <ContentEditor

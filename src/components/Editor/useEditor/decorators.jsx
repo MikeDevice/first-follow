@@ -42,7 +42,7 @@ function makeNonterminalsStrategy(nonterminals) {
   };
 }
 
-export const makeComponent = (className) => ({children}) => (
+const makeComponent = (className) => ({children}) => (
   <span className={className}>
     {children}
   </span>

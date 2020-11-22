@@ -137,7 +137,7 @@ export default (content = '') => {
     onChange(EditorState.push(state, ContentState.createFromText('')));
   };
 
-  const getContentLines = () => Array.from(
+  const getContentRows = () => Array.from(
     state
       .getCurrentContent()
       .getBlockMap()
@@ -151,6 +151,6 @@ export default (content = '') => {
     undo,
     redo,
     clear,
-    getContentLines,
+    getContentRows,
   };
 };

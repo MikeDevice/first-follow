@@ -24,12 +24,20 @@
 
   --color-text: #242424;
   --color-background: white;
+
   --color-main: #e0e8f0;
   --color-main-accent: #344f6b;
   --color-main-accent-hover: #4c759e;
+
   --color-border: #becfdf;
-  --color-error: #db0000;
+  --color-rows-numbers: #adc2d7;
+
   --color-success: #005c00;
+  --color-success-accent: #e5fde5;
+
+  --color-error: #db0000;
+  --color-error-accent: #ffdfdf;
+
   --shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
   --border-radius: 8px;
 }
@@ -45,6 +53,7 @@ html {
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 body {

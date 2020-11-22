@@ -29,11 +29,11 @@
     }
 
     &_success {
-      background-color: #e5fde5;
+      background-color: var(--color-success-accent);
     }
 
     &_error {
-      background-color: #ffdfdf;
+      background-color: var(--color-error-accent);
     }
   }
 
