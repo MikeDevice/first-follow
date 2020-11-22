@@ -11,6 +11,11 @@ const firstSets = {
 };
 
 function App() {
+  const onEditorSubmit = (grammar) => {
+    // eslint-disable-next-line no-console
+    console.log(grammar);
+  };
+
   return (
     <div className="app">
       <Header
@@ -20,7 +25,7 @@ function App() {
       />
       <main className="app__main main">
         <Section className="main__section">
-          <Editor />
+          <Editor onSubmit={onEditorSubmit} />
         </Section>
         <Section
           title="First sets"

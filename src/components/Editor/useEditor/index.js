@@ -137,5 +137,20 @@ export default (content = '') => {
     onChange(EditorState.push(state, ContentState.createFromText('')));
   };
 
-  return {state, onChange, undo, redo, clear};
+  const getContentLines = () => Array.from(
+    state
+      .getCurrentContent()
+      .getBlockMap()
+      .map((block) => block.getText())
+      .values(),
+  );
+
+  return {
+    state,
+    onChange,
+    undo,
+    redo,
+    clear,
+    getContentLines,
+  };
 };
