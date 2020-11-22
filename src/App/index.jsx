@@ -1,5 +1,4 @@
 import React from 'react';
-import {hot} from 'react-hot-loader/root';
 import {Editor, Header, Section, Table} from '../components';
 import './app.scss';
 import './main.scss';
@@ -59,4 +58,4 @@ function App() {
   );
 }
 
-export default hot(App);
+export default App;
