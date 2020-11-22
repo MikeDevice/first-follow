@@ -31,7 +31,7 @@ function Table({data, columns}) {
 
                 return (
                   <td key={columnIndex} className={className}>
-                    {hasValue ? '+' : '-'}
+                    {hasValue ? '+' : '−'}
                   </td>
                 );
               })}
