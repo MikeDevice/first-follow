@@ -29,6 +29,7 @@
   --color-main-accent: #344f6b;
   --color-main-accent-hover: #4c759e;
 
+  --color-link: #0064c1;
   --color-border: #becfdf;
   --color-rows-numbers: #adc2d7;
 
@@ -60,6 +61,15 @@ body {
   min-width: 320px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 table {

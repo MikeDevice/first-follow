@@ -21,6 +21,8 @@ function App() {
         title="First Follow"
         description="A small tool for calculating first, follow and predict sets for the grammar"
         className="app__header"
+        link="https://github.com/MikeDevice/first-follow"
+        linkText="GitHub"
       />
       <main className="app__main main">
         <Section className="main__section">
