@@ -1,18 +1,17 @@
-import React from 'react';
-import {Editor, Header, Section, Table} from '../components';
+import React, {useState} from 'react';
+import firstFollow from 'first-follow';
+import {Editor, Header, Section, GrammarSetTable} from '../components';
+import {getTerminals} from '../helpers/grammar';
 import './app.scss';
 import './main.scss';
 
-const firstSets = {
-  S: ['var'],
-  A: ['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i'],
-  B: ['begin', 'end'],
-};
-
 function App() {
-  const onEditorSubmit = (grammar) => {
-    // eslint-disable-next-line no-console
-    console.log(grammar);
+  const [grammar, setGrammar] = useState(null);
+  const {firstSets, followSets, predictSets} = grammar ? firstFollow(grammar) : {};
+  const terminals = grammar ? getTerminals(grammar) : [];
+
+  const onEditorSubmit = (editorGrammar) => {
+    setGrammar(editorGrammar);
   };
 
   return (
@@ -28,33 +27,33 @@ function App() {
         <Section className="main__section">
           <Editor onSubmit={onEditorSubmit} />
         </Section>
-        <Section
-          title="First sets"
-          className="main__section"
-        >
-          <Table
-            data={firstSets}
-            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-          />
-        </Section>
-        <Section
-          title="Follow sets"
-          className="main__section"
-        >
-          <Table
-            data={firstSets}
-            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-          />
-        </Section>
-        <Section
-          title="Predict sets"
-          className="main__section"
-        >
-          <Table
-            data={firstSets}
-            columns={['begin', 'end', 'a', 'b', 'c', 'd', 'e', 'f', 'j', 'h', 'i']}
-          />
-        </Section>
+        {firstSets && (
+          <Section title="First sets" className="main__section">
+            <GrammarSetTable
+              data={firstSets}
+              columns={terminals}
+              withEmptyChain
+            />
+          </Section>
+        )}
+        {followSets && (
+          <Section title="Follow sets" className="main__section">
+            <GrammarSetTable
+              data={followSets}
+              columns={terminals}
+              withEndMark
+            />
+          </Section>
+        )}
+        {predictSets && (
+          <Section title="Predict sets" className="main__section">
+            <GrammarSetTable
+              data={predictSets}
+              columns={terminals}
+              withEndMark
+            />
+          </Section>
+        )}
       </main>
     </div>
   );

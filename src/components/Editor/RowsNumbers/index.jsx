@@ -1,33 +1,36 @@
 import _ from 'lodash-es';
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import Item from './Item';
 import './editor-rows-numbers.scss';
 
-function RowsNumbers({numbers, errors}) {
-  const errorsHash = _.keyBy(errors, 'ruleNumber');
+function RowsNumbers({rows, errors}) {
+  const errorsHash = _.keyBy(errors, 'number');
+  let rowNumber = 0;
 
   return (
     <div className="editor-rows-numbers">
-      {numbers.map((number, index) => (
-        <div
-          key={index}
-          className={classNames(
-            'editor-rows-numbers__item',
-            errorsHash[number] && 'editor-rows-numbers__item_error',
-          )}
-        >
-          {number || <br />}
-        </div>
-      ))}
+      {rows.map((row, index) => {
+        rowNumber = row ? rowNumber + 1 : rowNumber;
+
+        return (
+          <Item
+            key={index}
+            {...row && {
+              number: rowNumber,
+              error: errorsHash[rowNumber] && errorsHash[rowNumber].error,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
 
 RowsNumbers.propTypes = {
-  numbers: PropTypes.arrayOf(PropTypes.number).isRequired,
+  rows: PropTypes.arrayOf(PropTypes.string).isRequired,
   errors: PropTypes.arrayOf(PropTypes.shape({
-    ruleNumber: PropTypes.number.isRequired,
+    number: PropTypes.number.isRequired,
   })).isRequired,
 };
 
