@@ -2,15 +2,15 @@ import './global.scss';
 import 'react-hot-loader';
 import React from 'react';
 import {render} from 'react-dom';
-import App from './App';
+import {Main} from './pages';
 
-let AppWrapper = App;
+let App = Main;
 
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require
   const {hot} = require('react-hot-loader/root');
 
-  AppWrapper = hot(App);
+  App = hot(Main);
 }
 
-render(<AppWrapper />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
