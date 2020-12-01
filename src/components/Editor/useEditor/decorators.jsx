@@ -1,6 +1,6 @@
 import React from 'react';
-import {chars, regexesContent} from './constants';
 import {findWithRegex} from './helpers';
+import {chars, regexesContent} from '../../../helpers/grammar';
 
 function makeStrategy(regex) {
   return (contentBlock, callback) => {

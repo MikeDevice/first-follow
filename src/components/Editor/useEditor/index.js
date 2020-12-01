@@ -9,7 +9,7 @@ import {
 } from 'draft-js';
 import decorators from './decorators';
 import {findWithRegex} from './helpers';
-import {chars, regexesContent} from './constants';
+import {chars, regexesContent} from '../../../helpers/grammar';
 
 function replaceText({contentState, searchRegex, text, startPosition = 0}) {
   let newContentState = contentState;
