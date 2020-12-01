@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import firstFollow from 'first-follow';
-import {Editor, Header, Section, GrammarSetTable} from '../components';
-import {getTerminals} from '../helpers/grammar';
-import './app.scss';
+import {Layout, Editor, Section, GrammarSetTable} from '../../components';
+import {getTerminals} from '../../helpers/grammar';
 import './main.scss';
 
-function App() {
+function Main() {
   const [grammar, setGrammar] = useState(null);
   const {firstSets, followSets, predictSets} = grammar ? firstFollow(grammar) : {};
   const terminals = grammar ? getTerminals(grammar) : [];
@@ -15,15 +14,8 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <Header
-        title="First Follow"
-        description="A small tool for calculating first, follow and predict sets for the grammar"
-        className="app__header"
-        link="https://github.com/MikeDevice/first-follow"
-        linkText="GitHub"
-      />
-      <main className="app__main main">
+    <Layout>
+      <div className="main">
         <Section className="main__section">
           <Editor onSubmit={onEditorSubmit} />
         </Section>
@@ -54,9 +46,9 @@ function App() {
             />
           </Section>
         )}
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
-export default App;
+export default Main;
