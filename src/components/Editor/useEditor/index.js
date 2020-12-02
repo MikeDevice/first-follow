@@ -82,7 +82,7 @@ function getDecorator(nonterminals) {
   ]);
 }
 
-export default (content = '') => {
+export default ({content = '', onContentChange = _.noop} = {}) => {
   const [state, setState] = useState(() => {
     const contentState = ContentState.createFromText(content);
     const decorator = getDecorator(getNonterminals(contentState));
@@ -90,7 +90,7 @@ export default (content = '') => {
     return EditorState.createWithContent(contentState, decorator);
   });
 
-  const previousTextRef = useRef();
+  const previousTextRef = useRef(content);
   const previousNonterminalsRef = useRef([]);
 
   const modifyContent = _.flow(
@@ -119,6 +119,7 @@ export default (content = '') => {
         previousNonterminalsRef.current = currentNonterminals;
       }
 
+      onContentChange(currentText);
       previousTextRef.current = currentText;
     }
 

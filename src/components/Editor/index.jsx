@@ -11,29 +11,33 @@ import {parse} from '../../helpers/grammar';
 import './editor.scss';
 
 function Editor({defaultContent, onSubmit}) {
-  const {state, onChange, undo, redo, clear, getContentRows} = useEditor(defaultContent);
   const [isSuccessLabelActive, setSuccessLabelActive] = useState(false);
   const timeoutId = useRef();
+
+  const hideSuccessLabel = () => {
+    clearTimeout(timeoutId.current);
+    setSuccessLabelActive(false);
+  };
+
+  const showSuccessLabel = () => {
+    hideSuccessLabel();
+    setSuccessLabelActive(true);
+
+    timeoutId.current = setTimeout(hideSuccessLabel, 2000);
+  };
+
+  const {state, onChange, undo, redo, clear, getContentRows} = useEditor({
+    content: defaultContent,
+    onContentChange: hideSuccessLabel,
+  });
+
   const rows = getContentRows();
   const parsedRows = parse(rows);
   const errors = _.filter(parsedRows, 'error');
 
-  const activateSuccessLabel = () => {
-    clearTimeout(timeoutId.current);
-
-    setSuccessLabelActive(true);
-
-    timeoutId.current = setTimeout(() => {
-      setSuccessLabelActive(false);
-    }, 2000);
-  };
-
   const onRunClick = () => {
-    if (errors.length || !parsedRows.length) return;
-
     onSubmit(parsedRows);
-
-    activateSuccessLabel();
+    showSuccessLabel();
   };
 
   return (
@@ -52,7 +56,13 @@ function Editor({defaultContent, onSubmit}) {
       </div>
       <div className="editor__footer">
         <StatusBar success={isSuccessLabelActive} errorsCount={errors.length} />
-        <Button className="editor__button" onClick={onRunClick}>Run</Button>
+        <Button
+          className="editor__button"
+          onClick={onRunClick}
+          disabled={errors.length || !parsedRows.length}
+        >
+          Run
+        </Button>
       </div>
     </div>
   );
