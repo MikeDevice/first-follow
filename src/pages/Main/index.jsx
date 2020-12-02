@@ -4,6 +4,12 @@ import {Layout, Editor, Section, GrammarSetTable} from '../../components';
 import {getTerminals} from '../../helpers/grammar';
 import './main.scss';
 
+const defaultContent = [
+  'S⟶a b A',
+  'A⟶b c',
+  'A⟶',
+].join('\n');
+
 function Main() {
   const [grammar, setGrammar] = useState(null);
   const {firstSets, followSets, predictSets} = grammar ? firstFollow(grammar) : {};
@@ -17,7 +23,7 @@ function Main() {
     <Layout>
       <div className="main">
         <Section className="main__section">
-          <Editor onSubmit={onEditorSubmit} />
+          <Editor defaultContent={defaultContent} onSubmit={onEditorSubmit} />
         </Section>
         {firstSets && (
           <Section title="First sets" className="main__section">

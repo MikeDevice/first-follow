@@ -3,4 +3,8 @@
   background: none;
   border: none;
   cursor: pointer;
+
+  &[disabled] {
+    pointer-events: none;
+  }
 }
