@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './section.scss';
 
-function Section({title, children, className}) {
+function Section({title, label, className, children}) {
   return (
     <section className={classNames(className, 'section')}>
-      {title && <h2 className="section__title">{title}</h2>}
+      {title && (
+        <div className="section__header">
+          <h2 className="section__title">{title}</h2>
+          {label && <p className="section__label">{label}</p>}
+        </div>
+      )}
       <div className="section__content">
         {children}
       </div>
@@ -17,11 +22,13 @@ function Section({title, children, className}) {
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
+  label: PropTypes.string,
   className: PropTypes.string,
 };
 
 Section.defaultProps = {
   title: null,
+  label: null,
   className: null,
 };
 

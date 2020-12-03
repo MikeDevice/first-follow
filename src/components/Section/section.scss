@@ -4,4 +4,23 @@
     border-radius: var(--border-radius);
     overflow-x: auto;
   }
+
+  &__header {
+    margin: 15px 0;
+
+    @media (min-width: $screen-sm-min) {
+      margin: 20px 0;
+    }
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-label);
+  }
 }
