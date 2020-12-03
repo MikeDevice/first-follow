@@ -36,7 +36,7 @@ exports.config = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: path.resolve(__dirname, '..', 'build/index.html'),
+      filename: path.resolve(__dirname, '..', 'index.html'),
     }),
   ],
 };
