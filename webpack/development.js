@@ -1,10 +1,15 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {merge} = require('webpack-merge');
-const common = require('./common');
+const {config, entry, sassLoader} = require('./common');
 
-module.exports = merge(common, {
+module.exports = merge(config, {
   mode: 'development',
-  devtool: 'eval',
+  entry: ['react-hot-loader/patch', entry],
+  devtool: 'eval-cheap-module-source-map',
+  devServer: {
+    compress: true,
+    historyApiFallback: true,
+    hot: true,
+  },
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
@@ -14,29 +19,12 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              additionalData: '@import "./src/variables.scss";',
-            },
-          },
-        ],
+        use: ['style-loader', 'css-loader', sassLoader],
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
 });

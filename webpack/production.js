@@ -1,48 +1,30 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const {merge} = require('webpack-merge');
-const common = require('./common');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {config, entry, sassLoader} = require('./common');
 
 const licenseFile = 'ThirdPartyNotices.txt';
 
-module.exports = merge(common, {
+module.exports = merge(config, {
   mode: 'production',
+  entry,
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.scss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              additionalData: '@import "./src/variables.scss";',
-            },
-          },
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', sassLoader],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: path.resolve(__dirname, '..', 'index.html'),
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
@@ -60,7 +42,7 @@ module.exports = merge(common, {
           banner: `For license information please see ${licenseFile}?${Date.now()}`,
         },
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      new CssMinimizerPlugin(),
     ],
     splitChunks: {
       chunks: 'all',
