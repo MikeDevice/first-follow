@@ -4,6 +4,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 exports.entry = './src/index.jsx';
 
+exports.output = {
+  path: path.resolve(__dirname, '..', 'build'),
+};
+
 exports.sassLoader = {
   loader: 'sass-loader',
   options: {

@@ -1,5 +1,5 @@
 const {merge} = require('webpack-merge');
-const {config, entry, sassLoader} = require('./common');
+const {config, entry, sassLoader, output} = require('./common');
 
 module.exports = merge(config, {
   mode: 'development',
@@ -27,4 +27,5 @@ module.exports = merge(config, {
       },
     ],
   },
+  output,
 });

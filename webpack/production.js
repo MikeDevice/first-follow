@@ -1,11 +1,10 @@
-const path = require('path');
 const {merge} = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const {config, entry, sassLoader} = require('./common');
+const {config, entry, sassLoader, output} = require('./common');
 
 const licenseFile = 'ThirdPartyNotices.txt';
 
@@ -50,6 +49,6 @@ module.exports = merge(config, {
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, '..', 'build'),
+    ...output,
   },
 });
