@@ -1,6 +1,5 @@
 const {merge} = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {config, entry, sassLoader, templatePath} = require('./common');
+const {config, entry, sassLoader, output} = require('./common');
 
 module.exports = merge(config, {
   mode: 'development',
@@ -28,7 +27,5 @@ module.exports = merge(config, {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({template: templatePath}),
-  ],
+  output,
 });
