@@ -42,6 +42,7 @@ function makeNonterminalsStrategy(nonterminals) {
   };
 }
 
+// eslint-disable-next-line react/prop-types
 const makeComponent = (className) => ({children}) => (
   <span className={className}>
     {children}
