@@ -1,8 +1,7 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 exports.entry = './src/index.jsx';
+exports.templatePath = './src/index.html';
 
 exports.sassLoader = {
   loader: 'sass-loader',
@@ -30,9 +29,5 @@ exports.config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: path.resolve(__dirname, '..', 'index.html'),
-    }),
   ],
 };
