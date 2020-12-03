@@ -1,10 +1,10 @@
-const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const {merge} = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const LicenseCheckerWebpackPlugin = require('license-checker-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const {config, entry, sassLoader} = require('./common');
 
 const licenseFile = 'ThirdPartyNotices.txt';
@@ -42,7 +42,7 @@ module.exports = merge(config, {
           banner: `For license information please see ${licenseFile}?${Date.now()}`,
         },
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      new CssMinimizerPlugin(),
     ],
     splitChunks: {
       chunks: 'all',
