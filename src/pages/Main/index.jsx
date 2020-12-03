@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import firstFollow from 'first-follow';
 import {Layout, Editor, Section, GrammarSetTable} from '../../components';
 import {getTerminals} from '../../helpers/grammar';
@@ -10,23 +10,42 @@ const defaultContent = [
   'A⟶',
 ].join('\n');
 
+const labelText = 'The grammar has been changed. The results are no longer relevant.';
+
 function Main() {
   const [grammar, setGrammar] = useState(null);
+  const [isResultSynced, setIsResultSynced] = useState(true);
+  const submittedContentRef = useRef();
   const {firstSets, followSets, predictSets} = grammar ? firstFollow(grammar) : {};
   const terminals = grammar ? getTerminals(grammar) : [];
+  const label = isResultSynced ? null : labelText;
 
-  const onEditorSubmit = (editorGrammar) => {
+  const onEditorChange = (content) => {
+    if (!submittedContentRef.current) return;
+
+    const isSynced = content.trim() === submittedContentRef.current.trim();
+    setIsResultSynced(isSynced);
+  };
+
+  const onEditorSubmit = (editorGrammar, content) => {
+    submittedContentRef.current = content;
+
     setGrammar(editorGrammar);
+    setIsResultSynced(true);
   };
 
   return (
     <Layout>
       <div className="main">
         <Section className="main__section">
-          <Editor defaultContent={defaultContent} onSubmit={onEditorSubmit} />
+          <Editor
+            defaultContent={defaultContent}
+            onChange={onEditorChange}
+            onSubmit={onEditorSubmit}
+          />
         </Section>
         {firstSets && (
-          <Section title="First sets" className="main__section">
+          <Section title="First sets" label={label} className="main__section">
             <GrammarSetTable
               data={firstSets}
               columns={terminals}
@@ -35,7 +54,7 @@ function Main() {
           </Section>
         )}
         {followSets && (
-          <Section title="Follow sets" className="main__section">
+          <Section title="Follow sets" label={label} className="main__section">
             <GrammarSetTable
               data={followSets}
               columns={terminals}
@@ -44,7 +63,7 @@ function Main() {
           </Section>
         )}
         {predictSets && (
-          <Section title="Predict sets" className="main__section">
+          <Section title="Predict sets" label={label} className="main__section">
             <GrammarSetTable
               data={predictSets}
               columns={terminals}

@@ -10,7 +10,7 @@ import useEditor from './useEditor';
 import {parse} from '../../helpers/grammar';
 import './editor.scss';
 
-function Editor({defaultContent, onSubmit}) {
+function Editor({defaultContent, onSubmit, ...props}) {
   const [isSuccessLabelActive, setSuccessLabelActive] = useState(false);
   const timeoutId = useRef();
 
@@ -26,9 +26,12 @@ function Editor({defaultContent, onSubmit}) {
     timeoutId.current = setTimeout(hideSuccessLabel, 2000);
   };
 
-  const {state, onChange, undo, redo, clear, getContentRows} = useEditor({
+  const {state, onChange, undo, redo, clear, getContent, getContentRows} = useEditor({
     content: defaultContent,
-    onContentChange: hideSuccessLabel,
+    onContentChange: (content) => {
+      hideSuccessLabel();
+      props.onChange(content);
+    },
   });
 
   const rows = getContentRows();
@@ -36,7 +39,7 @@ function Editor({defaultContent, onSubmit}) {
   const errors = _.filter(parsedRows, 'error');
 
   const onRunClick = () => {
-    onSubmit(parsedRows);
+    onSubmit(parsedRows, getContent());
     showSuccessLabel();
   };
 
@@ -71,10 +74,12 @@ function Editor({defaultContent, onSubmit}) {
 Editor.propTypes = {
   defaultContent: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 Editor.defaultProps = {
   defaultContent: '',
+  onChange: _.noop,
 };
 
 export default Editor;

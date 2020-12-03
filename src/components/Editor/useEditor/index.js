@@ -138,6 +138,8 @@ export default ({content = '', onContentChange = _.noop} = {}) => {
     onChange(EditorState.push(state, ContentState.createFromText('')));
   };
 
+  const getContent = () => state.getCurrentContent().getPlainText();
+
   const getContentRows = () => Array.from(
     state
       .getCurrentContent()
@@ -152,6 +154,7 @@ export default ({content = '', onContentChange = _.noop} = {}) => {
     undo,
     redo,
     clear,
+    getContent,
     getContentRows,
   };
 };
