@@ -71,7 +71,7 @@
   ],
   "size-limit": [
     {
-      "limit": "1.5 s",
+      "limit": "3 s",
       "path": "build/*.js"
     }
   ],
