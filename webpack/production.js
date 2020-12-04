@@ -35,13 +35,20 @@ module.exports = merge(config, {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        terserOptions: {
+          output: {comments: /^\**!|@preserve|@license|@cc_on/i},
+        },
         extractComments: {
           // TODO: remove Date.now() when LicenseCheckerWebpackPlugin
           // will be able to use [contenthash]
           banner: `For license information please see ${licenseFile}?${Date.now()}`,
         },
       }),
-      new CssMinimizerPlugin(),
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: ['default', {discardComments: false}],
+        },
+      }),
     ],
     splitChunks: {
       chunks: 'all',
