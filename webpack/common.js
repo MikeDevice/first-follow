@@ -36,7 +36,9 @@ exports.config = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: path.resolve(__dirname, '..', 'index.html'),
+      ...process.env.NODE_ENV !== 'development' && {
+        filename: path.resolve(__dirname, '..', 'index.html'),
+      },
     }),
   ],
 };
