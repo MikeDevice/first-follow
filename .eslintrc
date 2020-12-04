@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:react-hooks/recommended"
+  ],
+  "globals": {
+    "document": true
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "no-confusing-arrow": "off",
+    "no-mixed-operators": "off",
+    "object-curly-newline": "off",
+    "object-curly-spacing": ["error", "never"],
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off"
+  }
+}

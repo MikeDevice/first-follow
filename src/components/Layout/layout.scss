@@ -1,0 +1,11 @@
+.layout {
+  padding: 20px 10px;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 50px 30px;
+  }
+
+  &__header {
+    margin-bottom: 35px;
+  }
+}

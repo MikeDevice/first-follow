@@ -1,0 +1,49 @@
+.editor-content-editor {
+  height: 100%;
+
+  .public-DraftStyleDefault-block {
+    white-space: nowrap;
+  }
+
+  &-arrow {
+    pointer-events: none;
+
+    &::before {
+      content: ' \27f6';
+    }
+
+    span {
+      opacity: 0;
+    }
+  }
+
+  &-arrow-placeholder {
+    pointer-events: none;
+
+    &::after {
+      content: ' \27f6';
+      opacity: 0.5;
+    }
+  }
+
+  &-empty-chain-placeholder {
+    pointer-events: none;
+
+    &::before {
+      content: ' \27f6';
+    }
+
+    span {
+      opacity: 0;
+    }
+
+    &::after {
+      content: '\03b5';
+      opacity: 0.5;
+    }
+  }
+
+  &-nonterminal {
+    font-weight: bold;
+  }
+}

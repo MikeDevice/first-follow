@@ -1,0 +1,38 @@
+.editor {
+  &__content {
+    display: flex;
+    padding: 10px 15px;
+    min-height: 100px;
+    font-family: var(--font-family-mono);
+    line-height: 1.3;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 200px;
+    }
+  }
+
+  &__rows-numbers {
+    flex: 1 0 auto;
+    margin-right: 10px;
+    color: var(--color-rows-numbers);
+  }
+
+  &__body {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__footer {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+  }
+
+  &__button {
+    padding: 10px 30px;
+    background-color: var(--color-main);
+
+    &:hover {
+      background-color: var(--color-border);
+    }
+  }
+}
