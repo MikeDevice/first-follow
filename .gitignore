@@ -1,3 +1,5 @@
 node_modules
-build
-/index.html
+
+# Ignore this file because a custom license file generator is used
+# TODO: do not generate this file on every build
+build/*.js.LICENSE
