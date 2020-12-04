@@ -5,9 +5,14 @@ import {getTerminals} from '../../helpers/grammar';
 import './main.scss';
 
 const defaultContent = [
-  'S⟶a b A',
-  'A⟶b c',
-  'A⟶',
+  'Program⟶var Variables begin Operators end',
+  'Variables⟶Variable ; Variables',
+  'Variables⟶',
+  'Variable⟶identifier',
+  'Operators⟶Operator ; Operators',
+  'Operators⟶',
+  'Operator⟶read ( Variable )',
+  'Operator⟶write ( Variable )',
 ].join('\n');
 
 const labelText = 'The grammar has been changed. The results are no longer relevant.';
