@@ -9,7 +9,8 @@
     "dev": "NODE_ENV='development' webpack serve --config ./webpack/index.js",
     "build": "NODE_ENV='production' webpack --progress --config ./webpack/index.js",
     "analyze": "ANALYZE=1 nrun build",
-    "size": "nrun build && size-limit"
+    "size": "size-limit",
+    "release": "run-s -s lint build size"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.32",
@@ -71,7 +72,7 @@
   ],
   "size-limit": [
     {
-      "limit": "3 s",
+      "limit": "3.5 s",
       "path": "build/*.js"
     }
   ],
