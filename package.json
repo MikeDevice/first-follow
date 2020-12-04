@@ -1,6 +1,6 @@
 {
   "name": "first-follow-gh-pages",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": "true",
   "scripts": {
     "lint:js": "eslint --ext '.js,jsx' ./",
