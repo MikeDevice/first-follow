@@ -92,7 +92,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": "eslint --fix",
-    "*.{css,scss}": "stylelint --fix"
+    "*.{js,jsx}": "nrun lint:js",
+    "*.{css,scss}": "nrun lint:styles"
   }
 }
