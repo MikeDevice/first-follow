@@ -39,6 +39,8 @@ function Main() {
     setIsResultSynced(true);
   };
 
+  const withEmptyColumns = false;
+
   return (
     <Layout>
       <div className="main">
@@ -54,6 +56,7 @@ function Main() {
             <GrammarSetTable
               data={firstSets}
               columns={terminals}
+              withEmptyColumns={withEmptyColumns}
               withEmptyChain
             />
           </Section>
@@ -63,6 +66,7 @@ function Main() {
             <GrammarSetTable
               data={followSets}
               columns={terminals}
+              withEmptyColumns={withEmptyColumns}
               withEndMark
             />
           </Section>
@@ -72,6 +76,7 @@ function Main() {
             <GrammarSetTable
               data={predictSets}
               columns={terminals}
+              withEmptyColumns={withEmptyColumns}
               withEndMark
             />
           </Section>
