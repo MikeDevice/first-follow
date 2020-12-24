@@ -1,4 +1,8 @@
 .editor {
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
   &__content {
     display: flex;
     padding: 10px 15px;

@@ -38,7 +38,8 @@
     position: absolute;
     appearance: none;
 
-    &:focus {
+    &:focus,
+    &:active {
       + .switcher__control .switcher__indicator {
         box-shadow: 0 0 0 1px var(--color-focus);
       }

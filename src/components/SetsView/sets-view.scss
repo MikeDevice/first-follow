@@ -1,10 +1,4 @@
-.section {
-  &__content {
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius);
-    overflow-x: auto;
-  }
-
+.sets-view {
   &__header {
     margin: 15px 0;
 
@@ -22,5 +16,11 @@
     font-size: 14px;
     font-style: italic;
     color: var(--color-label);
+  }
+
+  &__table {
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
   }
 }

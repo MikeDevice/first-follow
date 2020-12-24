@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './switcher.scss';
 
-function Switcher(props) {
+function Switcher({isChecked}) {
   return (
     <label className="switcher">
-      <input type="checkbox" className="switcher__checkbox" />
+      <input type="checkbox" className="switcher__checkbox" checked={isChecked} />
       <span className="switcher__control">
         <span className="switcher__indicator" />
       </span>
@@ -12,5 +13,9 @@ function Switcher(props) {
     </label>
   );
 }
+
+Switcher.propTypes = {
+  isChecked: PropTypes.bool.isRequired,
+};
 
 export default Switcher;

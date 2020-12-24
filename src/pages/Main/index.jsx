@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 import firstFollow from 'first-follow';
-import {Layout, Editor, Section, Switcher, GrammarSetTable} from '../../components';
-import {getTerminals} from '../../helpers/grammar';
+import {Layout, Editor, Switcher, SetsView} from '../../components';
 import './main.scss';
 
 const defaultContent = [
@@ -15,15 +14,11 @@ const defaultContent = [
   'Operator⟶write ( Variable )',
 ].join('\n');
 
-const labelText = 'The grammar has been changed. The results are no longer relevant.';
-
 function Main() {
   const [grammar, setGrammar] = useState(null);
   const [isResultSynced, setIsResultSynced] = useState(true);
   const submittedContentRef = useRef();
   const {firstSets, followSets, predictSets} = grammar ? firstFollow(grammar) : {};
-  const terminals = grammar ? getTerminals(grammar) : [];
-  const label = isResultSynced ? null : labelText;
 
   const onEditorChange = (content) => {
     if (!submittedContentRef.current) return;
@@ -39,48 +34,52 @@ function Main() {
     setIsResultSynced(true);
   };
 
-  const withEmptyColumns = false;
+  const setsViewProps = {
+    withEmptyColumns: true,
+    isSynced: isResultSynced,
+    grammar,
+  };
 
   return (
     <Layout>
       <div className="main">
-        <Switcher />
-        <Section className="main__section">
+        {/* <Switcher isChecked /> */}
+        <div className="main__section">
           <Editor
             defaultContent={defaultContent}
             onChange={onEditorChange}
             onSubmit={onEditorSubmit}
           />
-        </Section>
+        </div>
         {firstSets && (
-          <Section title="First sets" label={label} className="main__section">
-            <GrammarSetTable
-              data={firstSets}
-              columns={terminals}
-              withEmptyColumns={withEmptyColumns}
+          <div className="main__section">
+            <SetsView
+              title="First sets"
+              sets={firstSets}
               withEmptyChain
+              {...setsViewProps}
             />
-          </Section>
+          </div>
         )}
         {followSets && (
-          <Section title="Follow sets" label={label} className="main__section">
-            <GrammarSetTable
-              data={followSets}
-              columns={terminals}
-              withEmptyColumns={withEmptyColumns}
+          <div className="main__section">
+            <SetsView
+              title="Follow sets"
+              sets={followSets}
               withEndMark
+              {...setsViewProps}
             />
-          </Section>
+          </div>
         )}
         {predictSets && (
-          <Section title="Predict sets" label={label} className="main__section">
-            <GrammarSetTable
-              data={predictSets}
-              columns={terminals}
-              withEmptyColumns={withEmptyColumns}
+          <div className="main__section">
+            <SetsView
+              title="Predict sets"
+              sets={predictSets}
               withEndMark
+              {...setsViewProps}
             />
-          </Section>
+          </div>
         )}
       </div>
     </Layout>
