@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import firstFollow from 'first-follow';
-import {Layout, Editor, Section, GrammarSetTable} from '../../components';
+import {Layout, Editor, Section, Switcher, GrammarSetTable} from '../../components';
 import {getTerminals} from '../../helpers/grammar';
 import './main.scss';
 
@@ -44,6 +44,7 @@ function Main() {
   return (
     <Layout>
       <div className="main">
+        <Switcher />
         <Section className="main__section">
           <Editor
             defaultContent={defaultContent}

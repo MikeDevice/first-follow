@@ -1,0 +1,57 @@
+.switcher {
+  $switcher-width: 35px;
+  $indicator-width: 18px;
+  $indicator-height: $indicator-width;
+  $switcher-height: $indicator-height;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__control {
+    position: relative;
+    display: inline-block;
+    width: $switcher-width;
+    height: $switcher-height;
+    margin-right: 10px;
+    background-color: var(--color-main);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: all 250ms ease;
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $indicator-width;
+    height: $indicator-height;
+    border: 1px solid var(--color-border);
+    border-radius: 100%;
+    margin: -1px;
+    background-color: var(--color-background);
+    transition: inherit;
+  }
+
+  &__checkbox {
+    position: absolute;
+    appearance: none;
+
+    &:focus {
+      + .switcher__control .switcher__indicator {
+        box-shadow: 0 0 0 1px var(--color-focus);
+      }
+    }
+
+    &:checked {
+      + .switcher__control {
+        background-color: var(--color-success-accent);
+
+        .switcher__indicator {
+          left: $switcher-width - $indicator-width;
+        }
+      }
+    }
+  }
+}
